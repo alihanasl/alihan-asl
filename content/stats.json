@@ -1,0 +1,30 @@
+[
+  {
+    "id": "servers",
+    "value": 20,
+    "display": "",
+    "suffix": "+",
+    "sortOrder": 0
+  },
+  {
+    "id": "switches",
+    "value": 150,
+    "display": "",
+    "suffix": "+",
+    "sortOrder": 1
+  },
+  {
+    "id": "projects",
+    "value": 10,
+    "display": "",
+    "suffix": "+",
+    "sortOrder": 2
+  },
+  {
+    "id": "problems",
+    "value": null,
+    "display": "∞",
+    "suffix": "",
+    "sortOrder": 3
+  }
+]

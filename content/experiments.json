@@ -1,0 +1,35 @@
+[
+  {
+    "id": "network-monitoring",
+    "nameTr": "Ağ İzleme",
+    "nameEn": "Network Monitoring",
+    "noteTr": "Ağı izleyen masaüstü uygulama.",
+    "noteEn": "A desktop app that watches the network.",
+    "status": "active",
+    "ref": "01",
+    "published": true,
+    "sortOrder": 0
+  },
+  {
+    "id": "guest-assistant",
+    "nameTr": "Misafir Asistanı",
+    "nameEn": "AI Guest Assistant",
+    "noteTr": "Tesisi bilen bir misafir asistanı.",
+    "noteEn": "Help for hotel guests, based on how the property actually runs.",
+    "status": "building",
+    "ref": "03",
+    "published": true,
+    "sortOrder": 1
+  },
+  {
+    "id": "internal-tools",
+    "nameTr": "İç IT Araçları",
+    "nameEn": "Internal IT Tools",
+    "noteTr": "Kullanılmazsa durmayan küçük araçlar.",
+    "noteEn": "Small tools. They stay if people use them.",
+    "status": "experimental",
+    "ref": "04",
+    "published": true,
+    "sortOrder": 2
+  }
+]

@@ -1,0 +1,47 @@
+[
+  {
+    "id": "it",
+    "fieldTr": "IT Yönetimi",
+    "fieldEn": "IT Management",
+    "contextTr": "Otel teknolojisi",
+    "contextEn": "Hotel Technology",
+    "company": "",
+    "startDate": "",
+    "endDate": "",
+    "isCurrent": false,
+    "descriptionTr": "",
+    "descriptionEn": "",
+    "published": true,
+    "sortOrder": 0
+  },
+  {
+    "id": "products",
+    "fieldTr": "Dijital ürünler",
+    "fieldEn": "Digital Products",
+    "contextTr": "Kendi işlerim",
+    "contextEn": "Independent work",
+    "company": "",
+    "startDate": "",
+    "endDate": "",
+    "isCurrent": false,
+    "descriptionTr": "",
+    "descriptionEn": "",
+    "published": true,
+    "sortOrder": 1
+  },
+  {
+    "id": "content",
+    "fieldTr": "İçerik",
+    "fieldEn": "Content",
+    "contextTr": "YouTube / Dijital medya",
+    "contextEn": "YouTube / Digital media",
+    "company": "",
+    "startDate": "",
+    "endDate": "",
+    "isCurrent": false,
+    "descriptionTr": "",
+    "descriptionEn": "",
+    "published": true,
+    "sortOrder": 2
+  }
+]

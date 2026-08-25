@@ -1,0 +1,92 @@
+[
+  {
+    "id": "nextjs",
+    "name": "Next.js",
+    "category": "frontend",
+    "noteTr": "Web ürünlerini bununla kuruyorum.",
+    "noteEn": "How I put products on the web.",
+    "published": true,
+    "sortOrder": 0
+  },
+  {
+    "id": "typescript",
+    "name": "TypeScript",
+    "category": "frontend",
+    "noteTr": "Kalıcı işlerde yazdığım dil.",
+    "noteEn": "What I write in when the code has to last.",
+    "published": true,
+    "sortOrder": 1
+  },
+  {
+    "id": "react",
+    "name": "React",
+    "category": "frontend",
+    "noteTr": "Demo değil, duracak arayüzler.",
+    "noteEn": "Interfaces meant to stay, not just demo.",
+    "published": true,
+    "sortOrder": 2
+  },
+  {
+    "id": "tailwind",
+    "name": "Tailwind",
+    "category": "frontend",
+    "noteTr": "Boşluk ve yazı üzerinde kontrol.",
+    "noteEn": "Control over layout, type, and space.",
+    "published": true,
+    "sortOrder": 3
+  },
+  {
+    "id": "supabase",
+    "name": "Supabase",
+    "category": "database",
+    "noteTr": "Ürünün veri ve girişe ihtiyacı olunca.",
+    "noteEn": "Data and auth when a product needs a backend.",
+    "published": true,
+    "sortOrder": 4
+  },
+  {
+    "id": "electron",
+    "name": "Electron",
+    "category": "tools",
+    "noteTr": "Masaüstünde durması gereken araçlar.",
+    "noteEn": "When the tool belongs on a desktop.",
+    "published": true,
+    "sortOrder": 5
+  },
+  {
+    "id": "python",
+    "name": "Python",
+    "category": "backend",
+    "noteTr": "Script, servis, küçük otomasyon.",
+    "noteEn": "Scripts, services, small automations.",
+    "published": true,
+    "sortOrder": 6
+  },
+  {
+    "id": "git",
+    "name": "Git",
+    "category": "tools",
+    "noteTr": "Geçmişi tuttuğum yer.",
+    "noteEn": "Where the history lives.",
+    "published": true,
+    "sortOrder": 7
+  },
+  {
+    "id": "vercel",
+    "name": "Vercel",
+    "category": "infrastructure",
+    "noteTr": "Açıkta duran işlerin yayına çıktığı yer.",
+    "noteEn": "Where public work goes live.",
+    "published": true,
+    "sortOrder": 8
+  },
+  {
+    "id": "networking",
+    "name": "Networking",
+    "category": "infrastructure",
+    "noteTr": "Ürünlerin altında duran ağ.",
+    "noteEn": "The network underneath the products.",
+    "published": true,
+    "sortOrder": 9
+  }
+]

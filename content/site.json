@@ -1,0 +1,146 @@
+{
+  "meta.title": {
+    "en": "Alihan Asl — IT Manager & Digital Builder",
+    "tr": "Alihan Asl — IT Yöneticisi ve Dijital Üretici"
+  },
+  "meta.description": {
+    "en": "Alihan Asl is an IT manager who builds tools, systems, and digital products.",
+    "tr": "Alihan Asl, IT yöneticisi. Araç, sistem ve dijital ürün geliştiriyor."
+  },
+  "meta.jobTitle": {
+    "en": "IT Manager",
+    "tr": "IT Yöneticisi"
+  },
+  "meta.ogRoles": {
+    "en": "IT Manager · Product Builder · Digital Creator",
+    "tr": "IT Yöneticisi · Ürün Geliştirici · İçerik Üreticisi"
+  },
+  "hero.index": {
+    "en": "00  —  Intro",
+    "tr": "00  —  Giriş"
+  },
+  "hero.lab": {
+    "en": "Digital Lab",
+    "tr": "Dijital Lab"
+  },
+  "hero.tagline": {
+    "en": "I build tools for problems I actually have to solve.",
+    "tr": "İşin içinde çıkan problemler için araç ve sistem geliştiriyorum."
+  },
+  "hero.roleIt": {
+    "en": "IT Manager",
+    "tr": "IT Yöneticisi"
+  },
+  "hero.roleBuilder": {
+    "en": "Product Builder",
+    "tr": "Ürün Geliştirici"
+  },
+  "hero.roleCreator": {
+    "en": "Digital Creator",
+    "tr": "İçerik Üreticisi"
+  },
+  "system.index": {
+    "en": "System",
+    "tr": "Sistem"
+  },
+  "system.title": {
+    "en": "Overview",
+    "tr": "Özet"
+  },
+  "system.copy": {
+    "en": "Live infrastructure. And the products built next to it.",
+    "tr": "Çalışan altyapı. Yanında da geliştirdiğim ürünler."
+  },
+  "system.servers": {
+    "en": "Servers",
+    "tr": "Sunucu"
+  },
+  "system.switches": {
+    "en": "Switches",
+    "tr": "Switch"
+  },
+  "system.projects": {
+    "en": "Projects",
+    "tr": "Proje"
+  },
+  "system.problems": {
+    "en": "Problems solved",
+    "tr": "Problem"
+  },
+  "work.index": {
+    "en": "Index",
+    "tr": "Liste"
+  },
+  "work.title": {
+    "en": "Selected work",
+    "tr": "Seçilen işler"
+  },
+  "work.copy": {
+    "en": "Built because they were needed. Not made up for a portfolio.",
+    "tr": "İhtiyaç olduğu için yaptıklarım. Masada kalmış fikirler değil."
+  },
+  "lab.index": {
+    "en": "Register",
+    "tr": "Defter"
+  },
+  "lab.title": {
+    "en": "Digital lab",
+    "tr": "Dijital lab"
+  },
+  "lab.copy": {
+    "en": "Not a list of ideas. Work that's still moving.",
+    "tr": "Fikir listesi değil. Hâlâ üzerinde durduğum işler."
+  },
+  "about.index": {
+    "en": "Position",
+    "tr": "Konum"
+  },
+  "about.manifestoOne": {
+    "en": "I solve problems in IT.",
+    "tr": "IT'de sorun çözerim."
+  },
+  "about.manifestoTwo": {
+    "en": "I figure them out by building.",
+    "tr": "Anlamak için üretirim."
+  },
+  "about.copy": {
+    "en": "I run technology in a live operation. Servers, networks, the systems people only notice when they fail. That job taught me to see the snag first, then build the tool. Monitoring software, internal platforms, digital products — they all come from that job.",
+    "tr": "Canlı bir operasyonda teknolojiyi ben yürütüyorum. Sunucular, ağ, bozulunca fark edilen sistemler. Orada gördüğüm tıkanıklık için araç yazıyorum. Buradaki her şey oradan geliyor."
+  },
+  "toolbox.index": {
+    "en": "Stack",
+    "tr": "Stack"
+  },
+  "toolbox.title": {
+    "en": "Toolbox",
+    "tr": "Araçlar"
+  },
+  "toolbox.copy": {
+    "en": "What I use to build things and keep them running.",
+    "tr": "Kurarken ve ayakta tutarken kullandıklarım."
+  },
+  "contact.index": {
+    "en": "Close",
+    "tr": "Kapanış"
+  },
+  "contact.titleLine1": {
+    "en": "Let's build",
+    "tr": "Bir şey"
+  },
+  "contact.titleLine2": {
+    "en": "something.",
+    "tr": "kuralım."
+  },
+  "contact.copy": {
+    "en": "If it's already in production, half-finished, or messy — that's usually worth talking about.",
+    "tr": "Canlı bir sistem, yarım bir araç, karışık bir operasyon. Konuşulacaksa buradan."
+  },
+  "footer.descriptor": {
+    "en": "Digital Builder",
+    "tr": "Dijital üretici"
+  },
+  "footer.note": {
+    "en": "Made out of curiosity.",
+    "tr": "Meraktan."
+  }
+}
