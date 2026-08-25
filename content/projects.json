@@ -97,39 +97,5 @@
     "published": true,
     "sortOrder": 2,
     "layout": "visual-below"
-  },
-  {
-    "id": "it-toolkit",
-    "slug": "it-toolkit",
-    "titleTr": "IT Toolkit",
-    "titleEn": "IT Toolkit",
-    "shortDescriptionTr": "İç araçlar ve küçük otomasyonlar.",
-    "shortDescriptionEn": "Internal tools and small automations.",
-    "problemTr": "Aynı iş sürekli scriptlere, notlara, bir kerelik çözümlere kaçıyordu.",
-    "problemEn": "The same work kept hiding in scripts, notes, and one-off fixes.",
-    "ideaTr": "İçerde kullanılan, gösterişsiz araçlar. Kullananı hızlandırsın yeter.",
-    "ideaEn": "A kit of internal tools. Unspectacular. Faster for the people who use them.",
-    "buildTr": "Yolda toplanıyor. Kullanılırsa kalıyor.",
-    "buildEn": "Collected as I go. Utilities, checks, small systems. They stay if they get used.",
-    "resultTr": "Bitmiş bir ürün değil. Durmadan eklenen bir set.",
-    "resultEn": "A workshop. Not a finished product.",
-    "captionTr": "MODÜLLER",
-    "captionEn": "MODULES",
-    "category": "tools",
-    "technologies": [
-      "Python",
-      "TypeScript",
-      "Git"
-    ],
-    "year": "2024 —",
-    "githubUrl": "",
-    "liveUrl": "",
-    "coverImage": "",
-    "gallery": [],
-    "featured": false,
-    "published": false,
-    "sortOrder": 3,
-    "layout": "compact",
-    "updatedAt": "2026-08-25T16:11:15.694Z"
   }
 ]
