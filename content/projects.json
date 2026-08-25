@@ -4,7 +4,7 @@
     "slug": "ping-alert-v2",
     "titleTr": "Ping Alert V2",
     "titleEn": "Ping Alert V2",
-    "shortDescriptionTr": "Ağı izleyen masaüstü uygulama.",
+    "shortDescriptionTr": "Ağ altyapısını gerçek zamanlı izlemek için geliştirilmiş masaüstü monitoring uygulaması.",
     "shortDescriptionEn": "A desktop app that watches the network.",
     "problemTr": "Switch düşünce haber çoğu zaman geç kalıyor. İzleme ya dağınıktı ya da yoktu.",
     "problemEn": "When a switch dies, the room finds out too late. Monitoring was either everywhere or nowhere.",
@@ -32,7 +32,7 @@
     "sortOrder": 0,
     "layout": "visual-right",
     "createdAt": "2026-08-25T16:50:05.504Z",
-    "updatedAt": "2026-08-25T16:52:29.673Z"
+    "updatedAt": "2026-08-25T19:05:32.480Z"
   },
   {
     "id": "laniff",
