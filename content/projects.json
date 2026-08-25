@@ -68,38 +68,5 @@
     "layout": "visual-left",
     "createdAt": "2026-08-25T16:50:18.255Z",
     "updatedAt": "2026-08-25T16:50:18.255Z"
-  },
-  {
-    "id": "guest-assist-ai",
-    "slug": "guest-assist-ai",
-    "titleTr": "Guest Assist AI",
-    "titleEn": "Guest Assist AI",
-    "shortDescriptionTr": "Otel misafirleri için bir asistan.",
-    "shortDescriptionEn": "An assistant for hotel guests.",
-    "problemTr": "Misafirler aynı soruları her saat soruyor. Ekibin vardiyası zaten dolu.",
-    "problemEn": "Guests ask the same questions at all hours. Staff already have a full shift.",
-    "ideaTr": "Tesisi bilen bir asistan. Yardım eder. Resepsiyonun yerini aldığını iddia etmez.",
-    "ideaEn": "An assistant that knows the property. It helps. It doesn't pretend to replace the front desk.",
-    "buildTr": "Gerçek misafir sorularından yola çıktı. Hazır sohbet botu değil.",
-    "buildEn": "Built from real guest questions. Not a generic chatbot demo.",
-    "resultTr": "Hâlâ lab'de. Önce işe yarasın.",
-    "resultEn": "Still in the lab. Useful first.",
-    "captionTr": "MİSAFİR / SORGU",
-    "captionEn": "GUEST / QUERY",
-    "category": "ai",
-    "technologies": [
-      "Next.js",
-      "TypeScript",
-      "Python"
-    ],
-    "year": "2025",
-    "githubUrl": "",
-    "liveUrl": "",
-    "coverImage": "",
-    "gallery": [],
-    "featured": true,
-    "published": true,
-    "sortOrder": 2,
-    "layout": "visual-below"
   }
 ]
