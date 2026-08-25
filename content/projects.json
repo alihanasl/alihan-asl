@@ -65,7 +65,9 @@
     "featured": true,
     "published": true,
     "sortOrder": 1,
-    "layout": "visual-left"
+    "layout": "visual-left",
+    "createdAt": "2026-08-25T16:50:18.255Z",
+    "updatedAt": "2026-08-25T16:50:18.255Z"
   },
   {
     "id": "guest-assist-ai",
