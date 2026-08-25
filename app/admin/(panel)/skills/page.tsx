@@ -1,12 +1,13 @@
 import { getAdminBundle } from "@/lib/cms/admin-data";
 import { SkillsManager } from "@/components/admin/skills-manager";
+import { AdminHeading } from "@/components/admin/page-header";
 
 export default async function SkillsPage() {
   const { skills } = await getAdminBundle();
 
   return (
     <div>
-      <h1 className="mb-6 text-2xl font-semibold tracking-tight">Skills</h1>
+      <AdminHeading titleKey="skills.title" />
       <SkillsManager items={skills} />
     </div>
   );

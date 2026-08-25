@@ -2,8 +2,10 @@ import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import {
   adminSessionCookie,
+  adminSessionMaxAge,
   encodeSession,
   isAdminAuthConfigured,
+  safeAdminPath,
   verifyCredentials,
   verifySessionToken,
 } from "@/lib/cms/auth-session";
@@ -11,8 +13,15 @@ import {
 export {
   adminSessionCookie,
   isAdminAuthConfigured,
+  safeAdminPath,
   verifyCredentials,
   verifySessionToken,
+};
+
+const cookieBase = {
+  httpOnly: true,
+  sameSite: "lax" as const,
+  secure: process.env.NODE_ENV === "production",
 };
 
 export async function getAdminUsername() {
@@ -31,15 +40,19 @@ export async function requireAdmin() {
 export async function createAdminSession(username: string) {
   const store = await cookies();
   store.set(adminSessionCookie, await encodeSession(username), {
-    httpOnly: true,
-    sameSite: "lax",
-    secure: process.env.NODE_ENV === "production",
-    path: "/",
-    maxAge: 60 * 60 * 24 * 14,
+    ...cookieBase,
+    path: "/admin",
+    maxAge: adminSessionMaxAge / 1000,
   });
 }
 
 export async function clearAdminSession() {
   const store = await cookies();
-  store.delete(adminSessionCookie);
+  for (const path of ["/", "/admin"]) {
+    store.set(adminSessionCookie, "", {
+      ...cookieBase,
+      path,
+      maxAge: 0,
+    });
+  }
 }

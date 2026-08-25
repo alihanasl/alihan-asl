@@ -5,10 +5,12 @@ import { useState } from "react";
 import type { Profile } from "@/lib/cms/types";
 import { saveProfileAction } from "@/lib/cms/actions";
 import { useAdminToast } from "@/components/admin/toast";
+import { useAdminI18n } from "@/components/admin/admin-i18n";
 
 export function AboutForm({ profile }: { profile: Profile }) {
   const router = useRouter();
   const { toast } = useAdminToast();
+  const { t, errorText } = useAdminI18n();
   const [saving, setSaving] = useState(false);
 
   return (
@@ -20,10 +22,10 @@ export function AboutForm({ profile }: { profile: Profile }) {
         const result = await saveProfileAction(new FormData(event.currentTarget));
         setSaving(false);
         if (!result.ok) {
-          toast(result.error, "error");
+          toast(errorText(result.error), "error");
           return;
         }
-        toast("Profil kaydedildi.");
+        toast(t("about.saved"));
         router.refresh();
       }}
     >
@@ -31,30 +33,28 @@ export function AboutForm({ profile }: { profile: Profile }) {
         <input type="hidden" name="id" defaultValue={profile.id} />
       ) : null}
       <label className="admin-field">
-        <span>Name</span>
+        <span>{t("about.name")}</span>
         <input name="name" defaultValue={profile.name} />
       </label>
       <label className="admin-field">
-        <span>Email</span>
+        <span>{t("about.email")}</span>
         <input name="email" type="email" defaultValue={profile.email} />
       </label>
       <label className="admin-field">
-        <span>GitHub</span>
+        <span>{t("about.github")}</span>
         <input name="github_url" defaultValue={profile.githubUrl} />
       </label>
       <label className="admin-field">
-        <span>LinkedIn</span>
+        <span>{t("about.linkedin")}</span>
         <input name="linkedin_url" defaultValue={profile.linkedinUrl} />
       </label>
       <label className="admin-field">
-        <span>YouTube</span>
+        <span>{t("about.youtube")}</span>
         <input name="youtube_url" defaultValue={profile.youtubeUrl} />
       </label>
-      <p className="text-xs text-zinc-500">
-        Headline ve bio metinleri Content bölümündeki Hero / About alanlarından yönetilir.
-      </p>
+      <p className="text-xs text-zinc-500">{t("about.hint")}</p>
       <button type="submit" className="admin-btn" disabled={saving}>
-        Save
+        {t("common.save")}
       </button>
     </form>
   );

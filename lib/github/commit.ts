@@ -47,7 +47,8 @@ async function github<T>(
 
   if (!response.ok) {
     const body = await response.text();
-    throw new Error(`GitHub API ${response.status}: ${body.slice(0, 400)}`);
+    console.error("GitHub API error", response.status, body.slice(0, 200));
+    throw new Error("GitHub request failed.");
   }
 
   if (response.status === 204) {
@@ -86,7 +87,7 @@ export async function commitGithubFiles(
   deletes: string[] = [],
 ) {
   if (!isGitHubConfigured()) {
-    throw new Error("GITHUB_TOKEN, GITHUB_OWNER ve GITHUB_REPO gerekli.");
+    throw new Error("GitHub is not configured.");
   }
 
   const branch = githubBranch();

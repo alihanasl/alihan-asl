@@ -9,6 +9,7 @@ import {
 import { ALLOWED_MEDIA_TYPES, MAX_MEDIA_BYTES } from "@/lib/cms/media";
 import { ConfirmDialog } from "@/components/admin/confirm";
 import { useAdminToast } from "@/components/admin/toast";
+import { useAdminI18n } from "@/components/admin/admin-i18n";
 import type { MediaItem } from "@/lib/cms/store";
 
 export function MediaManager({
@@ -19,6 +20,7 @@ export function MediaManager({
   onSelect?: (url: string) => void;
 }) {
   const { toast } = useAdminToast();
+  const { t, errorText } = useAdminI18n();
   const [items, setItems] = useState<MediaItem[]>([]);
   const [status, setStatus] = useState<"idle" | "loading" | "uploading">("loading");
   const [pendingDelete, setPendingDelete] = useState<MediaItem | null>(null);
@@ -48,17 +50,17 @@ export function MediaManager({
     const result = await uploadMediaAction(form);
     setStatus("idle");
     if (!result.ok) {
-      toast(result.error, "error");
+      toast(errorText(result.error), "error");
       return;
     }
-    toast("Görsel kaydedildi. Vercel deploy sonrası sitede görünür.");
+    toast(t("media.saved"));
     await refresh();
   }
 
   return (
     <div>
       <label className="admin-btn inline-flex cursor-pointer items-center">
-        {status === "uploading" ? "Yükleniyor…" : "Görsel yükle"}
+        {status === "uploading" ? t("media.uploading") : t("media.upload")}
         <input
           type="file"
           accept={ALLOWED_MEDIA_TYPES.join(",")}
@@ -72,14 +74,13 @@ export function MediaManager({
         />
       </label>
       <p className="mt-2 text-xs text-zinc-500">
-        JPEG, PNG, WebP, GIF, AVIF · en fazla {Math.round(MAX_MEDIA_BYTES / 1024 / 1024)} MB.
-        Dosyalar public/uploads altına commit edilir.
+        {t("media.limits", { mb: String(Math.round(MAX_MEDIA_BYTES / 1024 / 1024)) })}
       </p>
 
       {status === "loading" ? (
-        <p className="mt-6 text-sm text-zinc-500">Medya yükleniyor…</p>
+        <p className="mt-6 text-sm text-zinc-500">{t("media.loading")}</p>
       ) : items.length === 0 ? (
-        <p className="mt-6 text-sm text-zinc-500">Henüz görsel yok.</p>
+        <p className="mt-6 text-sm text-zinc-500">{t("media.empty")}</p>
       ) : (
         <ul className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
           {items.map((item) => (
@@ -93,7 +94,7 @@ export function MediaManager({
                     className="text-xs font-medium text-zinc-800"
                     onClick={() => onSelect?.(item.url)}
                   >
-                    Seç
+                    {t("common.select")}
                   </button>
                 ) : (
                   <span className="truncate text-xs text-zinc-500">{item.name}</span>
@@ -103,7 +104,7 @@ export function MediaManager({
                   className="text-xs text-red-600"
                   onClick={() => setPendingDelete(item)}
                 >
-                  Sil
+                  {t("common.delete")}
                 </button>
               </div>
             </li>
@@ -113,18 +114,18 @@ export function MediaManager({
 
       <ConfirmDialog
         open={Boolean(pendingDelete)}
-        title="Görseli sil"
-        body="Bu görsel depodan silinecek. Projelerde kullanılıyorsa bağlantı kırılır."
+        title={t("media.deleteTitle")}
+        body={t("media.deleteBody")}
         onCancel={() => setPendingDelete(null)}
         onConfirm={async () => {
           if (!pendingDelete) return;
           const result = await deleteMediaAction(pendingDelete.path);
           setPendingDelete(null);
           if (!result.ok) {
-            toast(result.error, "error");
+            toast(errorText(result.error), "error");
             return;
           }
-          toast("Görsel silindi.");
+          toast(t("media.deleted"));
           await refresh();
         }}
       />
@@ -141,15 +142,16 @@ export function MediaPicker({
   onClose: () => void;
   onSelect: (url: string) => void;
 }) {
+  const { t } = useAdminI18n();
   if (!open) return null;
 
   return (
     <div className="fixed inset-0 z-[70] flex items-start justify-center overflow-y-auto bg-black/40 p-4">
       <div className="mt-10 w-full max-w-3xl rounded-lg bg-white p-5 shadow-lg">
         <div className="mb-4 flex items-center justify-between">
-          <h2 className="text-base font-semibold">Medya</h2>
+          <h2 className="text-base font-semibold">{t("media.picker")}</h2>
           <button type="button" className="admin-btn-ghost" onClick={onClose}>
-            Kapat
+            {t("common.close")}
           </button>
         </div>
         <MediaManager

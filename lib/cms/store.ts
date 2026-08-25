@@ -32,8 +32,38 @@ export type MediaItem = {
   path: string;
 };
 
+const allowedJson = new Set<string>(Object.values(contentPaths));
+
+export function isAllowedCmsPath(relative: string) {
+  const normalized = relative.replaceAll("\\", "/");
+  if (
+    !normalized ||
+    normalized.includes("..") ||
+    normalized.startsWith("/") ||
+    normalized.includes("\0")
+  ) {
+    return false;
+  }
+  if (allowedJson.has(normalized)) {
+    return true;
+  }
+  return /^public\/uploads\/[A-Za-z0-9._-]+$/.test(normalized);
+}
+
+function assertSafeCmsPath(relative: string) {
+  if (!isAllowedCmsPath(relative)) {
+    throw new Error("Invalid path.");
+  }
+}
+
 function diskPath(relative: string) {
-  return path.join(/* turbopackIgnore: true */ process.cwd(), relative);
+  const root = path.resolve(/* turbopackIgnore: true */ process.cwd());
+  const full = path.resolve(root, relative);
+  const prefix = root.endsWith(path.sep) ? root : `${root}${path.sep}`;
+  if (full !== root && !full.startsWith(prefix)) {
+    throw new Error("Invalid path.");
+  }
+  return full;
 }
 
 function canWriteLocally() {
@@ -69,12 +99,17 @@ export async function persistFiles(
   message: string,
   deletes: string[] = [],
 ) {
+  for (const file of files) {
+    assertSafeCmsPath(file.path);
+  }
+  for (const filePath of deletes) {
+    assertSafeCmsPath(filePath);
+  }
+
   if (isGitHubConfigured()) {
     await commitGithubFiles(files, message, deletes);
   } else if (!canWriteLocally()) {
-    throw new Error(
-      "GitHub ayarları eksik. Vercel'e GITHUB_TOKEN, GITHUB_OWNER ve GITHUB_REPO ekle.",
-    );
+    throw new Error("GitHub is not configured.");
   }
 
   if (canWriteLocally()) {

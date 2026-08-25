@@ -13,6 +13,7 @@ import {
 import { LangTabs } from "@/components/admin/lang-tabs";
 import { ConfirmDialog } from "@/components/admin/confirm";
 import { useAdminToast } from "@/components/admin/toast";
+import { useAdminI18n } from "@/components/admin/admin-i18n";
 
 export function ContentForm({
   copy,
@@ -23,7 +24,7 @@ export function ContentForm({
 }) {
   const router = useRouter();
   const { toast } = useAdminToast();
-  const [locale, setLocale] = useState<"tr" | "en">("tr");
+  const { t, contentLocale, fieldLabel, groupLabel, errorText } = useAdminI18n();
   const [saving, setSaving] = useState(false);
   const [pending, setPending] = useState<string | null>(null);
 
@@ -37,25 +38,25 @@ export function ContentForm({
           const result = await saveContentAction(new FormData(event.currentTarget));
           setSaving(false);
           if (!result.ok) {
-            toast(result.error, "error");
+            toast(errorText(result.error), "error");
             return;
           }
-          toast("İçerik kaydedildi.");
+          toast(t("content.saved"));
           router.refresh();
         }}
       >
         <div className="flex flex-wrap items-center justify-between gap-3">
-          <h2 className="text-lg font-semibold">Site metinleri</h2>
-          <LangTabs locale={locale} onChange={setLocale} />
+          <h2 className="text-lg font-semibold">{t("content.siteCopy")}</h2>
+          <LangTabs />
         </div>
 
         {contentGroups.map((group) => (
           <section key={group.id} className="admin-card space-y-4">
-            <h3 className="admin-section-title">{group.label}</h3>
+            <h3 className="admin-section-title">{groupLabel(group.id)}</h3>
             {group.keys.map((item) => (
               <div key={item.key}>
-                <label className={locale === "tr" ? "admin-field" : "hidden"}>
-                  <span>{item.label} (TR)</span>
+                <label className={contentLocale === "tr" ? "admin-field" : "hidden"}>
+                  <span>{fieldLabel(item.key)} (TR)</span>
                   {item.multiline ? (
                     <textarea
                       name={`${item.key}::tr`}
@@ -69,8 +70,8 @@ export function ContentForm({
                     />
                   )}
                 </label>
-                <label className={locale === "en" ? "admin-field" : "hidden"}>
-                  <span>{item.label} (EN)</span>
+                <label className={contentLocale === "en" ? "admin-field" : "hidden"}>
+                  <span>{fieldLabel(item.key)} (EN)</span>
                   {item.multiline ? (
                     <textarea
                       name={`${item.key}::en`}
@@ -90,12 +91,12 @@ export function ContentForm({
         ))}
 
         <button type="submit" className="admin-btn" disabled={saving}>
-          Save
+          {t("common.save")}
         </button>
       </form>
 
       <section className="space-y-4">
-        <h2 className="text-lg font-semibold">Lab</h2>
+        <h2 className="text-lg font-semibold">{t("content.lab")}</h2>
         {experiments.map((item) => (
           <form
             key={item.id}
@@ -106,41 +107,41 @@ export function ContentForm({
                 new FormData(event.currentTarget),
               );
               if (!result.ok) {
-                toast(result.error, "error");
+                toast(errorText(result.error), "error");
                 return;
               }
-              toast("Lab kaydı güncellendi.");
+              toast(t("content.labUpdated"));
               router.refresh();
             }}
           >
             <input type="hidden" name="id" value={item.id} />
             <input type="hidden" name="sort_order" value={item.sortOrder} />
             <label className="admin-field">
-              <span>Ad TR</span>
+              <span>{t("content.nameTr")}</span>
               <input name="name_tr" defaultValue={item.nameTr} />
             </label>
             <label className="admin-field">
-              <span>Name EN</span>
+              <span>{t("content.nameEn")}</span>
               <input name="name_en" defaultValue={item.nameEn} />
             </label>
             <label className="admin-field">
-              <span>Not TR</span>
+              <span>{t("content.noteTr")}</span>
               <textarea name="note_tr" rows={2} defaultValue={item.noteTr} />
             </label>
             <label className="admin-field">
-              <span>Note EN</span>
+              <span>{t("content.noteEn")}</span>
               <textarea name="note_en" rows={2} defaultValue={item.noteEn} />
             </label>
             <label className="admin-field">
-              <span>Status</span>
+              <span>{t("content.status")}</span>
               <select name="status" defaultValue={item.status}>
-                <option value="active">Active</option>
-                <option value="building">Building</option>
-                <option value="experimental">Experimental</option>
+                <option value="active">{t("content.statusActive")}</option>
+                <option value="building">{t("content.statusBuilding")}</option>
+                <option value="experimental">{t("content.statusExperimental")}</option>
               </select>
             </label>
             <label className="admin-field">
-              <span>Ref</span>
+              <span>{t("content.ref")}</span>
               <input name="ref" defaultValue={item.ref} />
             </label>
             <label className="flex items-center gap-2 text-sm">
@@ -149,18 +150,18 @@ export function ContentForm({
                 name="published"
                 defaultChecked={item.published}
               />
-              Aktif
+              {t("content.active")}
             </label>
             <div className="flex items-end gap-2">
               <button type="submit" className="admin-btn">
-                Save
+                {t("common.save")}
               </button>
               <button
                 type="button"
                 className="admin-btn-danger"
                 onClick={() => setPending(item.id)}
               >
-                Delete
+                {t("common.delete")}
               </button>
             </div>
           </form>
@@ -173,65 +174,65 @@ export function ContentForm({
             const form = event.currentTarget;
             const result = await saveExperimentAction(new FormData(form));
             if (!result.ok) {
-              toast(result.error, "error");
+              toast(errorText(result.error), "error");
               return;
             }
-            toast("Lab kaydı eklendi.");
+            toast(t("content.labAdded"));
             form.reset();
             router.refresh();
           }}
         >
-          <h3 className="admin-section-title md:col-span-2">Yeni lab kaydı</h3>
+          <h3 className="admin-section-title md:col-span-2">{t("content.labNew")}</h3>
           <input type="hidden" name="sort_order" value={experiments.length} />
           <input type="hidden" name="published" value="true" />
           <label className="admin-field">
-            <span>Ad TR</span>
+            <span>{t("content.nameTr")}</span>
             <input name="name_tr" />
           </label>
           <label className="admin-field">
-            <span>Name EN</span>
+            <span>{t("content.nameEn")}</span>
             <input name="name_en" />
           </label>
           <label className="admin-field">
-            <span>Not TR</span>
+            <span>{t("content.noteTr")}</span>
             <textarea name="note_tr" rows={2} />
           </label>
           <label className="admin-field">
-            <span>Note EN</span>
+            <span>{t("content.noteEn")}</span>
             <textarea name="note_en" rows={2} />
           </label>
           <label className="admin-field">
-            <span>Status</span>
+            <span>{t("content.status")}</span>
             <select name="status" defaultValue="experimental">
-              <option value="active">Active</option>
-              <option value="building">Building</option>
-              <option value="experimental">Experimental</option>
+              <option value="active">{t("content.statusActive")}</option>
+              <option value="building">{t("content.statusBuilding")}</option>
+              <option value="experimental">{t("content.statusExperimental")}</option>
             </select>
           </label>
           <label className="admin-field">
-            <span>Ref</span>
+            <span>{t("content.ref")}</span>
             <input name="ref" />
           </label>
           <button type="submit" className="admin-btn">
-            Add
+            {t("common.add")}
           </button>
         </form>
       </section>
 
       <ConfirmDialog
         open={Boolean(pending)}
-        title="Lab kaydını sil"
-        body="Bu deney public siteden kalkar."
+        title={t("content.deleteTitle")}
+        body={t("content.deleteBody")}
         onCancel={() => setPending(null)}
         onConfirm={async () => {
           if (!pending) return;
           const result = await deleteExperimentAction(pending);
           setPending(null);
           if (!result.ok) {
-            toast(result.error, "error");
+            toast(errorText(result.error), "error");
             return;
           }
-          toast("Silindi.");
+          toast(t("toasts.deleted"));
           router.refresh();
         }}
       />

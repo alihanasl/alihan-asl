@@ -58,41 +58,18 @@
     "ref": "Ref",
     "active": "Active",
     "building": "Building",
-    "experimental": "Experimental",
-    "networkMonitoring": "Network Monitoring",
-    "networkMonitoringNote": "A desktop app that watches the network.",
-    "guestAssistant": "AI Guest Assistant",
-    "guestAssistantNote": "Help for hotel guests, based on how the property actually runs.",
-    "internalTools": "Internal IT Tools",
-    "internalToolsNote": "Small tools. They stay if people use them."
+    "experimental": "Experimental"
   },
   "about": {
     "index": "Position",
     "manifestoOne": "I solve problems in IT.",
     "manifestoTwo": "I figure them out by building.",
-    "copy": "I run technology in a live operation. Servers, networks, the systems people only notice when they fail. That job taught me to see the snag first, then build the tool. Monitoring software, internal platforms, digital products — they all come from that job.",
-    "itField": "IT Management",
-    "itContext": "Hotel Technology",
-    "productsField": "Digital Products",
-    "productsContext": "Independent work",
-    "contentField": "Content",
-    "contentContext": "YouTube / Digital media"
+    "copy": "I run technology in a live operation. Servers, networks, the systems people only notice when they fail. That job taught me to see the snag first, then build the tool. Monitoring software, internal platforms, digital products — they all come from that job."
   },
   "toolbox": {
     "index": "Stack",
     "title": "Toolbox",
-    "copy": "What I use to build things and keep them running.",
-    "nextjs": "How I put products on the web.",
-    "typescript": "What I write in when the code has to last.",
-    "react": "Interfaces meant to stay, not just demo.",
-    "tailwind": "Control over layout, type, and space.",
-    "supabase": "Data and auth when a product needs a backend.",
-    "electron": "When the tool belongs on a desktop.",
-    "python": "Scripts, services, small automations.",
-    "git": "Where the history lives.",
-    "vercel": "Where public work goes live.",
-    "networking": "The network underneath the products.",
-    "networkingName": "Networking"
+    "copy": "What I use to build things and keep them running."
   },
   "contact": {
     "index": "Close",
@@ -135,39 +112,5 @@
     "platform": "Platform",
     "ai": "AI product",
     "tools": "Internal tools"
-  },
-  "projects": {
-    "ping-alert-v2": {
-      "description": "A desktop app that watches the network.",
-      "problem": "When a switch dies, the room finds out too late. Monitoring was either everywhere or nowhere.",
-      "idea": "One app on the desk. It watches the network and alerts the moment something stops answering.",
-      "build": "Desktop, not a browser tab. It sits on an operations machine and keeps watching.",
-      "result": "It exists because the network needed it. Not because a dashboard looked impressive.",
-      "caption": "ICMP / LIVE"
-    },
-    "laniff": {
-      "description": "Asset and inventory management.",
-      "problem": "Hardware, licenses, and locations lived in spreadsheets. Nobody trusted the count.",
-      "idea": "One place for what exists, where it is, and who owns it.",
-      "build": "A proper system, not a form. Structure, history, and clear ownership.",
-      "result": "An internal product to keep inventory honest.",
-      "caption": "ASSET REGISTER"
-    },
-    "guest-assist-ai": {
-      "description": "An assistant for hotel guests.",
-      "problem": "Guests ask the same questions at all hours. Staff already have a full shift.",
-      "idea": "An assistant that knows the property. It helps. It doesn't pretend to replace the front desk.",
-      "build": "Built from real guest questions. Not a generic chatbot demo.",
-      "result": "Still in the lab. Useful first.",
-      "caption": "GUEST / QUERY"
-    },
-    "it-toolkit": {
-      "description": "Internal tools and small automations.",
-      "problem": "The same work kept hiding in scripts, notes, and one-off fixes.",
-      "idea": "A kit of internal tools. Unspectacular. Faster for the people who use them.",
-      "build": "Collected as I go. Utilities, checks, small systems. They stay if they get used.",
-      "result": "A workshop. Not a finished product.",
-      "caption": "MODULES"
-    }
   }
 }

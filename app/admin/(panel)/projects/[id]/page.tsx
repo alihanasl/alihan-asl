@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import { getAdminBundle } from "@/lib/cms/admin-data";
 import { ProjectForm } from "@/components/admin/project-form";
+import { AdminHeading } from "@/components/admin/page-header";
 
 export default async function EditProjectPage({
   params,
@@ -16,7 +17,7 @@ export default async function EditProjectPage({
 
   return (
     <div>
-      <h1 className="mb-6 text-2xl font-semibold tracking-tight">Edit Project</h1>
+      <AdminHeading titleKey="projects.edit" />
       <ProjectForm project={project} nextOrder={project.sortOrder} />
     </div>
   );

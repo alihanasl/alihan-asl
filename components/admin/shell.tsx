@@ -18,16 +18,19 @@ import {
 } from "lucide-react";
 import { logoutAction } from "@/lib/cms/actions";
 import { cn } from "@/lib/cn";
+import { useAdminI18n } from "@/components/admin/admin-i18n";
+import { AdminLangBar } from "@/components/admin/lang-bar";
+import type { AdminMessageKey } from "@/lib/i18n/admin";
 
-const links = [
-  { href: "/admin", label: "Dashboard", icon: LayoutDashboard },
-  { href: "/admin/projects", label: "Projects", icon: FolderKanban },
-  { href: "/admin/experience", label: "Experience", icon: Briefcase },
-  { href: "/admin/about", label: "About", icon: User },
-  { href: "/admin/skills", label: "Skills", icon: Wrench },
-  { href: "/admin/content", label: "Content", icon: Type },
-  { href: "/admin/media", label: "Media", icon: ImageIcon },
-  { href: "/admin/settings", label: "Settings", icon: Settings },
+const links: { href: string; labelKey: AdminMessageKey; icon: typeof LayoutDashboard }[] = [
+  { href: "/admin", labelKey: "nav.dashboard", icon: LayoutDashboard },
+  { href: "/admin/projects", labelKey: "nav.projects", icon: FolderKanban },
+  { href: "/admin/experience", labelKey: "nav.experience", icon: Briefcase },
+  { href: "/admin/about", labelKey: "nav.about", icon: User },
+  { href: "/admin/skills", labelKey: "nav.skills", icon: Wrench },
+  { href: "/admin/content", labelKey: "nav.content", icon: Type },
+  { href: "/admin/media", labelKey: "nav.media", icon: ImageIcon },
+  { href: "/admin/settings", labelKey: "nav.settings", icon: Settings },
 ];
 
 export function AdminShell({
@@ -38,6 +41,7 @@ export function AdminShell({
   children: React.ReactNode;
 }) {
   const pathname = usePathname();
+  const { t } = useAdminI18n();
   const [open, setOpen] = useState(false);
 
   return (
@@ -50,12 +54,12 @@ export function AdminShell({
           )}
         >
           <div className="flex h-14 items-center justify-between px-4">
-            <p className="text-sm font-semibold tracking-tight">CMS</p>
+            <p className="text-sm font-semibold tracking-tight">{t("nav.cms")}</p>
             <button
               type="button"
               className="lg:hidden"
               onClick={() => setOpen(false)}
-              aria-label="Kapat"
+              aria-label={t("nav.close")}
             >
               <X className="h-4 w-4" />
             </button>
@@ -80,7 +84,7 @@ export function AdminShell({
                   )}
                 >
                   <Icon className="h-4 w-4" />
-                  {link.label}
+                  {t(link.labelKey)}
                 </Link>
               );
             })}
@@ -88,20 +92,31 @@ export function AdminShell({
           <div className="absolute inset-x-0 bottom-0 border-t border-zinc-800 p-3">
             <p className="truncate px-1 text-xs text-zinc-500">{username}</p>
             <form action={logoutAction}>
-              <button type="submit" className="mt-2 flex items-center gap-2 px-1 text-sm text-zinc-400 hover:text-white">
+              <button
+                type="submit"
+                className="mt-2 flex items-center gap-2 px-1 text-sm text-zinc-400 hover:text-white"
+              >
                 <LogOut className="h-4 w-4" />
-                Çıkış
+                {t("nav.logout")}
               </button>
             </form>
           </div>
         </aside>
 
         <div className="min-h-svh">
-          <header className="sticky top-0 z-30 flex h-14 items-center gap-3 border-b border-zinc-200 bg-white px-4 lg:hidden">
-            <button type="button" onClick={() => setOpen(true)} aria-label="Menü">
+          <header className="sticky top-0 z-30 flex h-14 items-center gap-3 border-b border-zinc-200 bg-white px-4 md:px-8">
+            <button
+              type="button"
+              className="lg:hidden"
+              onClick={() => setOpen(true)}
+              aria-label={t("nav.menu")}
+            >
               <Menu className="h-5 w-5" />
             </button>
-            <p className="text-sm font-semibold">Admin</p>
+            <p className="text-sm font-semibold lg:hidden">{t("nav.admin")}</p>
+            <div className="ml-auto">
+              <AdminLangBar />
+            </div>
           </header>
           <div className="px-4 py-6 md:px-8 md:py-8">{children}</div>
         </div>
@@ -110,7 +125,7 @@ export function AdminShell({
         <button
           type="button"
           className="fixed inset-0 z-30 bg-black/40 lg:hidden"
-          aria-label="Menüyü kapat"
+          aria-label={t("nav.closeMenu")}
           onClick={() => setOpen(false)}
         />
       ) : null}

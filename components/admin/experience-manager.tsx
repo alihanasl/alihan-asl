@@ -12,6 +12,7 @@ import { LangTabs } from "@/components/admin/lang-tabs";
 import { SortableList } from "@/components/admin/sortable-list";
 import { ConfirmDialog } from "@/components/admin/confirm";
 import { useAdminToast } from "@/components/admin/toast";
+import { useAdminI18n } from "@/components/admin/admin-i18n";
 
 function blank(order: number): CmsExperience {
   return {
@@ -34,8 +35,8 @@ function blank(order: number): CmsExperience {
 export function ExperienceManager({ items }: { items: CmsExperience[] }) {
   const router = useRouter();
   const { toast } = useAdminToast();
+  const { t, contentLocale, errorText } = useAdminI18n();
   const [selected, setSelected] = useState<CmsExperience>(blank(items.length));
-  const [locale, setLocale] = useState<"tr" | "en">("tr");
   const [pending, setPending] = useState<string | null>(null);
   const [saving, setSaving] = useState(false);
 
@@ -43,20 +44,20 @@ export function ExperienceManager({ items }: { items: CmsExperience[] }) {
     <div className="grid gap-6 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)]">
       <div>
         <div className="mb-3 flex items-center justify-between">
-          <h2 className="text-sm font-semibold">Kayıtlar</h2>
+          <h2 className="text-sm font-semibold">{t("experience.records")}</h2>
           <button
             type="button"
             className="admin-btn-ghost"
             onClick={() => setSelected(blank(items.length))}
           >
-            Yeni
+            {t("common.new")}
           </button>
         </div>
         <SortableList
           items={items.map((item) => ({
             id: item.id,
             label: item.fieldTr || item.fieldEn,
-            meta: item.published ? "Aktif" : "Pasif",
+            meta: item.published ? t("common.active") : t("common.inactive"),
           }))}
           onSelect={(id) => {
             const item = items.find((entry) => entry.id === id);
@@ -65,7 +66,7 @@ export function ExperienceManager({ items }: { items: CmsExperience[] }) {
           onReorder={async (ids) => {
             const result = await reorderExperiencesAction(ids);
             if (!result.ok) {
-              toast(result.error, "error");
+              toast(errorText(result.error), "error");
               return;
             }
             router.refresh();
@@ -82,33 +83,33 @@ export function ExperienceManager({ items }: { items: CmsExperience[] }) {
           const result = await saveExperienceAction(new FormData(event.currentTarget));
           setSaving(false);
           if (!result.ok) {
-            toast(result.error, "error");
+            toast(errorText(result.error), "error");
             return;
           }
-          toast("Deneyim kaydedildi.");
+          toast(t("experience.saved"));
           router.refresh();
         }}
       >
         <div className="flex items-center justify-between">
           <h2 className="admin-section-title">
-            {selected.id ? "Düzenle" : "Yeni deneyim"}
+            {selected.id ? t("experience.editItem") : t("experience.newItem")}
           </h2>
-          <LangTabs locale={locale} onChange={setLocale} />
+          <LangTabs />
         </div>
         {selected.id ? <input type="hidden" name="id" defaultValue={selected.id} /> : null}
         <input type="hidden" name="sort_order" defaultValue={selected.sortOrder} />
 
-        <div className={locale === "tr" ? "space-y-4" : "hidden"}>
+        <div className={contentLocale === "tr" ? "space-y-4" : "hidden"}>
           <label className="admin-field">
-            <span>Alan</span>
+            <span>{t("experience.field")}</span>
             <input name="field_tr" defaultValue={selected.fieldTr} />
           </label>
           <label className="admin-field">
-            <span>Bağlam</span>
+            <span>{t("experience.context")}</span>
             <input name="context_tr" defaultValue={selected.contextTr} />
           </label>
           <label className="admin-field">
-            <span>Açıklama</span>
+            <span>{t("experience.description")}</span>
             <textarea
               name="description_tr"
               rows={4}
@@ -116,17 +117,17 @@ export function ExperienceManager({ items }: { items: CmsExperience[] }) {
             />
           </label>
         </div>
-        <div className={locale === "en" ? "space-y-4" : "hidden"}>
+        <div className={contentLocale === "en" ? "space-y-4" : "hidden"}>
           <label className="admin-field">
-            <span>Field</span>
+            <span>{t("experience.field")}</span>
             <input name="field_en" defaultValue={selected.fieldEn} />
           </label>
           <label className="admin-field">
-            <span>Context</span>
+            <span>{t("experience.context")}</span>
             <input name="context_en" defaultValue={selected.contextEn} />
           </label>
           <label className="admin-field">
-            <span>Description</span>
+            <span>{t("experience.description")}</span>
             <textarea
               name="description_en"
               rows={4}
@@ -136,12 +137,12 @@ export function ExperienceManager({ items }: { items: CmsExperience[] }) {
         </div>
 
         <label className="admin-field">
-          <span>Company</span>
+          <span>{t("experience.company")}</span>
           <input name="company" defaultValue={selected.company} />
         </label>
         <div className="grid gap-4 sm:grid-cols-2">
           <label className="admin-field">
-            <span>Start date</span>
+            <span>{t("experience.start")}</span>
             <input
               name="start_date"
               type="date"
@@ -149,7 +150,7 @@ export function ExperienceManager({ items }: { items: CmsExperience[] }) {
             />
           </label>
           <label className="admin-field">
-            <span>End date</span>
+            <span>{t("experience.end")}</span>
             <input
               name="end_date"
               type="date"
@@ -163,7 +164,7 @@ export function ExperienceManager({ items }: { items: CmsExperience[] }) {
             name="is_current"
             defaultChecked={selected.isCurrent}
           />
-          Current
+          {t("experience.current")}
         </label>
         <label className="flex items-center gap-2 text-sm">
           <input
@@ -171,11 +172,11 @@ export function ExperienceManager({ items }: { items: CmsExperience[] }) {
             name="published"
             defaultChecked={selected.published}
           />
-          Aktif
+          {t("common.active")}
         </label>
         <div className="flex gap-2">
           <button type="submit" className="admin-btn" disabled={saving}>
-            Save
+            {t("common.save")}
           </button>
           {selected.id ? (
             <button
@@ -183,7 +184,7 @@ export function ExperienceManager({ items }: { items: CmsExperience[] }) {
               className="admin-btn-danger"
               onClick={() => setPending(selected.id)}
             >
-              Delete
+              {t("common.delete")}
             </button>
           ) : null}
         </div>
@@ -191,18 +192,18 @@ export function ExperienceManager({ items }: { items: CmsExperience[] }) {
 
       <ConfirmDialog
         open={Boolean(pending)}
-        title="Deneyimi sil"
-        body="Bu kayıt silinecek."
+        title={t("experience.deleteTitle")}
+        body={t("experience.deleteBody")}
         onCancel={() => setPending(null)}
         onConfirm={async () => {
           if (!pending) return;
           const result = await deleteExperienceAction(pending);
           setPending(null);
           if (!result.ok) {
-            toast(result.error, "error");
+            toast(errorText(result.error), "error");
             return;
           }
-          toast("Silindi.");
+          toast(t("toasts.deleted"));
           setSelected(blank(items.length));
           router.refresh();
         }}

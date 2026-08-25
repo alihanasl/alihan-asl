@@ -11,6 +11,7 @@ import { LangTabs } from "@/components/admin/lang-tabs";
 import { MediaPicker } from "@/components/admin/media-manager";
 import { ConfirmDialog } from "@/components/admin/confirm";
 import { useAdminToast } from "@/components/admin/toast";
+import { useAdminI18n } from "@/components/admin/admin-i18n";
 
 const emptyProject: CmsProject = {
   id: "",
@@ -51,8 +52,8 @@ export function ProjectForm({
 }) {
   const router = useRouter();
   const { toast } = useAdminToast();
+  const { t, contentLocale, errorText } = useAdminI18n();
   const initial = project ?? { ...emptyProject, sortOrder: nextOrder };
-  const [locale, setLocale] = useState<"tr" | "en">("tr");
   const [titleTr, setTitleTr] = useState(initial.titleTr);
   const [titleEn, setTitleEn] = useState(initial.titleEn);
   const [slug, setSlug] = useState(initial.slug);
@@ -87,10 +88,10 @@ export function ProjectForm({
     const result = await saveProjectAction(form);
     setSaving(false);
     if (!result.ok) {
-      toast(result.error, "error");
+      toast(errorText(result.error), "error");
       return;
     }
-    toast(publish ? "Proje yayınlandı." : "Taslak kaydedildi.");
+    toast(publish ? t("projects.publishedToast") : t("projects.draftToast"));
     router.push("/admin/projects");
     router.refresh();
   }
@@ -101,10 +102,10 @@ export function ProjectForm({
         {initial.id ? <input type="hidden" name="id" value={initial.id} /> : null}
 
         <section className="admin-card">
-          <h2 className="admin-section-title">Project Information</h2>
+          <h2 className="admin-section-title">{t("projects.info")}</h2>
           <div className="mt-4 grid gap-4 md:grid-cols-2">
             <label className="admin-field">
-              <span>Slug</span>
+              <span>{t("projects.slug")}</span>
               <input
                 name="slug_display"
                 value={derivedSlug}
@@ -115,20 +116,20 @@ export function ProjectForm({
               />
             </label>
             <label className="admin-field">
-              <span>Category</span>
+              <span>{t("projects.category")}</span>
               <select name="category" defaultValue={initial.category}>
-                <option value="desktop">Desktop</option>
-                <option value="platform">Platform</option>
-                <option value="ai">AI</option>
-                <option value="tools">Tools</option>
+                <option value="desktop">{t("projects.catDesktop")}</option>
+                <option value="platform">{t("projects.catPlatform")}</option>
+                <option value="ai">{t("projects.catAi")}</option>
+                <option value="tools">{t("projects.catTools")}</option>
               </select>
             </label>
             <label className="admin-field">
-              <span>Year</span>
+              <span>{t("projects.year")}</span>
               <input name="year" defaultValue={initial.year} />
             </label>
             <label className="admin-field">
-              <span>Layout</span>
+              <span>{t("projects.layout")}</span>
               <select name="layout" defaultValue={initial.layout}>
                 {layouts.map((layout) => (
                   <option key={layout} value={layout}>
@@ -138,14 +139,14 @@ export function ProjectForm({
               </select>
             </label>
             <label className="admin-field md:col-span-2">
-              <span>Technologies (virgülle)</span>
+              <span>{t("projects.technologies")}</span>
               <input
                 name="technologies"
                 defaultValue={initial.technologies.join(", ")}
               />
             </label>
             <label className="admin-field">
-              <span>Sıra</span>
+              <span>{t("projects.sortOrder")}</span>
               <input
                 name="sort_order"
                 type="number"
@@ -157,13 +158,13 @@ export function ProjectForm({
 
         <section className="admin-card">
           <div className="flex flex-wrap items-center justify-between gap-3">
-            <h2 className="admin-section-title">Content</h2>
-            <LangTabs locale={locale} onChange={setLocale} />
+            <h2 className="admin-section-title">{t("projects.content")}</h2>
+            <LangTabs />
           </div>
 
-          <div className={locale === "tr" ? "mt-4 space-y-4" : "hidden"}>
+          <div className={contentLocale === "tr" ? "mt-4 space-y-4" : "hidden"}>
             <label className="admin-field">
-              <span>Başlık</span>
+              <span>{t("projects.titleLabel")}</span>
               <input
                 name="title_tr"
                 value={titleTr}
@@ -171,34 +172,34 @@ export function ProjectForm({
               />
             </label>
             <label className="admin-field">
-              <span>Kısa açıklama</span>
+              <span>{t("projects.short")}</span>
               <textarea name="short_description_tr" rows={3} defaultValue={initial.shortDescriptionTr} />
             </label>
             <label className="admin-field">
-              <span>Sorun</span>
+              <span>{t("projects.problem")}</span>
               <textarea name="problem_tr" rows={4} defaultValue={initial.problemTr} />
             </label>
             <label className="admin-field">
-              <span>Fikir</span>
+              <span>{t("projects.idea")}</span>
               <textarea name="idea_tr" rows={4} defaultValue={initial.ideaTr} />
             </label>
             <label className="admin-field">
-              <span>Yapılış</span>
+              <span>{t("projects.build")}</span>
               <textarea name="build_tr" rows={4} defaultValue={initial.buildTr} />
             </label>
             <label className="admin-field">
-              <span>Sonuç</span>
+              <span>{t("projects.result")}</span>
               <textarea name="result_tr" rows={3} defaultValue={initial.resultTr} />
             </label>
             <label className="admin-field">
-              <span>Görsel yazısı</span>
+              <span>{t("projects.caption")}</span>
               <input name="caption_tr" defaultValue={initial.captionTr} />
             </label>
           </div>
 
-          <div className={locale === "en" ? "mt-4 space-y-4" : "hidden"}>
+          <div className={contentLocale === "en" ? "mt-4 space-y-4" : "hidden"}>
             <label className="admin-field">
-              <span>Title</span>
+              <span>{t("projects.titleLabel")}</span>
               <input
                 name="title_en"
                 value={titleEn}
@@ -206,68 +207,68 @@ export function ProjectForm({
               />
             </label>
             <label className="admin-field">
-              <span>Short description</span>
+              <span>{t("projects.short")}</span>
               <textarea name="short_description_en" rows={3} defaultValue={initial.shortDescriptionEn} />
             </label>
             <label className="admin-field">
-              <span>Problem</span>
+              <span>{t("projects.problem")}</span>
               <textarea name="problem_en" rows={4} defaultValue={initial.problemEn} />
             </label>
             <label className="admin-field">
-              <span>Idea</span>
+              <span>{t("projects.idea")}</span>
               <textarea name="idea_en" rows={4} defaultValue={initial.ideaEn} />
             </label>
             <label className="admin-field">
-              <span>Build</span>
+              <span>{t("projects.build")}</span>
               <textarea name="build_en" rows={4} defaultValue={initial.buildEn} />
             </label>
             <label className="admin-field">
-              <span>Result</span>
+              <span>{t("projects.result")}</span>
               <textarea name="result_en" rows={3} defaultValue={initial.resultEn} />
             </label>
             <label className="admin-field">
-              <span>Caption</span>
+              <span>{t("projects.caption")}</span>
               <input name="caption_en" defaultValue={initial.captionEn} />
             </label>
           </div>
         </section>
 
         <section className="admin-card">
-          <h2 className="admin-section-title">Links</h2>
+          <h2 className="admin-section-title">{t("projects.links")}</h2>
           <div className="mt-4 grid gap-4 md:grid-cols-2">
             <label className="admin-field">
-              <span>GitHub</span>
+              <span>{t("projects.github")}</span>
               <input name="github_url" defaultValue={initial.githubUrl} />
             </label>
             <label className="admin-field">
-              <span>Live Demo</span>
+              <span>{t("projects.live")}</span>
               <input name="live_url" defaultValue={initial.liveUrl} />
             </label>
           </div>
         </section>
 
         <section className="admin-card">
-          <h2 className="admin-section-title">Media</h2>
+          <h2 className="admin-section-title">{t("projects.media")}</h2>
           <div className="mt-4 space-y-4">
             <div>
-              <p className="mb-2 text-sm text-zinc-600">Cover image</p>
+              <p className="mb-2 text-sm text-zinc-600">{t("projects.cover")}</p>
               {cover ? (
                 // eslint-disable-next-line @next/next/no-img-element
                 <img src={cover} alt="" className="mb-2 h-28 rounded-md object-cover" />
               ) : null}
               <div className="flex gap-2">
                 <button type="button" className="admin-btn-ghost" onClick={() => setPicker("cover")}>
-                  Seç
+                  {t("common.select")}
                 </button>
                 {cover ? (
                   <button type="button" className="admin-btn-ghost" onClick={() => setCover("")}>
-                    Kaldır
+                    {t("common.remove")}
                   </button>
                 ) : null}
               </div>
             </div>
             <label className="admin-field">
-              <span>Gallery URL’leri (satır satır)</span>
+              <span>{t("projects.gallery")}</span>
               <textarea
                 rows={4}
                 value={gallery}
@@ -275,13 +276,13 @@ export function ProjectForm({
               />
             </label>
             <button type="button" className="admin-btn-ghost" onClick={() => setPicker("gallery")}>
-              Galeriye görsel ekle
+              {t("projects.addGallery")}
             </button>
           </div>
         </section>
 
         <section className="admin-card">
-          <h2 className="admin-section-title">Settings</h2>
+          <h2 className="admin-section-title">{t("projects.settings")}</h2>
           <div className="mt-4 flex flex-col gap-3">
             <label className="flex items-center gap-2 text-sm">
               <input
@@ -289,11 +290,9 @@ export function ProjectForm({
                 checked={featured}
                 onChange={(event) => setFeatured(event.target.checked)}
               />
-              Featured
+              {t("projects.featured")}
             </label>
-            <p className="text-xs text-zinc-500">
-              Publish mevcut kaydı yayına alır, Draft taslak olarak kaydeder.
-            </p>
+            <p className="text-xs text-zinc-500">{t("projects.publishHint")}</p>
           </div>
         </section>
 
@@ -304,7 +303,7 @@ export function ProjectForm({
             disabled={saving}
             onClick={() => void submit(true)}
           >
-            Publish
+            {t("common.publish")}
           </button>
           <button
             type="button"
@@ -312,10 +311,10 @@ export function ProjectForm({
             disabled={saving}
             onClick={() => void submit(false)}
           >
-            Draft
+            {t("common.draft")}
           </button>
           <Link href="/admin/projects" className="admin-btn-ghost">
-            Cancel
+            {t("common.cancel")}
           </Link>
           {initial.id ? (
             <button
@@ -323,7 +322,7 @@ export function ProjectForm({
               className="admin-btn-danger ml-auto"
               onClick={() => setConfirmDelete(true)}
             >
-              Delete
+              {t("common.delete")}
             </button>
           ) : null}
         </div>
@@ -345,16 +344,16 @@ export function ProjectForm({
 
       <ConfirmDialog
         open={confirmDelete}
-        title="Projeyi sil"
-        body="Bu proje kalıcı olarak silinir ve public siteden kalkar."
+        title={t("projects.deleteTitle")}
+        body={t("projects.deleteBody")}
         onCancel={() => setConfirmDelete(false)}
         onConfirm={async () => {
           const result = await deleteProjectAction(initial.id);
           if (!result.ok) {
-            toast(result.error, "error");
+            toast(errorText(result.error), "error");
             return;
           }
-          toast("Proje silindi.");
+          toast(t("projects.deletedToast"));
           router.push("/admin/projects");
           router.refresh();
         }}

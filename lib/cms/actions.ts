@@ -1,6 +1,7 @@
 "use server";
 
 import { redirect } from "next/navigation";
+import { headers } from "next/headers";
 import { randomUUID } from "crypto";
 import { actionError, actionOk } from "@/lib/cms/admin";
 import {
@@ -8,15 +9,27 @@ import {
   createAdminSession,
   isAdminAuthConfigured,
   requireAdmin,
+  safeAdminPath,
   verifyCredentials,
 } from "@/lib/cms/auth";
+import {
+  clearLoginFailures,
+  clientIp,
+  isLoginLocked,
+  recordLoginFailure,
+} from "@/lib/cms/rate-limit";
 import { revalidatePublicSite } from "@/lib/cms/revalidate";
 import { layouts, type CmsProject } from "@/lib/cms/types";
 import { slugify } from "@/lib/cms/present";
 import { allContentKeys } from "@/lib/cms/keys";
-import { ALLOWED_MEDIA_TYPES, validateMediaFile } from "@/lib/cms/media";
+import {
+  ALLOWED_MEDIA_TYPES,
+  mediaExtension,
+  validateMediaFile,
+} from "@/lib/cms/media";
 import {
   contentPaths,
+  isAllowedCmsPath,
   persistFiles,
   persistJson,
   readCopy,
@@ -54,16 +67,23 @@ export async function loginAction(formData: FormData) {
     redirect("/admin/login?error=config");
   }
 
+  const ip = clientIp(await headers());
+  if (isLoginLocked(ip)) {
+    redirect("/admin/login?error=locked");
+  }
+
   const username = text(formData, "username");
   const password = text(formData, "password");
-  const next = text(formData, "next") || "/admin";
+  const next = safeAdminPath(text(formData, "next") || "/admin");
 
-  if (!verifyCredentials(username, password)) {
+  if (!(await verifyCredentials(username, password))) {
+    recordLoginFailure(ip);
     redirect("/admin/login?error=credentials");
   }
 
+  clearLoginFailures(ip);
   await createAdminSession(username);
-  redirect(next.startsWith("/admin") ? next : "/admin");
+  redirect(next);
 }
 
 export async function logoutAction() {
@@ -79,7 +99,7 @@ export async function saveProjectAction(formData: FormData) {
   const slug = slugify(text(formData, "slug") || titleEn || titleTr);
 
   if (!slug) {
-    return actionError("Slug gerekli.");
+    return actionError("slugRequired");
   }
 
   const layoutValue = text(formData, "layout");
@@ -132,8 +152,8 @@ export async function saveProjectAction(formData: FormData) {
 
   try {
     await persistJson(contentPaths.projects, list, `cms: ${existing ? "update" : "add"} project ${slug}`);
-  } catch (error) {
-    return actionError(error instanceof Error ? error.message : "Kayıt başarısız.");
+  } catch {
+    return actionError("saveFailed");
   }
 
   revalidatePublicSite(slug);
@@ -150,8 +170,8 @@ export async function deleteProjectAction(id: string) {
       projects.filter((project) => project.id !== id),
       `cms: delete project ${existing?.slug ?? id}`,
     );
-  } catch (error) {
-    return actionError(error instanceof Error ? error.message : "Silinemedi.");
+  } catch {
+    return actionError("deleteFailed");
   }
   revalidatePublicSite(existing?.slug);
   return actionOk();
@@ -162,7 +182,7 @@ export async function setProjectPublishedAction(id: string, published: boolean) 
   const projects = await readProjects();
   const existing = projects.find((project) => project.id === id);
   if (!existing) {
-    return actionError("Proje bulunamadı.");
+    return actionError("notFound");
   }
   const list = projects.map((project) =>
     project.id === id
@@ -175,8 +195,8 @@ export async function setProjectPublishedAction(id: string, published: boolean) 
       list,
       `cms: ${published ? "publish" : "unpublish"} ${existing.slug}`,
     );
-  } catch (error) {
-    return actionError(error instanceof Error ? error.message : "Güncellenemedi.");
+  } catch {
+    return actionError("updateFailed");
   }
   revalidatePublicSite(existing.slug);
   return actionOk();
@@ -190,8 +210,8 @@ export async function setProjectFeaturedAction(id: string, featured: boolean) {
   );
   try {
     await persistJson(contentPaths.projects, list, "cms: update project featured");
-  } catch (error) {
-    return actionError(error instanceof Error ? error.message : "Güncellenemedi.");
+  } catch {
+    return actionError("updateFailed");
   }
   revalidatePublicSite();
   return actionOk();
@@ -215,8 +235,8 @@ export async function reorderProjectsAction(ids: string[]) {
   }
   try {
     await persistJson(contentPaths.projects, list, "cms: reorder projects");
-  } catch (error) {
-    return actionError(error instanceof Error ? error.message : "Sıralama kaydedilemedi.");
+  } catch {
+    return actionError("reorderFailed");
   }
   revalidatePublicSite();
   return actionOk();
@@ -247,8 +267,8 @@ export async function saveExperienceAction(formData: FormData) {
     : [...items, next];
   try {
     await persistJson(contentPaths.experience, list, "cms: save experience");
-  } catch (error) {
-    return actionError(error instanceof Error ? error.message : "Kayıt başarısız.");
+  } catch {
+    return actionError("saveFailed");
   }
   revalidatePublicSite();
   return actionOk();
@@ -263,8 +283,8 @@ export async function deleteExperienceAction(id: string) {
       items.filter((item) => item.id !== id),
       "cms: delete experience",
     );
-  } catch (error) {
-    return actionError(error instanceof Error ? error.message : "Silinemedi.");
+  } catch {
+    return actionError("deleteFailed");
   }
   revalidatePublicSite();
   return actionOk();
@@ -282,8 +302,8 @@ export async function reorderExperiencesAction(ids: string[]) {
     .filter((item): item is (typeof items)[number] => Boolean(item));
   try {
     await persistJson(contentPaths.experience, list, "cms: reorder experience");
-  } catch (error) {
-    return actionError(error instanceof Error ? error.message : "Sıralama kaydedilemedi.");
+  } catch {
+    return actionError("reorderFailed");
   }
   revalidatePublicSite();
   return actionOk();
@@ -294,7 +314,7 @@ export async function saveSkillAction(formData: FormData) {
   const id = text(formData, "id");
   const name = text(formData, "name");
   if (!name) {
-    return actionError("Teknoloji adı gerekli.");
+    return actionError("nameRequired");
   }
   const items = await readSkills();
   const existing = items.find((item) => item.id === id);
@@ -312,8 +332,8 @@ export async function saveSkillAction(formData: FormData) {
     : [...items, next];
   try {
     await persistJson(contentPaths.skills, list, "cms: save skill");
-  } catch (error) {
-    return actionError(error instanceof Error ? error.message : "Kayıt başarısız.");
+  } catch {
+    return actionError("saveFailed");
   }
   revalidatePublicSite();
   return actionOk();
@@ -328,8 +348,8 @@ export async function deleteSkillAction(id: string) {
       items.filter((item) => item.id !== id),
       "cms: delete skill",
     );
-  } catch (error) {
-    return actionError(error instanceof Error ? error.message : "Silinemedi.");
+  } catch {
+    return actionError("deleteFailed");
   }
   revalidatePublicSite();
   return actionOk();
@@ -347,8 +367,8 @@ export async function reorderSkillsAction(ids: string[]) {
     .filter((item): item is (typeof items)[number] => Boolean(item));
   try {
     await persistJson(contentPaths.skills, list, "cms: reorder skills");
-  } catch (error) {
-    return actionError(error instanceof Error ? error.message : "Sıralama kaydedilemedi.");
+  } catch {
+    return actionError("reorderFailed");
   }
   revalidatePublicSite();
   return actionOk();
@@ -375,8 +395,8 @@ export async function saveExperimentAction(formData: FormData) {
     : [...items, next];
   try {
     await persistJson(contentPaths.experiments, list, "cms: save lab");
-  } catch (error) {
-    return actionError(error instanceof Error ? error.message : "Kayıt başarısız.");
+  } catch {
+    return actionError("saveFailed");
   }
   revalidatePublicSite();
   return actionOk();
@@ -391,8 +411,8 @@ export async function deleteExperimentAction(id: string) {
       items.filter((item) => item.id !== id),
       "cms: delete lab",
     );
-  } catch (error) {
-    return actionError(error instanceof Error ? error.message : "Silinemedi.");
+  } catch {
+    return actionError("deleteFailed");
   }
   revalidatePublicSite();
   return actionOk();
@@ -411,8 +431,8 @@ export async function saveProfileAction(formData: FormData) {
   };
   try {
     await persistJson(contentPaths.about, next, "cms: update about");
-  } catch (error) {
-    return actionError(error instanceof Error ? error.message : "Kayıt başarısız.");
+  } catch {
+    return actionError("saveFailed");
   }
   revalidatePublicSite();
   return actionOk();
@@ -429,8 +449,8 @@ export async function saveContentAction(formData: FormData) {
   }
   try {
     await persistJson(contentPaths.site, copy, "cms: update site content");
-  } catch (error) {
-    return actionError(error instanceof Error ? error.message : "Kayıt başarısız.");
+  } catch {
+    return actionError("saveFailed");
   }
   revalidatePublicSite();
   return actionOk();
@@ -451,8 +471,8 @@ export async function saveStatsAction(formData: FormData) {
   });
   try {
     await persistJson(contentPaths.stats, rows, "cms: update stats");
-  } catch (error) {
-    return actionError(error instanceof Error ? error.message : "Kayıt başarısız.");
+  } catch {
+    return actionError("saveFailed");
   }
   revalidatePublicSite();
   return actionOk();
@@ -467,7 +487,7 @@ export async function uploadMediaAction(formData: FormData) {
   await requireAdmin();
   const file = formData.get("file");
   if (!(file instanceof File)) {
-    return actionError("Dosya seç.");
+    return actionError("fileRequired");
   }
 
   const invalid = validateMediaFile(file);
@@ -475,11 +495,14 @@ export async function uploadMediaAction(formData: FormData) {
     return actionError(invalid);
   }
   if (!ALLOWED_MEDIA_TYPES.includes(file.type)) {
-    return actionError("Dosya türü desteklenmiyor.");
+    return actionError("fileType");
   }
 
-  const safeName = file.name.replace(/[^\w.\-]+/g, "-").toLowerCase();
-  const filename = `${Date.now()}-${safeName}`;
+  const extension = mediaExtension[file.type];
+  if (!extension) {
+    return actionError("fileType");
+  }
+  const filename = `${Date.now()}-${randomUUID()}${extension}`;
   const relative = `public/uploads/${filename}`;
   const url = `/uploads/${filename}`;
   const bytes = Buffer.from(await file.arrayBuffer());
@@ -502,8 +525,8 @@ export async function uploadMediaAction(formData: FormData) {
       ],
       `cms: upload ${filename}`,
     );
-  } catch (error) {
-    return actionError(error instanceof Error ? error.message : "Yükleme başarısız.");
+  } catch {
+    return actionError("uploadFailed");
   }
 
   revalidatePublicSite();
@@ -512,8 +535,8 @@ export async function uploadMediaAction(formData: FormData) {
 
 export async function deleteMediaAction(filePath: string) {
   await requireAdmin();
-  if (!filePath.startsWith("public/uploads/") || filePath.includes("..")) {
-    return actionError("Geçersiz dosya.");
+  if (!isAllowedCmsPath(filePath) || !filePath.startsWith("public/uploads/")) {
+    return actionError("fileInvalid");
   }
   const media = await readMedia();
   try {
@@ -528,11 +551,11 @@ export async function deleteMediaAction(filePath: string) {
           )}\n`,
         },
       ],
-      `cms: delete ${filePath}`,
+      `cms: delete media`,
       [filePath],
     );
-  } catch (error) {
-    return actionError(error instanceof Error ? error.message : "Silinemedi.");
+  } catch {
+    return actionError("deleteFailed");
   }
   revalidatePublicSite();
   return actionOk();

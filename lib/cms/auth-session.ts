@@ -1,4 +1,5 @@
 const COOKIE = "admin_session";
+const SESSION_MS = 60 * 60 * 24 * 14;
 
 function adminUsername() {
   return process.env.ADMIN_USERNAME?.trim() || "";
@@ -29,24 +30,36 @@ function safeEqual(left: string, right: string) {
   return mismatch === 0;
 }
 
-async function sign(username: string) {
-  const key = await crypto.subtle.importKey(
+async function sha256Hex(value: string) {
+  const digest = await crypto.subtle.digest(
+    "SHA-256",
+    new TextEncoder().encode(value),
+  );
+  return toHex(digest);
+}
+
+async function hmacKey() {
+  return crypto.subtle.importKey(
     "raw",
     new TextEncoder().encode(adminPassword()),
     { name: "HMAC", hash: "SHA-256" },
     false,
     ["sign"],
   );
+}
+
+async function sign(payload: string) {
   const signature = await crypto.subtle.sign(
     "HMAC",
-    key,
-    new TextEncoder().encode(`v1:${username}`),
+    await hmacKey(),
+    new TextEncoder().encode(payload),
   );
   return toHex(signature);
 }
 
 export async function encodeSession(username: string) {
-  return `${username}.${await sign(username)}`;
+  const payload = `v2|${username}|${Date.now() + SESSION_MS}`;
+  return `${payload}.${await sign(payload)}`;
 }
 
 export async function verifySessionToken(token: string | undefined) {
@@ -59,13 +72,23 @@ export async function verifySessionToken(token: string | undefined) {
     return null;
   }
 
-  const username = token.slice(0, separator);
+  const payload = token.slice(0, separator);
   const signature = token.slice(separator + 1);
-  if (username !== adminUsername()) {
+  const parts = payload.split("|");
+  if (parts.length !== 3 || parts[0] !== "v2") {
     return null;
   }
 
-  const expected = await sign(username);
+  const username = parts[1];
+  const expires = Number(parts[2]);
+  if (!username || username !== adminUsername()) {
+    return null;
+  }
+  if (!Number.isFinite(expires) || Date.now() > expires) {
+    return null;
+  }
+
+  const expected = await sign(payload);
   if (!safeEqual(signature, expected)) {
     return null;
   }
@@ -73,11 +96,34 @@ export async function verifySessionToken(token: string | undefined) {
   return username;
 }
 
-export function verifyCredentials(username: string, password: string) {
+export async function verifyCredentials(username: string, password: string) {
   if (!isAdminAuthConfigured()) {
     return false;
   }
-  return username === adminUsername() && safeEqual(password, adminPassword());
+
+  const [givenUser, expectedUser, givenPass, expectedPass] = await Promise.all([
+    sha256Hex(username),
+    sha256Hex(adminUsername()),
+    sha256Hex(password),
+    sha256Hex(adminPassword()),
+  ]);
+
+  return safeEqual(givenUser, expectedUser) && safeEqual(givenPass, expectedPass);
 }
 
-export { COOKIE as adminSessionCookie };
+export function safeAdminPath(path: string) {
+  if (!path.startsWith("/admin")) {
+    return "/admin";
+  }
+  if (
+    path.startsWith("//") ||
+    path.includes("://") ||
+    path.includes("\\") ||
+    path.includes("..")
+  ) {
+    return "/admin";
+  }
+  return path;
+}
+
+export { COOKIE as adminSessionCookie, SESSION_MS as adminSessionMaxAge };

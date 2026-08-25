@@ -7,12 +7,20 @@ export const ALLOWED_MEDIA_TYPES = [
   "image/avif",
 ];
 
+export const mediaExtension: Record<string, string> = {
+  "image/jpeg": ".jpg",
+  "image/png": ".png",
+  "image/webp": ".webp",
+  "image/gif": ".gif",
+  "image/avif": ".avif",
+};
+
 export function validateMediaFile(file: { type: string; size: number }) {
   if (!ALLOWED_MEDIA_TYPES.includes(file.type)) {
-    return "Sadece JPEG, PNG, WebP, GIF veya AVIF yüklenebilir.";
+    return "mediaType";
   }
   if (file.size > MAX_MEDIA_BYTES) {
-    return "Dosya 4 MB sınırını aşıyor.";
+    return "mediaSize";
   }
   return null;
 }

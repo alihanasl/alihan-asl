@@ -12,11 +12,13 @@ import {
 } from "@/lib/cms/actions";
 import { ConfirmDialog } from "@/components/admin/confirm";
 import { useAdminToast } from "@/components/admin/toast";
+import { useAdminI18n } from "@/components/admin/admin-i18n";
 import { GripVertical } from "lucide-react";
 
 export function ProjectsTable({ projects }: { projects: CmsProject[] }) {
   const router = useRouter();
   const { toast } = useAdminToast();
+  const { t, errorText } = useAdminI18n();
   const [order, setOrder] = useState(projects.map((project) => project.id));
   const [dragId, setDragId] = useState<string | null>(null);
   const [pending, setPending] = useState<CmsProject | null>(null);
@@ -38,7 +40,7 @@ export function ProjectsTable({ projects }: { projects: CmsProject[] }) {
     setOrder(next);
     const result = await reorderProjectsAction(next);
     if (!result.ok) {
-      toast(result.error, "error");
+      toast(errorText(result.error), "error");
       setOrder(projects.map((project) => project.id));
       return;
     }
@@ -52,10 +54,10 @@ export function ProjectsTable({ projects }: { projects: CmsProject[] }) {
           <thead className="border-b border-zinc-200 bg-zinc-50 text-xs uppercase tracking-wide text-zinc-500">
             <tr>
               <th className="w-8 px-3 py-2" />
-              <th className="px-3 py-2">Proje</th>
-              <th className="px-3 py-2">Durum</th>
-              <th className="px-3 py-2">Öne çıkan</th>
-              <th className="px-3 py-2 text-right">İşlem</th>
+              <th className="px-3 py-2">{t("projects.colProject")}</th>
+              <th className="px-3 py-2">{t("projects.colStatus")}</th>
+              <th className="px-3 py-2">{t("projects.colFeatured")}</th>
+              <th className="px-3 py-2 text-right">{t("projects.colActions")}</th>
             </tr>
           </thead>
           <tbody>
@@ -88,11 +90,11 @@ export function ProjectsTable({ projects }: { projects: CmsProject[] }) {
                         : "rounded-full bg-zinc-100 px-2 py-0.5 text-xs text-zinc-600"
                     }
                   >
-                    {project.published ? "Yayında" : "Taslak"}
+                    {project.published ? t("common.published") : t("common.draft")}
                   </span>
                 </td>
                 <td className="px-3 py-3 text-xs text-zinc-600">
-                  {project.featured ? "Evet" : "—"}
+                  {project.featured ? t("common.yes") : "—"}
                 </td>
                 <td className="px-3 py-3">
                   <div className="flex justify-end gap-2">
@@ -105,14 +107,18 @@ export function ProjectsTable({ projects }: { projects: CmsProject[] }) {
                           !project.published,
                         );
                         if (!result.ok) {
-                          toast(result.error, "error");
+                          toast(errorText(result.error), "error");
                           return;
                         }
-                        toast(project.published ? "Taslağa alındı." : "Yayınlandı.");
+                        toast(
+                          project.published
+                            ? t("projects.unpublishedToast")
+                            : t("projects.wentLiveToast"),
+                        );
                         router.refresh();
                       }}
                     >
-                      {project.published ? "Draft" : "Publish"}
+                      {project.published ? t("common.draft") : t("common.publish")}
                     </button>
                     <button
                       type="button"
@@ -123,20 +129,20 @@ export function ProjectsTable({ projects }: { projects: CmsProject[] }) {
                           !project.featured,
                         );
                         if (!result.ok) {
-                          toast(result.error, "error");
+                          toast(errorText(result.error), "error");
                           return;
                         }
                         router.refresh();
                       }}
                     >
-                      {project.featured ? "Unfeature" : "Feature"}
+                      {project.featured ? t("common.unfeature") : t("common.feature")}
                     </button>
                     <button
                       type="button"
                       className="text-xs text-red-600"
                       onClick={() => setPending(project)}
                     >
-                      Sil
+                      {t("common.delete")}
                     </button>
                   </div>
                 </td>
@@ -146,22 +152,22 @@ export function ProjectsTable({ projects }: { projects: CmsProject[] }) {
         </table>
       </div>
       {items.length === 0 ? (
-        <p className="mt-4 text-sm text-zinc-500">Henüz proje yok.</p>
+        <p className="mt-4 text-sm text-zinc-500">{t("projects.empty")}</p>
       ) : null}
       <ConfirmDialog
         open={Boolean(pending)}
-        title="Projeyi sil"
-        body="Bu proje kalıcı olarak silinir."
+        title={t("projects.deleteTitle")}
+        body={t("projects.deleteBodyShort")}
         onCancel={() => setPending(null)}
         onConfirm={async () => {
           if (!pending) return;
           const result = await deleteProjectAction(pending.id);
           setPending(null);
           if (!result.ok) {
-            toast(result.error, "error");
+            toast(errorText(result.error), "error");
             return;
           }
-          toast("Proje silindi.");
+          toast(t("projects.deletedToast"));
           router.refresh();
         }}
       />

@@ -94,6 +94,11 @@ export function LocaleProvider({
   );
 
   useEffect(() => {
+    if (pathname?.startsWith("/admin")) {
+      document.title = "Admin";
+      return;
+    }
+
     document.documentElement.lang = locale;
 
     const projectSlug = pathname?.startsWith("/projects/")

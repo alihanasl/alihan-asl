@@ -13,6 +13,16 @@ import { LangTabs } from "@/components/admin/lang-tabs";
 import { SortableList } from "@/components/admin/sortable-list";
 import { ConfirmDialog } from "@/components/admin/confirm";
 import { useAdminToast } from "@/components/admin/toast";
+import { useAdminI18n } from "@/components/admin/admin-i18n";
+import type { AdminMessageKey } from "@/lib/i18n/admin";
+
+const categoryKeys: Record<string, AdminMessageKey> = {
+  frontend: "skills.catFrontend",
+  backend: "skills.catBackend",
+  database: "skills.catDatabase",
+  infrastructure: "skills.catInfrastructure",
+  tools: "skills.catTools",
+};
 
 function blank(order: number): CmsSkill {
   return {
@@ -29,8 +39,8 @@ function blank(order: number): CmsSkill {
 export function SkillsManager({ items }: { items: CmsSkill[] }) {
   const router = useRouter();
   const { toast } = useAdminToast();
+  const { t, contentLocale, errorText } = useAdminI18n();
   const [selected, setSelected] = useState<CmsSkill>(blank(items.length));
-  const [locale, setLocale] = useState<"tr" | "en">("tr");
   const [pending, setPending] = useState<string | null>(null);
   const [saving, setSaving] = useState(false);
 
@@ -38,20 +48,20 @@ export function SkillsManager({ items }: { items: CmsSkill[] }) {
     <div className="grid gap-6 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)]">
       <div>
         <div className="mb-3 flex items-center justify-between">
-          <h2 className="text-sm font-semibold">Teknolojiler</h2>
+          <h2 className="text-sm font-semibold">{t("skills.list")}</h2>
           <button
             type="button"
             className="admin-btn-ghost"
             onClick={() => setSelected(blank(items.length))}
           >
-            Yeni
+            {t("common.new")}
           </button>
         </div>
         <SortableList
           items={items.map((item) => ({
             id: item.id,
             label: item.name,
-            meta: item.category,
+            meta: t(categoryKeys[item.category] ?? "skills.catTools"),
           }))}
           onSelect={(id) => {
             const item = items.find((entry) => entry.id === id);
@@ -60,7 +70,7 @@ export function SkillsManager({ items }: { items: CmsSkill[] }) {
           onReorder={async (ids) => {
             const result = await reorderSkillsAction(ids);
             if (!result.ok) {
-              toast(result.error, "error");
+              toast(errorText(result.error), "error");
               return;
             }
             router.refresh();
@@ -77,44 +87,44 @@ export function SkillsManager({ items }: { items: CmsSkill[] }) {
           const result = await saveSkillAction(new FormData(event.currentTarget));
           setSaving(false);
           if (!result.ok) {
-            toast(result.error, "error");
+            toast(errorText(result.error), "error");
             return;
           }
-          toast("Teknoloji kaydedildi.");
+          toast(t("skills.saved"));
           router.refresh();
         }}
       >
         <div className="flex items-center justify-between">
           <h2 className="admin-section-title">
-            {selected.id ? "Düzenle" : "Yeni teknoloji"}
+            {selected.id ? t("skills.editItem") : t("skills.newItem")}
           </h2>
-          <LangTabs locale={locale} onChange={setLocale} />
+          <LangTabs />
         </div>
         {selected.id ? <input type="hidden" name="id" defaultValue={selected.id} /> : null}
         <input type="hidden" name="sort_order" defaultValue={selected.sortOrder} />
         <label className="admin-field">
-          <span>Name</span>
+          <span>{t("skills.name")}</span>
           <input name="name" defaultValue={selected.name} />
         </label>
         <label className="admin-field">
-          <span>Category</span>
+          <span>{t("skills.category")}</span>
           <select name="category" defaultValue={selected.category}>
             {skillCategories.map((category) => (
               <option key={category.id} value={category.id}>
-                {category.label}
+                {t(categoryKeys[category.id] ?? "skills.catTools")}
               </option>
             ))}
           </select>
         </label>
-        <div className={locale === "tr" ? "block" : "hidden"}>
+        <div className={contentLocale === "tr" ? "block" : "hidden"}>
           <label className="admin-field">
-            <span>Not (TR)</span>
+            <span>{t("skills.note")} (TR)</span>
             <textarea name="note_tr" rows={3} defaultValue={selected.noteTr} />
           </label>
         </div>
-        <div className={locale === "en" ? "block" : "hidden"}>
+        <div className={contentLocale === "en" ? "block" : "hidden"}>
           <label className="admin-field">
-            <span>Note (EN)</span>
+            <span>{t("skills.note")} (EN)</span>
             <textarea name="note_en" rows={3} defaultValue={selected.noteEn} />
           </label>
         </div>
@@ -124,11 +134,11 @@ export function SkillsManager({ items }: { items: CmsSkill[] }) {
             name="published"
             defaultChecked={selected.published}
           />
-          Aktif
+          {t("common.active")}
         </label>
         <div className="flex gap-2">
           <button type="submit" className="admin-btn" disabled={saving}>
-            Save
+            {t("common.save")}
           </button>
           {selected.id ? (
             <button
@@ -136,7 +146,7 @@ export function SkillsManager({ items }: { items: CmsSkill[] }) {
               className="admin-btn-danger"
               onClick={() => setPending(selected.id)}
             >
-              Delete
+              {t("common.delete")}
             </button>
           ) : null}
         </div>
@@ -144,18 +154,18 @@ export function SkillsManager({ items }: { items: CmsSkill[] }) {
 
       <ConfirmDialog
         open={Boolean(pending)}
-        title="Teknolojiyi sil"
-        body="Bu kayıt silinecek."
+        title={t("skills.deleteTitle")}
+        body={t("skills.deleteBody")}
         onCancel={() => setPending(null)}
         onConfirm={async () => {
           if (!pending) return;
           const result = await deleteSkillAction(pending);
           setPending(null);
           if (!result.ok) {
-            toast(result.error, "error");
+            toast(errorText(result.error), "error");
             return;
           }
-          toast("Silindi.");
+          toast(t("toasts.deleted"));
           setSelected(blank(items.length));
           router.refresh();
         }}

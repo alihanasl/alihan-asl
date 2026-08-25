@@ -1,10 +1,12 @@
 "use client";
 
+import { useAdminI18n } from "@/components/admin/admin-i18n";
+
 export function ConfirmDialog({
   open,
   title,
   body,
-  confirmLabel = "Sil",
+  confirmLabel,
   onCancel,
   onConfirm,
 }: {
@@ -15,6 +17,7 @@ export function ConfirmDialog({
   onCancel: () => void;
   onConfirm: () => void;
 }) {
+  const { t } = useAdminI18n();
   if (!open) return null;
 
   return (
@@ -28,10 +31,10 @@ export function ConfirmDialog({
         <p className="mt-2 text-sm leading-relaxed text-zinc-600">{body}</p>
         <div className="mt-5 flex justify-end gap-2">
           <button type="button" className="admin-btn-ghost" onClick={onCancel}>
-            Vazgeç
+            {t("common.dismiss")}
           </button>
           <button type="button" className="admin-btn-danger" onClick={onConfirm}>
-            {confirmLabel}
+            {confirmLabel ?? t("common.delete")}
           </button>
         </div>
       </div>

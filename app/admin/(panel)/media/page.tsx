@@ -1,9 +1,10 @@
 import { MediaManager } from "@/components/admin/media-manager";
+import { AdminHeading } from "@/components/admin/page-header";
 
 export default function MediaPage() {
   return (
     <div>
-      <h1 className="mb-6 text-2xl font-semibold tracking-tight">Media</h1>
+      <AdminHeading titleKey="media.title" />
       <MediaManager />
     </div>
   );

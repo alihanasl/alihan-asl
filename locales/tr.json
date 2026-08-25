@@ -58,41 +58,18 @@
     "ref": "Ref",
     "active": "Aktif",
     "building": "Gelişiyor",
-    "experimental": "Deneysel",
-    "networkMonitoring": "Ağ İzleme",
-    "networkMonitoringNote": "Ağı izleyen masaüstü uygulama.",
-    "guestAssistant": "Misafir Asistanı",
-    "guestAssistantNote": "Tesisi bilen bir misafir asistanı.",
-    "internalTools": "İç IT Araçları",
-    "internalToolsNote": "Kullanılmazsa durmayan küçük araçlar."
+    "experimental": "Deneysel"
   },
   "about": {
     "index": "Konum",
     "manifestoOne": "IT'de sorun çözerim.",
     "manifestoTwo": "Anlamak için üretirim.",
-    "copy": "Canlı bir operasyonda teknolojiyi ben yürütüyorum. Sunucular, ağ, bozulunca fark edilen sistemler. Orada gördüğüm tıkanıklık için araç yazıyorum. Buradaki her şey oradan geliyor.",
-    "itField": "IT Yönetimi",
-    "itContext": "Otel teknolojisi",
-    "productsField": "Dijital ürünler",
-    "productsContext": "Kendi işlerim",
-    "contentField": "İçerik",
-    "contentContext": "YouTube / Dijital medya"
+    "copy": "Canlı bir operasyonda teknolojiyi ben yürütüyorum. Sunucular, ağ, bozulunca fark edilen sistemler. Orada gördüğüm tıkanıklık için araç yazıyorum. Buradaki her şey oradan geliyor."
   },
   "toolbox": {
     "index": "Stack",
     "title": "Araçlar",
-    "copy": "Kurarken ve ayakta tutarken kullandıklarım.",
-    "nextjs": "Web ürünlerini bununla kuruyorum.",
-    "typescript": "Kalıcı işlerde yazdığım dil.",
-    "react": "Demo değil, duracak arayüzler.",
-    "tailwind": "Boşluk ve yazı üzerinde kontrol.",
-    "supabase": "Ürünün veri ve girişe ihtiyacı olunca.",
-    "electron": "Masaüstünde durması gereken araçlar.",
-    "python": "Script, servis, küçük otomasyon.",
-    "git": "Geçmişi tuttuğum yer.",
-    "vercel": "Açıkta duran işlerin yayına çıktığı yer.",
-    "networking": "Ürünlerin altında duran ağ.",
-    "networkingName": "Ağ"
+    "copy": "Kurarken ve ayakta tutarken kullandıklarım."
   },
   "contact": {
     "index": "Kapanış",
@@ -135,39 +112,5 @@
     "platform": "Platform",
     "ai": "Yapay zeka ürünü",
     "tools": "İç araçlar"
-  },
-  "projects": {
-    "ping-alert-v2": {
-      "description": "Ağı izleyen masaüstü uygulama.",
-      "problem": "Switch düşünce haber çoğu zaman geç kalıyor. İzleme ya dağınıktı ya da yoktu.",
-      "idea": "Masada duran tek bir uygulama. Ağ cevap vermezse hemen uyarsın.",
-      "build": "Tarayıcıda kaybolmasın diye masaüstüne yazıldı. Operasyon bilgisayarında duruyor, izlemeye devam ediyor.",
-      "result": "Ağın ihtiyacı olduğu için var. Güzel dursun diye değil.",
-      "caption": "ICMP / CANLI"
-    },
-    "laniff": {
-      "description": "Varlık ve envanter takibi.",
-      "problem": "Donanım, lisans, lokasyon Excel'de dağınıktı. Sayıya kimse güvenmiyordu.",
-      "idea": "Ne var, nerede, kimin sorumluluğunda — tek yerde.",
-      "build": "Form değil, düzenli bir sistem. Geçmişi ve sorumluluğu olan bir envanter.",
-      "result": "Envanterin doğru kalması için içeride kullandığım bir ürün.",
-      "caption": "VARLIK KAYDI"
-    },
-    "guest-assist-ai": {
-      "description": "Otel misafirleri için bir asistan.",
-      "problem": "Misafirler aynı soruları her saat soruyor. Ekibin vardiyası zaten dolu.",
-      "idea": "Tesisi bilen bir asistan. Yardım eder. Resepsiyonun yerini aldığını iddia etmez.",
-      "build": "Gerçek misafir sorularından yola çıktı. Hazır sohbet botu değil.",
-      "result": "Hâlâ lab'de. Önce işe yarasın.",
-      "caption": "MİSAFİR / SORGU"
-    },
-    "it-toolkit": {
-      "description": "İç araçlar ve küçük otomasyonlar.",
-      "problem": "Aynı iş sürekli scriptlere, notlara, bir kerelik çözümlere kaçıyordu.",
-      "idea": "İçerde kullanılan, gösterişsiz araçlar. Kullananı hızlandırsın yeter.",
-      "build": "Yolda toplanıyor. Kullanılırsa kalıyor.",
-      "result": "Bitmiş bir ürün değil. Durmadan eklenen bir set.",
-      "caption": "MODÜLLER"
-    }
   }
 }

@@ -5,12 +5,14 @@ import { useState } from "react";
 import type { CmsStat } from "@/lib/cms/types";
 import { saveStatsAction } from "@/lib/cms/actions";
 import { useAdminToast } from "@/components/admin/toast";
+import { useAdminI18n } from "@/components/admin/admin-i18n";
+import type { AdminMessageKey } from "@/lib/i18n/admin";
 
-const labels: Record<string, string> = {
-  servers: "Servers",
-  switches: "Switches",
-  projects: "Projects",
-  problems: "Problems",
+const labels: Record<string, AdminMessageKey> = {
+  servers: "settings.servers",
+  switches: "settings.switches",
+  projects: "settings.projects",
+  problems: "settings.problems",
 };
 
 export function SettingsForm({
@@ -24,6 +26,7 @@ export function SettingsForm({
 }) {
   const router = useRouter();
   const { toast } = useAdminToast();
+  const { t, errorText } = useAdminI18n();
   const [saving, setSaving] = useState(false);
   const rows = ["servers", "switches", "projects", "problems"].map((id) => {
     return stats.find((stat) => stat.id === id) ?? {
@@ -38,17 +41,11 @@ export function SettingsForm({
   return (
     <div className="space-y-6">
       <section className="admin-card">
-        <h2 className="admin-section-title">Durum</h2>
+        <h2 className="admin-section-title">{t("settings.status")}</h2>
         <ul className="mt-3 space-y-2 text-sm text-zinc-600">
+          <li>{authConfigured ? t("settings.authOk") : t("settings.authMissing")}</li>
           <li>
-            {authConfigured
-              ? "Admin girişi tanımlı."
-              : "ADMIN_USERNAME / ADMIN_PASSWORD eksik."}
-          </li>
-          <li>
-            {githubConfigured
-              ? "GitHub bağlı. Save işlemi repository’ye commit atar, Vercel deploy eder."
-              : "GITHUB_TOKEN, GITHUB_OWNER ve GITHUB_REPO eksik. Yerelde dosyalar diske yazılır; production’da GitHub şart."}
+            {githubConfigured ? t("settings.githubOk") : t("settings.githubMissing")}
           </li>
         </ul>
       </section>
@@ -61,19 +58,21 @@ export function SettingsForm({
           const result = await saveStatsAction(new FormData(event.currentTarget));
           setSaving(false);
           if (!result.ok) {
-            toast(result.error, "error");
+            toast(errorText(result.error), "error");
             return;
           }
-          toast("Özet rakamlar kaydedildi.");
+          toast(t("settings.saved"));
           router.refresh();
         }}
       >
-        <h2 className="admin-section-title">System overview</h2>
+        <h2 className="admin-section-title">{t("settings.overview")}</h2>
         {rows.map((stat) => (
           <div key={stat.id} className="grid gap-3 sm:grid-cols-3">
-            <p className="self-end text-sm font-medium">{labels[stat.id] ?? stat.id}</p>
+            <p className="self-end text-sm font-medium">
+              {t(labels[stat.id] ?? "settings.overview")}
+            </p>
             <label className="admin-field">
-              <span>Value</span>
+              <span>{t("settings.value")}</span>
               <input
                 name={`${stat.id}_value`}
                 defaultValue={stat.value ?? ""}
@@ -81,21 +80,19 @@ export function SettingsForm({
             </label>
             <div className="grid grid-cols-2 gap-3">
               <label className="admin-field">
-                <span>Suffix</span>
+                <span>{t("settings.suffix")}</span>
                 <input name={`${stat.id}_suffix`} defaultValue={stat.suffix} />
               </label>
               <label className="admin-field">
-                <span>Display</span>
+                <span>{t("settings.display")}</span>
                 <input name={`${stat.id}_display`} defaultValue={stat.display} />
               </label>
             </div>
           </div>
         ))}
-        <p className="text-xs text-zinc-500">
-          Sonsuz gibi özel gösterimler için value boş, display alanına sembol yaz.
-        </p>
+        <p className="text-xs text-zinc-500">{t("settings.hint")}</p>
         <button type="submit" className="admin-btn" disabled={saving}>
-          Save
+          {t("common.save")}
         </button>
       </form>
     </div>
