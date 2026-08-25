@@ -252,7 +252,7 @@ export function ProjectForm({
               <p className="mb-2 text-sm text-zinc-600">{t("projects.cover")}</p>
               {cover ? (
                 // eslint-disable-next-line @next/next/no-img-element
-                <img src={cover} alt="" className="mb-2 h-28 rounded-md object-cover" />
+                <img src={cover} alt="" className="mb-2 h-28 rounded-md object-contain bg-zinc-50" />
               ) : null}
               <div className="flex gap-2">
                 <button type="button" className="admin-btn-ghost" onClick={() => setPicker("cover")}>

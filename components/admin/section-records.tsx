@@ -107,7 +107,7 @@ function WorkRecords({ initial }: { initial: CmsProject[] }) {
                 <img
                   src={item.coverImage}
                   alt=""
-                  className="h-full w-full object-cover"
+                  className="h-full w-full object-contain"
                 />
               ) : (
                 <span className="flex h-full items-center justify-center px-2 text-center text-[11px] text-zinc-500">

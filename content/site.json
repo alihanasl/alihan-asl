@@ -25,7 +25,7 @@
   },
   "hero.lab": {
     "en": "Technology · Operations · Transformation",
-    "tr": "Technology · Operations · Transformation"
+    "tr": "Teknoloji · Operasyon · Dönüşüm"
   },
   "hero.tagline": {
     "en": "I use technology to solve problems, improve operations, and build systems that last.",
@@ -49,11 +49,11 @@
   },
   "hero.roleBuilder": {
     "en": "IT Operations",
-    "tr": "IT Operations"
+    "tr": "IT Operasyonu"
   },
   "hero.roleCreator": {
     "en": "Technology · Transformation",
-    "tr": "Technology · Transformation"
+    "tr": "Teknoloji · Dönüşüm"
   },
   "position.index": {
     "en": "Position",
@@ -69,7 +69,7 @@
   },
   "system.title": {
     "en": "Technology at Scale",
-    "tr": "Technology at Scale"
+    "tr": "Ölçekte Teknoloji"
   },
   "system.copy": {
     "en": "Infrastructure run in live, large-scale operations.",
@@ -97,15 +97,15 @@
   },
   "approach.title": {
     "en": "Transformation Approach",
-    "tr": "Transformation Approach"
+    "tr": "Dönüşüm Yaklaşımı"
   },
   "approach.copy": {
     "en": "Observe → Identify → Design → Automate → Improve",
-    "tr": "Observe → Identify → Design → Automate → Improve"
+    "tr": "Gözlemle → Tespit et → Tasarla → Otomatikleştir → İyileştir"
   },
   "approach.observe": {
     "en": "Observe",
-    "tr": "Observe"
+    "tr": "Gözlemle"
   },
   "approach.observeCopy": {
     "en": "I watch the system, the people using it, and the operation around it — together.",
@@ -113,7 +113,7 @@
   },
   "approach.identify": {
     "en": "Identify",
-    "tr": "Identify"
+    "tr": "Tespit et"
   },
   "approach.identifyCopy": {
     "en": "I look past the symptom and find the root cause.",
@@ -121,7 +121,7 @@
   },
   "approach.design": {
     "en": "Design",
-    "tr": "Design"
+    "tr": "Tasarla"
   },
   "approach.designCopy": {
     "en": "I design a solution that fits the need and can be sustained.",
@@ -129,7 +129,7 @@
   },
   "approach.automate": {
     "en": "Automate",
-    "tr": "Automate"
+    "tr": "Otomatikleştir"
   },
   "approach.automateCopy": {
     "en": "I take repeating, manual work out of the way wherever it makes sense.",
@@ -137,7 +137,7 @@
   },
   "approach.improve": {
     "en": "Improve",
-    "tr": "Improve"
+    "tr": "İyileştir"
   },
   "approach.improveCopy": {
     "en": "I do not leave a system where it landed. I keep shaping it against the result.",
@@ -149,7 +149,7 @@
   },
   "work.title": {
     "en": "Selected Projects",
-    "tr": "Selected Projects"
+    "tr": "Seçilen İşler"
   },
   "work.copy": {
     "en": "Work that started as an operational need.",
@@ -169,7 +169,7 @@
   },
   "think.title": {
     "en": "How I Think",
-    "tr": "How I Think"
+    "tr": "Nasıl Düşünürüm"
   },
   "think.copy": {
     "en": "I do not only run systems. I think about how they should work better.",
@@ -177,7 +177,7 @@
   },
   "think.see": {
     "en": "See the System",
-    "tr": "See the System"
+    "tr": "Sistemi gör"
   },
   "think.seeCopy": {
     "en": "I treat a problem as part of the whole operation — not as a single device or app.",
@@ -185,7 +185,7 @@
   },
   "think.root": {
     "en": "Build for the Root Cause",
-    "tr": "Build for the Root Cause"
+    "tr": "Kök neden için kur"
   },
   "think.rootCopy": {
     "en": "I build systems that remove repeating problems, not patches that buy time.",
@@ -193,7 +193,7 @@
   },
   "think.beyond": {
     "en": "Think Beyond IT",
-    "tr": "Think Beyond IT"
+    "tr": "IT'nin ötesini düşün"
   },
   "think.beyondCopy": {
     "en": "I place technology where it improves the business, not only the IT stack.",
@@ -261,7 +261,7 @@
   },
   "about.careerTitle": {
     "en": "9+ Years in IT",
-    "tr": "9+ Years in IT"
+    "tr": "IT'de 9+ yıl"
   },
   "about.careerCopy": {
     "en": "Large-scale IT operations. Each role widened the frame: from keeping systems up to leading the function.",
@@ -285,7 +285,7 @@
   },
   "about.leadershipOps": {
     "en": "IT Operations",
-    "tr": "IT Operations"
+    "tr": "IT Operasyonu"
   },
   "about.leadershipProjects": {
     "en": "Project Management",
@@ -349,7 +349,7 @@
   },
   "about.lensTitle": {
     "en": "People · Technology · Business",
-    "tr": "People · Technology · Business"
+    "tr": "İnsan · Teknoloji · İş"
   },
   "about.lensCopy": {
     "en": "I weigh technology decisions with the people who use them and the business that pays for them — not only with the systems themselves.",
@@ -357,7 +357,7 @@
   },
   "about.peopleTitle": {
     "en": "People",
-    "tr": "People"
+    "tr": "İnsan"
   },
   "about.peopleCopy": {
     "en": "Teams, users, and stakeholders.",
@@ -365,7 +365,7 @@
   },
   "about.techTitle": {
     "en": "Technology",
-    "tr": "Technology"
+    "tr": "Teknoloji"
   },
   "about.techCopy": {
     "en": "Infrastructure, systems, security, and digital solutions.",
@@ -373,7 +373,7 @@
   },
   "about.businessTitle": {
     "en": "Business",
-    "tr": "Business"
+    "tr": "İş"
   },
   "about.businessCopy": {
     "en": "Operations, efficiency, cost, and process.",
@@ -393,15 +393,15 @@
   },
   "about.beyondKicker": {
     "en": "Aside",
-    "tr": "Aside"
+    "tr": "Ek"
   },
   "about.beyondTitle": {
     "en": "Beyond IT",
-    "tr": "Beyond IT"
+    "tr": "IT'nin ötesi"
   },
   "about.beyondCopy": {
     "en": "Technology · Digital Products · Media",
-    "tr": "Technology · Digital Products · Media"
+    "tr": "Teknoloji · Dijital ürünler · Medya"
   },
   "contact.index": {
     "en": "Next",
@@ -409,15 +409,15 @@
   },
   "contact.titleLine1": {
     "en": "Let's build",
-    "tr": "Let's build"
+    "tr": "Sırada olanı"
   },
   "contact.titleLine2": {
     "en": "what comes next.",
-    "tr": "what comes next."
+    "tr": "kuralım."
   },
   "contact.copy": {
     "en": "Technology · Transformation · Digital Solutions",
-    "tr": "Technology · Transformation · Digital Solutions"
+    "tr": "Teknoloji · Dönüşüm · Dijital çözümler"
   },
   "contact.email": {
     "en": "Email",
@@ -441,7 +441,7 @@
   },
   "footer.note": {
     "en": "Technology · Transformation",
-    "tr": "Technology · Transformation"
+    "tr": "Teknoloji · Dönüşüm"
   },
   "footer.year": {
     "en": "2026",

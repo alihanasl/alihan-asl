@@ -1,9 +1,9 @@
 [
   {
     "id": "downtown",
-    "fieldTr": "IT Operations",
+    "fieldTr": "IT Operasyonu",
     "fieldEn": "IT Operations",
-    "contextTr": "IT Operations",
+    "contextTr": "IT Operasyonu",
     "contextEn": "IT Operations",
     "company": "Rixos Downtown",
     "startDate": "",
@@ -16,9 +16,9 @@
   },
   {
     "id": "sungate",
-    "fieldTr": "IT Operations · Team Leadership",
+    "fieldTr": "IT Operasyonu · Ekip Yönetimi",
     "fieldEn": "IT Operations · Team Leadership",
-    "contextTr": "IT Operations · Team Leadership",
+    "contextTr": "IT Operasyonu · Ekip Yönetimi",
     "contextEn": "IT Operations · Team Leadership",
     "company": "Rixos Sungate",
     "startDate": "",
@@ -31,9 +31,9 @@
   },
   {
     "id": "beldibi",
-    "fieldTr": "IT Manager · Technology & Operations",
+    "fieldTr": "IT Manager · Teknoloji ve Operasyon",
     "fieldEn": "IT Manager · Technology & Operations",
-    "contextTr": "IT Manager · Technology & Operations",
+    "contextTr": "IT Manager · Teknoloji ve Operasyon",
     "contextEn": "IT Manager · Technology & Operations",
     "company": "Rixos Beldibi",
     "startDate": "",
