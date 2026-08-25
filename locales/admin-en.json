@@ -117,7 +117,7 @@
     "date": "Date",
     "addBlock": "Add block",
     "workItems": "Work items",
-    "workHint": "These cards appear in the Work section. Add or remove images, add or delete items. Changes save immediately.",
+    "workHint": "Click the square on the card, then upload — the photo is cropped into a fixed frame. Add or delete items. Changes save immediately.",
     "addWork": "Add work",
     "removeImage": "Remove image",
     "editStory": "Edit story",

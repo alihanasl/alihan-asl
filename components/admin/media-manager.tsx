@@ -59,6 +59,9 @@ export function MediaManager({
     }
     toast(t("media.saved"));
     await refresh();
+    if (selectable && result.item?.url) {
+      onSelect?.(result.item.url);
+    }
   }
 
   return (
@@ -90,7 +93,14 @@ export function MediaManager({
           {items.map((item) => (
             <li key={item.path} className="overflow-hidden rounded-lg border border-zinc-200 bg-white">
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={item.url} alt="" className="aspect-[4/3] w-full object-cover" />
+              <img
+                src={item.url}
+                alt=""
+                className={`aspect-[4/3] w-full object-cover ${selectable ? "cursor-pointer" : ""}`}
+                onClick={() => {
+                  if (selectable) onSelect?.(item.url);
+                }}
+              />
               <div className="space-y-2 p-2">
                 <div className="flex items-center justify-between gap-2">
                   {selectable ? (

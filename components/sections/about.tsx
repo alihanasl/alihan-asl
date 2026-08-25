@@ -7,6 +7,7 @@ import { useCms } from "@/components/cms/cms-provider";
 import { pickLocale } from "@/lib/cms/types";
 import type { SiteSection } from "@/lib/cms/layout";
 import { SectionButtons } from "@/components/site/section-buttons";
+import { FitImage } from "@/components/site/fit-image";
 
 export function About({
   section,
@@ -46,11 +47,10 @@ export function About({
             <Reveal delay={0.08}>
               <div>
                 {section?.image ? (
-                  // eslint-disable-next-line @next/next/no-img-element
-                  <img
+                  <FitImage
                     src={section.image}
-                    alt=""
-                    className="mb-8 max-h-64 w-full max-w-sm object-cover"
+                    ratio="16/10"
+                    className="mb-8 max-w-sm"
                   />
                 ) : null}
                 <p className="max-w-md text-[1.05rem] leading-[1.7] text-graphite">

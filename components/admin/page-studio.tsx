@@ -325,6 +325,7 @@ export function PageStudio({
               </>
             ) : null}
 
+            {!["work", "system", "lab", "toolbox"].includes(section.type) ? (
             <div>
               <p className="mb-2 text-sm text-zinc-600">{t("pages.image")}</p>
               {section.image ? (
@@ -346,6 +347,7 @@ export function PageStudio({
                 ) : null}
               </div>
             </div>
+            ) : null}
 
             {section.type === "gallery" ? (
               <div>

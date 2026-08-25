@@ -8,6 +8,7 @@ import { useCms } from "@/components/cms/cms-provider";
 import type { MessageKey } from "@/lib/i18n/translate";
 import type { SiteSection } from "@/lib/cms/layout";
 import { SectionButtons } from "@/components/site/section-buttons";
+import { FitImage } from "@/components/site/fit-image";
 import { pickLocalized } from "@/lib/cms/layout";
 
 export function Contact({
@@ -83,6 +84,14 @@ export function Contact({
             )}
           </div>
         </Reveal>
+
+        {section?.image ? (
+          <FitImage
+            src={section.image}
+            ratio="16/10"
+            className="mt-10 max-w-md"
+          />
+        ) : null}
 
         {email ? (
           <Reveal delay={0.14}>

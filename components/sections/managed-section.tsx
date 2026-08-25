@@ -4,6 +4,7 @@ import { SectionLabel } from "@/components/ui/section-label";
 import { Reveal } from "@/components/ui/reveal";
 import { useLocale } from "@/components/i18n/locale-provider";
 import { SectionButtons } from "@/components/site/section-buttons";
+import { FitImage } from "@/components/site/fit-image";
 import {
   pickLocalized,
   type FaqItem,
@@ -53,12 +54,7 @@ export function ManagedSection({
           </Reveal>
         ) : null}
         {section.image ? (
-          // eslint-disable-next-line @next/next/no-img-element
-          <img
-            src={section.image}
-            alt=""
-            className="mt-10 max-h-[28rem] w-full rounded-sm object-cover"
-          />
+          <FitImage src={section.image} ratio="16/10" className="mt-10" />
         ) : null}
 
         {section.type === "faq" ? (
@@ -117,9 +113,8 @@ export function ManagedSection({
         {section.type === "gallery" && section.gallery.length ? (
           <ul className="mt-12 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
             {section.gallery.map((url) => (
-              <li key={url} className="overflow-hidden border border-line">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={url} alt="" className="aspect-[4/3] w-full object-cover" />
+              <li key={url}>
+                <FitImage src={url} alt="" ratio="4/3" />
               </li>
             ))}
           </ul>

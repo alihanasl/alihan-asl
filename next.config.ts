@@ -4,6 +4,9 @@ const nextConfig: NextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
   agentRules: false,
+  images: {
+    localPatterns: [{ pathname: "/uploads/**", search: "" }],
+  },
 };
 
 export default nextConfig;

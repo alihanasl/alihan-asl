@@ -117,7 +117,7 @@
     "date": "Tarih",
     "addBlock": "Blok ekle",
     "workItems": "İşler",
-    "workHint": "Bu kartlar sitede İşler bölümünde görünür. Görsel ekle veya kaldır, iş ekle veya sil. Değişiklikler hemen kaydedilir.",
+    "workHint": "Kartın solundaki kareye tıkla, görseli yükle; kartın çerçevesine otomatik oturur. İş ekleyip silebilirsin. Değişiklikler hemen kaydedilir.",
     "addWork": "İş ekle",
     "removeImage": "Görseli kaldır",
     "editStory": "Hikâyeyi düzenle",

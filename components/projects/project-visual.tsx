@@ -1,26 +1,23 @@
-import { cn } from "@/lib/cn";
+import { FitImage } from "@/components/site/fit-image";
 
 type ProjectVisualProps = {
   project: { slug: string };
   caption: string;
+  src?: string;
   className?: string;
 };
 
 export function ProjectVisual({
   project,
   caption,
+  src,
   className,
 }: ProjectVisualProps) {
   return (
-    <div
-      className={cn(
-        "relative aspect-[16/10] overflow-hidden border border-line bg-paper-2",
-        className,
-      )}
-    >
+    <FitImage src={src} ratio="16/10" className={className}>
       <svg
         viewBox="0 0 800 500"
-        className="h-full w-full"
+        className="absolute inset-0 h-full w-full"
         aria-hidden
         role="presentation"
       >
@@ -36,7 +33,7 @@ export function ProjectVisual({
           project.slug !== "it-toolkit" && <DefaultMark caption={caption} />}
       </svg>
       <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink/[0.04] to-transparent" />
-    </div>
+    </FitImage>
   );
 }
 

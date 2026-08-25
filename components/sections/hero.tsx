@@ -7,6 +7,7 @@ import { useLocale } from "@/components/i18n/locale-provider";
 import { useCms } from "@/components/cms/cms-provider";
 import { splitName } from "@/lib/cms/present";
 import { SectionButtons } from "@/components/site/section-buttons";
+import { FitImage } from "@/components/site/fit-image";
 import type { SiteSection } from "@/lib/cms/layout";
 
 export function Hero({ section }: { section?: SiteSection }) {
@@ -94,11 +95,10 @@ export function Hero({ section }: { section?: SiteSection }) {
           <ul className="fade-rise-late flex flex-wrap gap-x-6 gap-y-2 border-t border-line pt-6 lg:flex-col lg:items-end lg:gap-0 lg:border-t-0 lg:border-l lg:pt-0 lg:pl-10">
             {section?.image ? (
               <li className="w-full lg:pb-6">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
+                <FitImage
                   src={section.image}
-                  alt=""
-                  className="ml-auto max-h-56 w-full max-w-xs object-cover"
+                  ratio="4/5"
+                  className="ml-auto max-w-xs"
                 />
               </li>
             ) : null}

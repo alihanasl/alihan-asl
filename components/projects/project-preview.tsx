@@ -1,7 +1,6 @@
 "use client";
 
 import { useRef } from "react";
-import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import type { DisplayProject } from "@/lib/cms/present";
@@ -89,19 +88,11 @@ export function ProjectPreview({ project }: ProjectPreviewProps) {
           transition: "transform 500ms cubic-bezier(0.22, 1, 0.36, 1)",
         }}
       >
-        {project.image ? (
-          <div className="relative aspect-[16/10] overflow-hidden border border-line">
-            <Image
-              src={project.image}
-              alt={t("project.previewAlt", { name: project.name })}
-              fill
-              sizes="(max-width: 768px) 100vw, 60vw"
-              className="object-cover"
-            />
-          </div>
-        ) : (
-          <ProjectVisual project={project} caption={caption} />
-        )}
+        <ProjectVisual
+          project={project}
+          caption={caption}
+          src={project.image}
+        />
       </div>
       <div className="pointer-events-none absolute inset-x-0 bottom-0 flex items-end justify-between p-4 opacity-0 transition-opacity duration-500 group-hover:opacity-100 md:p-5">
         <span className="font-mono text-[11px] uppercase tracking-[0.18em] text-ink">

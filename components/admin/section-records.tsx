@@ -98,7 +98,7 @@ function WorkRecords({ initial }: { initial: CmsProject[] }) {
           <div className="flex gap-3">
             <button
               type="button"
-              className="relative h-20 w-28 shrink-0 overflow-hidden rounded-md border border-zinc-200 bg-zinc-50"
+              className="relative aspect-[16/10] w-32 shrink-0 overflow-hidden rounded-md border border-zinc-200 bg-zinc-50"
               onClick={() => setPicker({ id: item.id, kind: "cover" })}
             >
               {item.coverImage ? (

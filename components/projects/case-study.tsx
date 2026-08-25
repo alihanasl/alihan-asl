@@ -1,9 +1,9 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
 import { ProjectVisual } from "@/components/projects/project-visual";
+import { FitImage } from "@/components/site/fit-image";
 import { SectionLabel } from "@/components/ui/section-label";
 import { Reveal } from "@/components/ui/reveal";
 import { useLocale } from "@/components/i18n/locale-provider";
@@ -79,24 +79,22 @@ export function CaseStudy({ slug }: CaseStudyProps) {
 
       <Reveal>
         <div className="mx-auto max-w-[1400px] px-5 md:px-10 lg:px-14">
-          {project.image ? (
-            <div className="relative aspect-[16/9] overflow-hidden border border-line">
-              <Image
-                src={project.image}
-                alt={t("project.stillAlt", { name: project.name })}
-                fill
-                sizes="100vw"
-                className="object-cover"
-                priority
-              />
-            </div>
-          ) : (
-            <ProjectVisual
-              project={project}
-              caption={project.caption}
-              className="aspect-[16/8]"
-            />
-          )}
+          <ProjectVisual
+            project={project}
+            caption={project.caption}
+            src={project.image}
+          />
+          {project.gallery.filter((url) => url && url !== project.image).length ? (
+            <ul className="mt-3 grid gap-3 sm:grid-cols-2">
+              {project.gallery
+                .filter((url) => url && url !== project.image)
+                .map((url) => (
+                  <li key={url}>
+                    <FitImage src={url} alt="" ratio="16/10" />
+                  </li>
+                ))}
+            </ul>
+          ) : null}
         </div>
       </Reveal>
 
