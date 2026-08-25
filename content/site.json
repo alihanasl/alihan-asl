@@ -69,15 +69,15 @@
   },
   "work.index": {
     "en": "Index",
-    "tr": "Liste"
+    "tr": "Seçili Projeler"
   },
   "work.title": {
     "en": "Selected work",
-    "tr": "Seçilen işler"
+    "tr": "Gerçek ihtiyaçlardan doğan çözümler."
   },
   "work.copy": {
     "en": "Built because they were needed. Not made up for a portfolio.",
-    "tr": "İhtiyaç olduğu için yaptıklarım. Masada kalmış fikirler değil."
+    "tr": "Operasyonel problemlere, verimlilik ihtiyaçlarına ve teknoloji fırsatlarına yönelik geliştirdiğim sistemler."
   },
   "lab.index": {
     "en": "Register",
