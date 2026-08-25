@@ -87,8 +87,14 @@
       "image": "",
       "gallery": [],
       "buttons": [],
-      "heading": { "tr": "", "en": "" },
-      "body": { "tr": "", "en": "" },
+      "heading": {
+        "tr": "",
+        "en": ""
+      },
+      "body": {
+        "tr": "",
+        "en": ""
+      },
       "items": []
     },
     {
@@ -98,8 +104,14 @@
       "image": "",
       "gallery": [],
       "buttons": [],
-      "heading": { "tr": "", "en": "" },
-      "body": { "tr": "", "en": "" },
+      "heading": {
+        "tr": "",
+        "en": ""
+      },
+      "body": {
+        "tr": "",
+        "en": ""
+      },
       "items": []
     },
     {
@@ -109,8 +121,14 @@
       "image": "",
       "gallery": [],
       "buttons": [],
-      "heading": { "tr": "", "en": "" },
-      "body": { "tr": "", "en": "" },
+      "heading": {
+        "tr": "",
+        "en": ""
+      },
+      "body": {
+        "tr": "",
+        "en": ""
+      },
       "items": []
     },
     {
@@ -120,8 +138,14 @@
       "image": "",
       "gallery": [],
       "buttons": [],
-      "heading": { "tr": "", "en": "" },
-      "body": { "tr": "", "en": "" },
+      "heading": {
+        "tr": "",
+        "en": ""
+      },
+      "body": {
+        "tr": "",
+        "en": ""
+      },
       "items": []
     },
     {
@@ -131,8 +155,14 @@
       "image": "",
       "gallery": [],
       "buttons": [],
-      "heading": { "tr": "", "en": "" },
-      "body": { "tr": "", "en": "" },
+      "heading": {
+        "tr": "",
+        "en": ""
+      },
+      "body": {
+        "tr": "",
+        "en": ""
+      },
       "items": []
     },
     {
@@ -142,8 +172,14 @@
       "image": "",
       "gallery": [],
       "buttons": [],
-      "heading": { "tr": "", "en": "" },
-      "body": { "tr": "", "en": "" },
+      "heading": {
+        "tr": "",
+        "en": ""
+      },
+      "body": {
+        "tr": "",
+        "en": ""
+      },
       "items": []
     },
     {
@@ -153,8 +189,14 @@
       "image": "",
       "gallery": [],
       "buttons": [],
-      "heading": { "tr": "", "en": "" },
-      "body": { "tr": "", "en": "" },
+      "heading": {
+        "tr": "",
+        "en": ""
+      },
+      "body": {
+        "tr": "",
+        "en": ""
+      },
       "items": []
     },
     {
@@ -164,8 +206,14 @@
       "image": "",
       "gallery": [],
       "buttons": [],
-      "heading": { "tr": "", "en": "" },
-      "body": { "tr": "", "en": "" },
+      "heading": {
+        "tr": "",
+        "en": ""
+      },
+      "body": {
+        "tr": "",
+        "en": ""
+      },
       "items": []
     }
   ]
