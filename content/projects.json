@@ -126,9 +126,10 @@
     "liveUrl": "",
     "coverImage": "",
     "gallery": [],
-    "featured": true,
+    "featured": false,
     "published": true,
     "sortOrder": 3,
-    "layout": "compact"
+    "layout": "compact",
+    "updatedAt": "2026-08-25T16:11:05.321Z"
   }
 ]
