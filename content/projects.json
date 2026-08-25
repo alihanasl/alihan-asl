@@ -89,7 +89,7 @@
     "category": "tools",
     "technologies": [
       "Next.js",
-      "TypeScript"
+      "TypeScrip"
     ],
     "year": "2026",
     "githubUrl": "",
@@ -101,6 +101,6 @@
     "sortOrder": 2,
     "layout": "visual-right",
     "createdAt": "2026-08-25T20:27:11.023Z",
-    "updatedAt": "2026-08-25T20:30:35.825Z"
+    "updatedAt": "2026-08-25T20:30:40.316Z"
   }
 ]
