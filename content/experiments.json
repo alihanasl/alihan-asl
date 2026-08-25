@@ -25,7 +25,7 @@
     "id": "internal-tools",
     "nameTr": "İç IT Araçları",
     "nameEn": "Internal IT Tools",
-    "noteTr": "Kullanılmazsa durmayan küçük araçlar.",
+    "noteTr": "IT operasyonlarını hızlandırmak ve tekrarlayan işleri otomatikleştirmek için geliştirilen araçlar.",
     "noteEn": "Small tools. They stay if people use them.",
     "status": "experimental",
     "ref": "04",
