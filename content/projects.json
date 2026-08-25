@@ -74,7 +74,7 @@
     "slug": "yeni-is",
     "titleTr": "Guest Ai Agent",
     "titleEn": "Yeni iş",
-    "shortDescriptionTr": "",
+    "shortDescriptionTr": "Misafirlerin ihtiyaç duyduğu bilgilere hızlı ve doğal erişim sağlayan yapay zekâ destekli dijital asistan.",
     "shortDescriptionEn": "",
     "problemTr": "",
     "problemEn": "",
@@ -98,6 +98,6 @@
     "sortOrder": 2,
     "layout": "visual-right",
     "createdAt": "2026-08-25T20:27:11.023Z",
-    "updatedAt": "2026-08-25T20:27:48.581Z"
+    "updatedAt": "2026-08-25T20:28:22.543Z"
   }
 ]
