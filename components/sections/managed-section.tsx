@@ -23,7 +23,7 @@ export function ManagedSection({
   const heading =
     pickLocalized(locale, section.heading) || pickLocalized(locale, section.body);
   const body = pickLocalized(locale, section.body);
-  const label = String(index + 1).padStart(2, "0");
+  const label = String(index).padStart(2, "0");
 
   return (
     <section

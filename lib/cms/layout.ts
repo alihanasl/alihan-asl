@@ -116,6 +116,8 @@ export const copyKeysBySection: Partial<Record<SiteSectionType, string[]>> = {
     "hero.roleIt",
     "hero.roleBuilder",
     "hero.roleCreator",
+    "hero.scroll",
+    "hero.scrollHref",
   ],
   system: [
     "system.index",
@@ -126,8 +128,18 @@ export const copyKeysBySection: Partial<Record<SiteSectionType, string[]>> = {
     "system.projects",
     "system.problems",
   ],
-  work: ["work.index", "work.title", "work.copy"],
-  lab: ["lab.index", "lab.title", "lab.copy"],
+  work: ["work.index", "work.title", "work.copy", "work.caseStudy", "work.open"],
+  lab: [
+    "lab.index",
+    "lab.title",
+    "lab.copy",
+    "lab.experiment",
+    "lab.status",
+    "lab.ref",
+    "lab.active",
+    "lab.building",
+    "lab.experimental",
+  ],
   about: [
     "about.index",
     "about.manifestoOne",
@@ -140,6 +152,10 @@ export const copyKeysBySection: Partial<Record<SiteSectionType, string[]>> = {
     "contact.titleLine1",
     "contact.titleLine2",
     "contact.copy",
+    "contact.email",
+    "contact.linkedin",
+    "contact.github",
+    "contact.youtube",
   ],
 };
 

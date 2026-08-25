@@ -1,6 +1,6 @@
 "use client";
 
-import { Fragment } from "react";
+import { Fragment, type ReactNode } from "react";
 import { Hero } from "@/components/sections/hero";
 import { SystemOverview } from "@/components/sections/system-overview";
 import { SelectedWork } from "@/components/sections/selected-work";
@@ -12,14 +12,25 @@ import { ManagedSection } from "@/components/sections/managed-section";
 import { useCms } from "@/components/cms/cms-provider";
 import type { SiteSection } from "@/lib/cms/layout";
 
-const builtin: Record<string, (section: SiteSection) => React.ReactNode> = {
+function indexLabel(index: number) {
+  return String(index).padStart(2, "0");
+}
+
+const builtin: Record<
+  string,
+  (section: SiteSection, index: number) => ReactNode
+> = {
   hero: (section) => <Hero section={section} />,
-  system: () => <SystemOverview />,
-  work: () => <SelectedWork />,
-  lab: () => <DigitalLab />,
-  about: (section) => <About section={section} />,
-  toolbox: () => <Toolbox />,
-  contact: (section) => <Contact section={section} />,
+  system: (_section, index) => <SystemOverview index={indexLabel(index)} />,
+  work: (_section, index) => <SelectedWork index={indexLabel(index)} />,
+  lab: (_section, index) => <DigitalLab index={indexLabel(index)} />,
+  about: (section, index) => (
+    <About section={section} index={indexLabel(index)} />
+  ),
+  toolbox: (_section, index) => <Toolbox index={indexLabel(index)} />,
+  contact: (section, index) => (
+    <Contact section={section} index={indexLabel(index)} />
+  ),
 };
 
 export function HomeSections() {
@@ -31,9 +42,13 @@ export function HomeSections() {
       {sections.map((section, index) => {
         const render = builtin[section.type];
         if (render) {
-          return <Fragment key={section.id}>{render(section)}</Fragment>;
+          return (
+            <Fragment key={section.id}>{render(section, index)}</Fragment>
+          );
         }
-        return <ManagedSection key={section.id} section={section} index={index} />;
+        return (
+          <ManagedSection key={section.id} section={section} index={index} />
+        );
       })}
     </>
   );

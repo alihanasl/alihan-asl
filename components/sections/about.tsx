@@ -8,7 +8,13 @@ import { pickLocale } from "@/lib/cms/types";
 import type { SiteSection } from "@/lib/cms/layout";
 import { SectionButtons } from "@/components/site/section-buttons";
 
-export function About({ section }: { section?: SiteSection }) {
+export function About({
+  section,
+  index = "04",
+}: {
+  section?: SiteSection;
+  index?: string;
+}) {
   const { t, locale } = useLocale();
   const { experiences } = useCms();
 
@@ -20,7 +26,7 @@ export function About({ section }: { section?: SiteSection }) {
     >
       <div className="mx-auto max-w-[1400px] px-5 py-24 md:px-10 md:py-32 lg:px-14 lg:py-40">
         <Reveal>
-          <SectionLabel index="04" label={t("about.index")} />
+          <SectionLabel index={index} label={t("about.index")} />
         </Reveal>
 
         <div className="mt-8 grid gap-16 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)] lg:gap-24">

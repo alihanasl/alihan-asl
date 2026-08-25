@@ -8,7 +8,7 @@ import { useCms } from "@/components/cms/cms-provider";
 import { pickLocale } from "@/lib/cms/types";
 import type { MessageKey } from "@/lib/i18n/translate";
 
-export function DigitalLab() {
+export function DigitalLab({ index = "03" }: { index?: string }) {
   const { t, locale } = useLocale();
   const { experiments } = useCms();
 
@@ -23,7 +23,7 @@ export function DigitalLab() {
         <Reveal>
           <div className="mb-16 flex flex-col gap-6 md:mb-20 md:flex-row md:items-end md:justify-between">
             <div>
-              <SectionLabel index="03" label={t("lab.index")} tone="lab" />
+              <SectionLabel index={index} label={t("lab.index")} tone="lab" />
               <h2
                 id="lab-heading"
                 className="font-display mt-4 text-[clamp(2.8rem,8vw,6rem)] leading-[0.9] tracking-[-0.045em]"

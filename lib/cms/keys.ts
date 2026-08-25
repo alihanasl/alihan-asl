@@ -13,6 +13,7 @@ export const contentGroups: ContentGroup[] = [
       { key: "meta.description", label: "Açıklama", multiline: true },
       { key: "meta.jobTitle", label: "Unvan" },
       { key: "meta.ogRoles", label: "Roller" },
+      { key: "meta.keywords", label: "Anahtar kelimeler", multiline: true },
     ],
   },
   {
@@ -25,6 +26,8 @@ export const contentGroups: ContentGroup[] = [
       { key: "hero.roleIt", label: "Rol 1" },
       { key: "hero.roleBuilder", label: "Rol 2" },
       { key: "hero.roleCreator", label: "Rol 3" },
+      { key: "hero.scroll", label: "Kaydır yazısı" },
+      { key: "hero.scrollHref", label: "Kaydır bağlantısı" },
     ],
   },
   {
@@ -47,6 +50,8 @@ export const contentGroups: ContentGroup[] = [
       { key: "work.index", label: "Bölüm etiketi" },
       { key: "work.title", label: "Başlık" },
       { key: "work.copy", label: "Açıklama", multiline: true },
+      { key: "work.caseStudy", label: "Kart butonu" },
+      { key: "work.open", label: "Aç yazısı" },
     ],
   },
   {
@@ -56,6 +61,12 @@ export const contentGroups: ContentGroup[] = [
       { key: "lab.index", label: "Bölüm etiketi" },
       { key: "lab.title", label: "Başlık" },
       { key: "lab.copy", label: "Açıklama", multiline: true },
+      { key: "lab.experiment", label: "Deney sütunu" },
+      { key: "lab.status", label: "Durum sütunu" },
+      { key: "lab.ref", label: "Ref sütunu" },
+      { key: "lab.active", label: "Aktif" },
+      { key: "lab.building", label: "Gelişiyor" },
+      { key: "lab.experimental", label: "Deneysel" },
     ],
   },
   {
@@ -85,6 +96,10 @@ export const contentGroups: ContentGroup[] = [
       { key: "contact.titleLine1", label: "Başlık satır 1" },
       { key: "contact.titleLine2", label: "Başlık satır 2" },
       { key: "contact.copy", label: "Açıklama", multiline: true },
+      { key: "contact.email", label: "E-posta etiketi" },
+      { key: "contact.linkedin", label: "LinkedIn etiketi" },
+      { key: "contact.github", label: "GitHub etiketi" },
+      { key: "contact.youtube", label: "YouTube etiketi" },
     ],
   },
   {
@@ -93,6 +108,44 @@ export const contentGroups: ContentGroup[] = [
     keys: [
       { key: "footer.descriptor", label: "Tanım" },
       { key: "footer.note", label: "Not" },
+      { key: "footer.year", label: "Yıl" },
+    ],
+  },
+  {
+    id: "project",
+    label: "Proje sayfası",
+    keys: [
+      { key: "project.label", label: "Etiket" },
+      { key: "project.category", label: "Kategori" },
+      { key: "project.year", label: "Yıl" },
+      { key: "project.stack", label: "Stack" },
+      { key: "project.problem", label: "Sorun" },
+      { key: "project.idea", label: "Fikir" },
+      { key: "project.build", label: "Yapılış" },
+      { key: "project.technology", label: "Teknoloji" },
+      { key: "project.result", label: "Sonuç" },
+      { key: "project.open", label: "Aç" },
+      { key: "project.previous", label: "Önceki" },
+      { key: "project.next", label: "Sonraki" },
+    ],
+  },
+  {
+    id: "notFound",
+    label: "404",
+    keys: [
+      { key: "notFound.line1", label: "Satır 1" },
+      { key: "notFound.line2", label: "Satır 2" },
+      { key: "notFound.back", label: "Geri" },
+    ],
+  },
+  {
+    id: "categories",
+    label: "Kategoriler",
+    keys: [
+      { key: "categories.desktop", label: "Masaüstü" },
+      { key: "categories.platform", label: "Platform" },
+      { key: "categories.ai", label: "Yapay zeka" },
+      { key: "categories.tools", label: "Araçlar" },
     ],
   },
 ];

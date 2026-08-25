@@ -177,6 +177,8 @@ export async function upsertStudioProjectAction(payload: string) {
     year?: string;
     category?: string;
     technologies?: string;
+    githubUrl?: string;
+    liveUrl?: string;
     coverImage?: string;
     gallery?: string[];
     published?: boolean;
@@ -266,8 +268,12 @@ export async function upsertStudioProjectAction(payload: string) {
         ? splitList(data.technologies)
         : (existing?.technologies ?? []),
     year: data.year !== undefined ? data.year : (existing?.year ?? ""),
-    githubUrl: existing?.githubUrl ?? "",
-    liveUrl: existing?.liveUrl ?? "",
+    githubUrl:
+      data.githubUrl !== undefined
+        ? data.githubUrl
+        : (existing?.githubUrl ?? ""),
+    liveUrl:
+      data.liveUrl !== undefined ? data.liveUrl : (existing?.liveUrl ?? ""),
     coverImage:
       data.coverImage !== undefined
         ? data.coverImage

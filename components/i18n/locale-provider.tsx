@@ -81,7 +81,7 @@ export function LocaleProvider({
   const t = useCallback<Translator>(
     (key, vars) => {
       const fromCms = cms.copy[key]?.[locale];
-      if (typeof fromCms === "string") {
+      if (typeof fromCms === "string" && fromCms.trim()) {
         if (!vars) return fromCms;
         return Object.entries(vars).reduce(
           (result, [name, value]) => result.replaceAll(`{${name}}`, value),

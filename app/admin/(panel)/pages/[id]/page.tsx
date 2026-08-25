@@ -8,8 +8,16 @@ export default async function AdminPageEditor({
   params: Promise<{ id: string }>;
 }) {
   const { id } = await params;
-  const { layout, copy, profile, projects, experiences, skills, experiments } =
-    await getAdminBundle();
+  const {
+    layout,
+    copy,
+    profile,
+    projects,
+    experiences,
+    skills,
+    experiments,
+    stats,
+  } = await getAdminBundle();
   const page = layout.pages.find((item) => item.id === id);
   if (!page) {
     notFound();
@@ -25,6 +33,7 @@ export default async function AdminPageEditor({
       experiences={experiences}
       skills={skills}
       experiments={experiments}
+      stats={stats}
     />
   );
 }

@@ -2,6 +2,7 @@ import { ImageResponse } from "next/og";
 import { site } from "@/data/site";
 import { getRequestLocale } from "@/lib/i18n/get-locale";
 import { translate } from "@/lib/i18n/translate";
+import { getPublicCms } from "@/lib/cms/public";
 
 export const size = {
   width: 1200,
@@ -12,6 +13,15 @@ export const contentType = "image/png";
 
 export default async function OpenGraphImage() {
   const locale = await getRequestLocale();
+  const cms = await getPublicCms();
+  const name = cms.profile.name || site.name;
+  const lab = cms.copy["hero.lab"]?.[locale] || translate(locale, "hero.lab");
+  const year =
+    cms.copy["footer.year"]?.[locale] ||
+    cms.copy["footer.year"]?.en ||
+    String(site.year);
+  const roles =
+    cms.copy["meta.ogRoles"]?.[locale] || translate(locale, "meta.ogRoles");
 
   return new ImageResponse(
     (
@@ -39,8 +49,8 @@ export default async function OpenGraphImage() {
             color: "#8A867E",
           }}
         >
-          <span>{translate(locale, "hero.lab")}</span>
-          <span>{site.year}</span>
+          <span>{lab}</span>
+          <span>{year}</span>
         </div>
         <div style={{ display: "flex", flexDirection: "column" }}>
           <div
@@ -50,7 +60,7 @@ export default async function OpenGraphImage() {
               letterSpacing: "-0.04em",
             }}
           >
-            {site.name}
+            {name}
           </div>
           <div
             style={{
@@ -62,7 +72,7 @@ export default async function OpenGraphImage() {
               color: "#3C3B38",
             }}
           >
-            {translate(locale, "meta.ogRoles")}
+            {roles}
           </div>
         </div>
       </div>

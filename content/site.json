@@ -142,5 +142,145 @@
   "footer.note": {
     "en": "Made out of curiosity.",
     "tr": "Meraktan."
+  },
+  "hero.scroll": {
+    "en": "Scroll",
+    "tr": "Aşağı"
+  },
+  "hero.scrollHref": {
+    "en": "#system",
+    "tr": "#system"
+  },
+  "work.caseStudy": {
+    "en": "View",
+    "tr": "İncele"
+  },
+  "work.open": {
+    "en": "Open",
+    "tr": "Aç"
+  },
+  "lab.experiment": {
+    "en": "Experiment",
+    "tr": "Deney"
+  },
+  "lab.status": {
+    "en": "Status",
+    "tr": "Durum"
+  },
+  "lab.ref": {
+    "en": "Ref",
+    "tr": "Ref"
+  },
+  "lab.active": {
+    "en": "Active",
+    "tr": "Aktif"
+  },
+  "lab.building": {
+    "en": "Building",
+    "tr": "Gelişiyor"
+  },
+  "lab.experimental": {
+    "en": "Experimental",
+    "tr": "Deneysel"
+  },
+  "contact.email": {
+    "en": "Email",
+    "tr": "E-posta"
+  },
+  "contact.linkedin": {
+    "en": "LinkedIn",
+    "tr": "LinkedIn"
+  },
+  "contact.github": {
+    "en": "GitHub",
+    "tr": "GitHub"
+  },
+  "contact.youtube": {
+    "en": "YouTube",
+    "tr": "YouTube"
+  },
+  "footer.year": {
+    "en": "2026",
+    "tr": "2026"
+  },
+  "meta.keywords": {
+    "en": "Alihan Asl, IT Manager, Digital Builder, Product Creator, Network Monitoring, Internal Tools",
+    "tr": "Alihan Asl, IT Yöneticisi, Dijital Üretici, Ürün Geliştirici, Ağ İzleme, Dahili Araçlar"
+  },
+  "notFound.line1": {
+    "en": "This page",
+    "tr": "Böyle bir sayfa"
+  },
+  "notFound.line2": {
+    "en": "isn't here.",
+    "tr": "yok."
+  },
+  "notFound.back": {
+    "en": "Back home",
+    "tr": "Ana sayfa"
+  },
+  "project.label": {
+    "en": "Project",
+    "tr": "Proje"
+  },
+  "project.category": {
+    "en": "Category",
+    "tr": "Kategori"
+  },
+  "project.year": {
+    "en": "Year",
+    "tr": "Yıl"
+  },
+  "project.stack": {
+    "en": "Stack",
+    "tr": "Stack"
+  },
+  "project.problem": {
+    "en": "Problem",
+    "tr": "Sorun"
+  },
+  "project.idea": {
+    "en": "Idea",
+    "tr": "Fikir"
+  },
+  "project.build": {
+    "en": "Build",
+    "tr": "Yapılış"
+  },
+  "project.technology": {
+    "en": "Technology",
+    "tr": "Teknoloji"
+  },
+  "project.result": {
+    "en": "Result",
+    "tr": "Sonuç"
+  },
+  "project.open": {
+    "en": "Open project",
+    "tr": "Projeyi aç"
+  },
+  "project.previous": {
+    "en": "Previous",
+    "tr": "Önceki"
+  },
+  "project.next": {
+    "en": "Next",
+    "tr": "Sonraki"
+  },
+  "categories.desktop": {
+    "en": "Desktop app",
+    "tr": "Masaüstü uygulama"
+  },
+  "categories.platform": {
+    "en": "Platform",
+    "tr": "Platform"
+  },
+  "categories.ai": {
+    "en": "AI product",
+    "tr": "Yapay zeka ürünü"
+  },
+  "categories.tools": {
+    "en": "Internal tools",
+    "tr": "İç araçlar"
   }
 }

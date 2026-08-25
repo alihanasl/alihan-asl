@@ -120,7 +120,7 @@ export function Hero({ section }: { section?: SiteSection }) {
             Y {pointer.y.toFixed(2)}
           </p>
           <a
-            href="#system"
+            href={t("hero.scrollHref") || "#system"}
             className="group ml-auto flex items-center gap-4 font-mono text-[11px] uppercase tracking-[0.22em] text-stone transition-colors duration-300 hover:text-ink"
           >
             {t("hero.scroll")}

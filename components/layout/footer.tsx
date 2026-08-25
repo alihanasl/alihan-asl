@@ -25,7 +25,7 @@ export function Footer() {
         </div>
         <div className="flex items-center justify-between gap-6 md:justify-end">
           <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-stone">
-            © {site.year}
+            © {t("footer.year") || String(new Date().getFullYear())}
           </p>
           <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-stone">
             {t("footer.note")}

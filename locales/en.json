@@ -29,6 +29,7 @@
     "lab": "Digital Lab",
     "tagline": "I build tools for problems I actually have to solve.",
     "scroll": "Scroll",
+    "scrollHref": "#system",
     "roleIt": "IT Manager",
     "roleBuilder": "Product Builder",
     "roleCreator": "Digital Creator"
@@ -83,7 +84,8 @@
   },
   "footer": {
     "descriptor": "Digital Builder",
-    "note": "Made out of curiosity."
+    "note": "Made out of curiosity.",
+    "year": "2026"
   },
   "notFound": {
     "line1": "This page",

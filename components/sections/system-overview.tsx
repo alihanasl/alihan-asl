@@ -7,7 +7,7 @@ import { useLocale } from "@/components/i18n/locale-provider";
 import { useCms } from "@/components/cms/cms-provider";
 import type { MessageKey } from "@/lib/i18n/translate";
 
-export function SystemOverview() {
+export function SystemOverview({ index = "01" }: { index?: string }) {
   const { t } = useLocale();
   const { stats } = useCms();
 
@@ -21,7 +21,7 @@ export function SystemOverview() {
         <Reveal>
           <div className="mb-12 flex flex-col gap-4 md:mb-16 md:flex-row md:items-end md:justify-between">
             <div>
-              <SectionLabel index="01" label={t("system.index")} />
+              <SectionLabel index={index} label={t("system.index")} />
               <h2
                 id="system-heading"
                 className="font-display mt-4 text-[clamp(2rem,5vw,3.4rem)] leading-[0.95] tracking-[-0.04em]"

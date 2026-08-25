@@ -1,6 +1,7 @@
-import { revalidatePath } from "next/cache";
+import { revalidatePath, revalidateTag } from "next/cache";
 
 export function revalidatePublicSite(slug?: string) {
+  revalidateTag("cms", "max");
   revalidatePath("/", "layout");
   revalidatePath("/");
   revalidatePath("/sitemap.xml");

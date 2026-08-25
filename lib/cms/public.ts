@@ -1,53 +1,69 @@
-import projects from "@/content/projects.json";
-import experience from "@/content/experience.json";
-import skills from "@/content/skills.json";
-import experiments from "@/content/experiments.json";
-import profile from "@/content/about.json";
-import copy from "@/content/site.json";
-import stats from "@/content/stats.json";
-import layout from "@/content/layout.json";
+import { unstable_cache } from "next/cache";
 import { isGitHubConfigured } from "@/lib/github/commit";
-import { normalizeLayout } from "@/lib/cms/layout";
-import type {
-  CmsExperiment,
-  CmsExperience,
-  CmsProject,
-  CmsSkill,
-  CmsStat,
-  CopyMap,
-  Profile,
-  PublicCms,
-} from "@/lib/cms/types";
+import {
+  readCopy,
+  readExperiences,
+  readExperiments,
+  readLayout,
+  readProfile,
+  readProjects,
+  readSkills,
+  readStats,
+} from "@/lib/cms/store";
+import type { PublicCms } from "@/lib/cms/types";
 
-export async function getPublicCms(): Promise<PublicCms> {
-  const allProjects = projects as CmsProject[];
+async function loadPublicCms(): Promise<PublicCms> {
+  const [
+    profile,
+    copy,
+    projects,
+    experiences,
+    skills,
+    experiments,
+    stats,
+    layout,
+  ] = await Promise.all([
+    readProfile(),
+    readCopy(),
+    readProjects(),
+    readExperiences(),
+    readSkills(),
+    readExperiments(),
+    readStats(),
+    readLayout(),
+  ]);
 
   return {
     configured: isGitHubConfigured(),
-    profile: profile as Profile,
-    copy: copy as CopyMap,
-    projects: allProjects
+    profile,
+    copy,
+    projects: projects
       .filter((project) => project.published)
       .slice()
       .sort((a, b) => a.sortOrder - b.sortOrder),
-    experiences: (experience as CmsExperience[])
+    experiences: experiences
       .filter((item) => item.published)
       .slice()
       .sort((a, b) => a.sortOrder - b.sortOrder),
-    skills: (skills as CmsSkill[])
+    skills: skills
       .filter((item) => item.published)
       .slice()
       .sort((a, b) => a.sortOrder - b.sortOrder),
-    experiments: (experiments as CmsExperiment[])
+    experiments: experiments
       .filter((item) => item.published)
       .slice()
       .sort((a, b) => a.sortOrder - b.sortOrder),
-    stats: (stats as CmsStat[]).slice().sort((a, b) => a.sortOrder - b.sortOrder),
-    layout: normalizeLayout(layout),
+    stats: stats.slice().sort((a, b) => a.sortOrder - b.sortOrder),
+    layout,
   };
 }
 
-export async function getCmsProjectBySlug(slug: string): Promise<CmsProject | null> {
+export const getPublicCms = unstable_cache(loadPublicCms, ["public-cms"], {
+  tags: ["cms"],
+  revalidate: 30,
+});
+
+export async function getCmsProjectBySlug(slug: string) {
   const cms = await getPublicCms();
   return cms.projects.find((project) => project.slug === slug) ?? null;
 }

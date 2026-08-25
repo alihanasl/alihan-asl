@@ -4,7 +4,7 @@ import { useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { GripVertical, EyeOff, Plus, Trash2 } from "lucide-react";
-import type { CopyMap, Profile, CmsProject, CmsExperience, CmsSkill, CmsExperiment } from "@/lib/cms/types";
+import type { CopyMap, Profile, CmsProject, CmsExperience, CmsSkill, CmsExperiment, CmsStat } from "@/lib/cms/types";
 import {
   blankSection,
   copyKeysBySection,
@@ -37,6 +37,7 @@ export function PageStudio({
   experiences,
   skills,
   experiments,
+  stats,
 }: {
   layout: SiteLayout;
   copy: CopyMap;
@@ -46,6 +47,7 @@ export function PageStudio({
   experiences: CmsExperience[];
   skills: CmsSkill[];
   experiments: CmsExperiment[];
+  stats: CmsStat[];
 }) {
   const router = useRouter();
   const { t, contentLocale, errorText, fieldLabel } = useAdminI18n();
@@ -391,6 +393,7 @@ export function PageStudio({
               experiences={experiences}
               skills={skills}
               experiments={experiments}
+              stats={stats}
             />
           </section>
         ) : null}
@@ -640,7 +643,7 @@ function FooterEditor({
   locale: "tr" | "en";
 }) {
   const { t, fieldLabel } = useAdminI18n();
-  const footerKeys = ["footer.descriptor", "footer.note"];
+  const footerKeys = ["footer.descriptor", "footer.note", "footer.year"];
   return (
     <section className="admin-card space-y-4">
       <h2 className="admin-section-title">{t("pages.footer")}</h2>
@@ -653,16 +656,28 @@ function FooterEditor({
             onChange={(event) =>
               setCopy((current) => ({
                 ...current,
-                [key]: {
-                  ...current[key],
-                  [locale]: event.target.value,
-                },
+                [key]:
+                  key === "footer.year"
+                    ? { tr: event.target.value, en: event.target.value }
+                    : {
+                        ...current[key],
+                        [locale]: event.target.value,
+                      },
               }))
             }
           />
         </label>
       ))}
       <h3 className="pt-2 text-sm font-semibold">{t("pages.socials")}</h3>
+      <label className="admin-field">
+        <span>{t("about.name")}</span>
+        <input
+          value={profile.name}
+          onChange={(event) =>
+            setProfile((current) => ({ ...current, name: event.target.value }))
+          }
+        />
+      </label>
       <label className="admin-field">
         <span>{t("about.email")}</span>
         <input

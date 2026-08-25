@@ -8,7 +8,7 @@ import { useLocale } from "@/components/i18n/locale-provider";
 import { useCms } from "@/components/cms/cms-provider";
 import { pickLocale } from "@/lib/cms/types";
 
-export function Toolbox() {
+export function Toolbox({ index = "05" }: { index?: string }) {
   const { t, locale } = useLocale();
   const { skills } = useCms();
   const [active, setActive] = useState<string | null>(null);
@@ -23,7 +23,7 @@ export function Toolbox() {
         <Reveal>
           <div className="mb-12 flex flex-col gap-4 md:mb-16 md:flex-row md:items-end md:justify-between">
             <div>
-              <SectionLabel index="05" label={t("toolbox.index")} />
+              <SectionLabel index={index} label={t("toolbox.index")} />
               <h2
                 id="toolbox-heading"
                 className="font-display mt-4 text-[clamp(2rem,5vw,3.4rem)] leading-[0.95] tracking-[-0.04em]"

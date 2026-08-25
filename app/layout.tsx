@@ -28,9 +28,12 @@ export async function generateMetadata(): Promise<Metadata> {
     applicationName: name,
     authors: [{ name }],
     creator: name,
-    keywords: translate(locale, "meta.keywords")
+    keywords: (
+      cms.copy["meta.keywords"]?.[locale] || translate(locale, "meta.keywords")
+    )
       .split(",")
-      .map((keyword) => keyword.trim()),
+      .map((keyword) => keyword.trim())
+      .filter(Boolean),
     openGraph: {
       type: "website",
       locale: locale === "tr" ? "tr_TR" : "en_US",

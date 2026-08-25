@@ -1,4 +1,6 @@
 import { ImageResponse } from "next/og";
+import { getPublicCms } from "@/lib/cms/public";
+import { site } from "@/data/site";
 
 export const size = {
   width: 32,
@@ -7,7 +9,11 @@ export const size = {
 
 export const contentType = "image/png";
 
-export default function Icon() {
+export default async function Icon() {
+  const cms = await getPublicCms();
+  const letter =
+    (cms.profile.name || site.name).trim().charAt(0).toUpperCase() || "A";
+
   return new ImageResponse(
     (
       <div
@@ -24,7 +30,7 @@ export default function Icon() {
           letterSpacing: "-0.06em",
         }}
       >
-        A
+        {letter}
       </div>
     ),
     size,

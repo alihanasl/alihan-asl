@@ -10,7 +10,13 @@ import type { SiteSection } from "@/lib/cms/layout";
 import { SectionButtons } from "@/components/site/section-buttons";
 import { pickLocalized } from "@/lib/cms/layout";
 
-export function Contact({ section }: { section?: SiteSection }) {
+export function Contact({
+  section,
+  index = "06",
+}: {
+  section?: SiteSection;
+  index?: string;
+}) {
   const { t, locale } = useLocale();
   const { profile } = useCms();
   const email = profile.email;
@@ -36,7 +42,7 @@ export function Contact({ section }: { section?: SiteSection }) {
     >
       <div className="mx-auto max-w-[1400px] px-5 py-24 md:px-10 md:py-32 lg:px-14 lg:py-40">
         <Reveal>
-          <SectionLabel index="06" label={t("contact.index")} />
+          <SectionLabel index={index} label={t("contact.index")} />
         </Reveal>
 
         <Reveal delay={0.05}>

@@ -7,11 +7,11 @@ import { useLocale } from "@/components/i18n/locale-provider";
 import { useCms } from "@/components/cms/cms-provider";
 import { toDisplayProject } from "@/lib/cms/present";
 
-export function SelectedWork() {
+export function SelectedWork({ index = "02" }: { index?: string }) {
   const { t, locale } = useLocale();
   const { projects } = useCms();
-  const items = projects.map((project, index) =>
-    toDisplayProject(project, locale, index),
+  const items = projects.map((project, projectIndex) =>
+    toDisplayProject(project, locale, projectIndex),
   );
 
   return (
@@ -24,7 +24,7 @@ export function SelectedWork() {
         <Reveal>
           <div className="mb-16 flex flex-col gap-6 md:mb-24 md:flex-row md:items-end md:justify-between">
             <div>
-              <SectionLabel index="02" label={t("work.index")} />
+              <SectionLabel index={index} label={t("work.index")} />
               <h2
                 id="work-heading"
                 className="font-display mt-4 max-w-xl text-[clamp(2.8rem,8vw,6rem)] leading-[0.9] tracking-[-0.045em]"

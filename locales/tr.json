@@ -29,6 +29,7 @@
     "lab": "Dijital Lab",
     "tagline": "İşin içinde çıkan problemler için araç ve sistem geliştiriyorum.",
     "scroll": "Aşağı",
+    "scrollHref": "#system",
     "roleIt": "IT Yöneticisi",
     "roleBuilder": "Ürün Geliştirici",
     "roleCreator": "İçerik Üreticisi"
@@ -83,7 +84,8 @@
   },
   "footer": {
     "descriptor": "Dijital üretici",
-    "note": "Meraktan."
+    "note": "Meraktan.",
+    "year": "2026"
   },
   "notFound": {
     "line1": "Böyle bir sayfa",

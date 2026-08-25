@@ -6,6 +6,7 @@ import type {
   CmsExperience,
   CmsProject,
   CmsSkill,
+  CmsStat,
 } from "@/lib/cms/types";
 import {
   deleteExperimentAction,
@@ -18,6 +19,7 @@ import {
   saveExperimentAction,
   saveExperienceAction,
   saveSkillAction,
+  saveStatsAction,
   upsertStudioProjectAction,
 } from "@/lib/cms/actions";
 import { MediaPicker } from "@/components/admin/media-manager";
@@ -25,6 +27,8 @@ import { ConfirmDialog } from "@/components/admin/confirm";
 import { useAdminI18n } from "@/components/admin/admin-i18n";
 import { useAdminToast } from "@/components/admin/toast";
 import type { SiteSectionType } from "@/lib/cms/layout";
+import type { AdminMessageKey } from "@/lib/i18n/admin";
+import type { SkillCategory } from "@/lib/cms/types";
 
 export function SectionRecords({
   type,
@@ -32,13 +36,16 @@ export function SectionRecords({
   experiences,
   skills,
   experiments,
+  stats,
 }: {
   type: SiteSectionType;
   projects: CmsProject[];
   experiences: CmsExperience[];
   skills: CmsSkill[];
   experiments: CmsExperiment[];
+  stats: CmsStat[];
 }) {
+  if (type === "system") return <StatsRecords initial={stats} />;
   if (type === "work") return <WorkRecords initial={projects} />;
   if (type === "about") return <ExperienceRecords initial={experiences} />;
   if (type === "lab") return <LabRecords initial={experiments} />;
@@ -194,6 +201,58 @@ function WorkRecords({ initial }: { initial: CmsProject[] }) {
               }
               onBlur={(event) =>
                 void patch(item.id, { technologies: event.target.value })
+              }
+            />
+            <select
+              className="admin-input w-40"
+              value={item.category}
+              onChange={(event) => {
+                const category = event.target.value;
+                setItems((current) =>
+                  current.map((entry) =>
+                    entry.id === item.id ? { ...entry, category } : entry,
+                  ),
+                );
+                void patch(item.id, { category });
+              }}
+            >
+              <option value="desktop">{t("projects.catDesktop")}</option>
+              <option value="platform">{t("projects.catPlatform")}</option>
+              <option value="ai">{t("projects.catAi")}</option>
+              <option value="tools">{t("projects.catTools")}</option>
+            </select>
+            <input
+              className="admin-input min-w-[10rem] flex-1"
+              value={item.githubUrl}
+              placeholder={t("projects.github")}
+              onChange={(event) =>
+                setItems((current) =>
+                  current.map((entry) =>
+                    entry.id === item.id
+                      ? { ...entry, githubUrl: event.target.value }
+                      : entry,
+                  ),
+                )
+              }
+              onBlur={(event) =>
+                void patch(item.id, { githubUrl: event.target.value })
+              }
+            />
+            <input
+              className="admin-input min-w-[10rem] flex-1"
+              value={item.liveUrl}
+              placeholder={t("projects.live")}
+              onChange={(event) =>
+                setItems((current) =>
+                  current.map((entry) =>
+                    entry.id === item.id
+                      ? { ...entry, liveUrl: event.target.value }
+                      : entry,
+                  ),
+                )
+              }
+              onBlur={(event) =>
+                void patch(item.id, { liveUrl: event.target.value })
               }
             />
             <label className="flex items-center gap-2 text-xs">
@@ -478,6 +537,101 @@ function ExperienceRecords({ initial }: { initial: CmsExperience[] }) {
               )
             }
           />
+          <input
+            className="admin-input"
+            placeholder={t("experience.company")}
+            value={item.company}
+            onChange={(event) =>
+              setItems((current) =>
+                current.map((entry, i) =>
+                  i === index ? { ...entry, company: event.target.value } : entry,
+                ),
+              )
+            }
+            onBlur={(event) =>
+              void save({ ...item, company: event.target.value }, index)
+            }
+          />
+          <div className="grid grid-cols-2 gap-2">
+            <input
+              className="admin-input"
+              placeholder={t("experience.start")}
+              value={item.startDate}
+              onChange={(event) =>
+                setItems((current) =>
+                  current.map((entry, i) =>
+                    i === index
+                      ? { ...entry, startDate: event.target.value }
+                      : entry,
+                  ),
+                )
+              }
+              onBlur={(event) =>
+                void save({ ...item, startDate: event.target.value }, index)
+              }
+            />
+            <input
+              className="admin-input"
+              placeholder={t("experience.end")}
+              value={item.endDate}
+              disabled={item.isCurrent}
+              onChange={(event) =>
+                setItems((current) =>
+                  current.map((entry, i) =>
+                    i === index
+                      ? { ...entry, endDate: event.target.value }
+                      : entry,
+                  ),
+                )
+              }
+              onBlur={(event) =>
+                void save({ ...item, endDate: event.target.value }, index)
+              }
+            />
+          </div>
+          <textarea
+            rows={2}
+            className="admin-input md:col-span-2"
+            placeholder={t("experience.description")}
+            value={
+              contentLocale === "tr" ? item.descriptionTr : item.descriptionEn
+            }
+            onChange={(event) => {
+              const value = event.target.value;
+              setItems((current) =>
+                current.map((entry, i) =>
+                  i === index
+                    ? contentLocale === "tr"
+                      ? { ...entry, descriptionTr: value }
+                      : { ...entry, descriptionEn: value }
+                    : entry,
+                ),
+              );
+            }}
+            onBlur={(event) =>
+              void save(
+                contentLocale === "tr"
+                  ? { ...item, descriptionTr: event.target.value }
+                  : { ...item, descriptionEn: event.target.value },
+                index,
+              )
+            }
+          />
+          <label className="flex items-center gap-2 text-xs md:col-span-2">
+            <input
+              type="checkbox"
+              checked={item.isCurrent}
+              onChange={(event) => {
+                const isCurrent = event.target.checked;
+                const next = { ...item, isCurrent, endDate: isCurrent ? "" : item.endDate };
+                setItems((current) =>
+                  current.map((entry, i) => (i === index ? next : entry)),
+                );
+                void save(next, index);
+              }}
+            />
+            {t("experience.current")}
+          </label>
           <div className="flex gap-2 md:col-span-2">
             <button
               type="button"
@@ -614,6 +768,41 @@ function LabRecords({ initial }: { initial: CmsExperiment[] }) {
               )
             }
           />
+          <div className="grid gap-2 sm:grid-cols-2">
+            <select
+              className="admin-input"
+              value={item.status}
+              onChange={(event) => {
+                const status = event.target.value as CmsExperiment["status"];
+                const next = { ...item, status };
+                setItems((current) =>
+                  current.map((entry, i) => (i === index ? next : entry)),
+                );
+                void save(next, index);
+              }}
+            >
+              <option value="active">{t("content.statusActive")}</option>
+              <option value="building">{t("content.statusBuilding")}</option>
+              <option value="experimental">
+                {t("content.statusExperimental")}
+              </option>
+            </select>
+            <input
+              className="admin-input"
+              placeholder={t("content.ref")}
+              value={item.ref}
+              onChange={(event) =>
+                setItems((current) =>
+                  current.map((entry, i) =>
+                    i === index ? { ...entry, ref: event.target.value } : entry,
+                  ),
+                )
+              }
+              onBlur={(event) =>
+                void save({ ...item, ref: event.target.value }, index)
+              }
+            />
+          </div>
           <button
             type="button"
             className="admin-btn-danger justify-self-start"
@@ -659,7 +848,7 @@ function LabRecords({ initial }: { initial: CmsExperiment[] }) {
 }
 
 function SkillsRecords({ initial }: { initial: CmsSkill[] }) {
-  const { t, errorText } = useAdminI18n();
+  const { t, contentLocale, errorText } = useAdminI18n();
   const { toast } = useAdminToast();
   const [items, setItems] = useState(initial);
 
@@ -689,39 +878,86 @@ function SkillsRecords({ initial }: { initial: CmsSkill[] }) {
     <div className="space-y-3 border-t border-zinc-100 pt-4">
       <h3 className="text-sm font-semibold">{t("pages.skillItems")}</h3>
       {items.map((item, index) => (
-        <div key={item.id || `skill-${index}`} className="flex gap-2">
-          <input
-            className="admin-input flex-1"
-            value={item.name}
-            onChange={(event) =>
+        <div key={item.id || `skill-${index}`} className="space-y-2 rounded-md border border-zinc-100 p-3">
+          <div className="flex gap-2">
+            <input
+              className="admin-input flex-1"
+              value={item.name}
+              placeholder={t("skills.name")}
+              onChange={(event) =>
+                setItems((current) =>
+                  current.map((entry, i) =>
+                    i === index ? { ...entry, name: event.target.value } : entry,
+                  ),
+                )
+              }
+              onBlur={(event) =>
+                void save({ ...item, name: event.target.value }, index)
+              }
+            />
+            <select
+              className="admin-input w-40"
+              value={item.category}
+              onChange={(event) => {
+                const category = event.target.value as SkillCategory;
+                const next = { ...item, category };
+                setItems((current) =>
+                  current.map((entry, i) => (i === index ? next : entry)),
+                );
+                void save(next, index);
+              }}
+            >
+              <option value="frontend">{t("skills.catFrontend")}</option>
+              <option value="backend">{t("skills.catBackend")}</option>
+              <option value="database">{t("skills.catDatabase")}</option>
+              <option value="infrastructure">{t("skills.catInfrastructure")}</option>
+              <option value="tools">{t("skills.catTools")}</option>
+            </select>
+            <button
+              type="button"
+              className="admin-btn-danger"
+              onClick={async () => {
+                if (item.id) {
+                  const result = await deleteSkillAction(item.id);
+                  if (!result.ok) {
+                    toast(errorText(result.error), "error");
+                    return;
+                  }
+                }
+                const next = items.filter((_, i) => i !== index);
+                setItems(next);
+                void reorderSkillsAction(next.map((entry) => entry.id).filter(Boolean));
+              }}
+            >
+              {t("common.delete")}
+            </button>
+          </div>
+          <textarea
+            rows={2}
+            className="admin-input w-full"
+            placeholder={t("skills.note")}
+            value={contentLocale === "tr" ? item.noteTr : item.noteEn}
+            onChange={(event) => {
+              const value = event.target.value;
               setItems((current) =>
                 current.map((entry, i) =>
-                  i === index ? { ...entry, name: event.target.value } : entry,
+                  i === index
+                    ? contentLocale === "tr"
+                      ? { ...entry, noteTr: value }
+                      : { ...entry, noteEn: value }
+                    : entry,
                 ),
+              );
+            }}
+            onBlur={(event) =>
+              void save(
+                contentLocale === "tr"
+                  ? { ...item, noteTr: event.target.value }
+                  : { ...item, noteEn: event.target.value },
+                index,
               )
             }
-            onBlur={(event) =>
-              void save({ ...item, name: event.target.value }, index)
-            }
           />
-          <button
-            type="button"
-            className="admin-btn-danger"
-            onClick={async () => {
-              if (item.id) {
-                const result = await deleteSkillAction(item.id);
-                if (!result.ok) {
-                  toast(errorText(result.error), "error");
-                  return;
-                }
-              }
-              const next = items.filter((_, i) => i !== index);
-              setItems(next);
-              void reorderSkillsAction(next.map((entry) => entry.id).filter(Boolean));
-            }}
-          >
-            {t("common.delete")}
-          </button>
         </div>
       ))}
       <button
@@ -744,6 +980,123 @@ function SkillsRecords({ initial }: { initial: CmsSkill[] }) {
       >
         {t("pages.addSkill")}
       </button>
+    </div>
+  );
+}
+
+const statLabels: Record<string, AdminMessageKey> = {
+  servers: "settings.servers",
+  switches: "settings.switches",
+  projects: "settings.projects",
+  problems: "settings.problems",
+};
+
+function StatsRecords({ initial }: { initial: CmsStat[] }) {
+  const { t, errorText } = useAdminI18n();
+  const { toast } = useAdminToast();
+  const [rows, setRows] = useState(
+    ["servers", "switches", "projects", "problems"].map(
+      (id) =>
+        initial.find((stat) => stat.id === id) ?? {
+          id,
+          value: null as number | null,
+          display: "",
+          suffix: "",
+          sortOrder: 0,
+        },
+    ),
+  );
+
+  async function persist(next: CmsStat[]) {
+    const form = new FormData();
+    for (const row of next) {
+      form.set(`${row.id}_value`, row.value == null ? "" : String(row.value));
+      form.set(`${row.id}_display`, row.display);
+      form.set(`${row.id}_suffix`, row.suffix);
+    }
+    const result = await saveStatsAction(form);
+    if (!result.ok) {
+      toast(errorText(result.error), "error");
+    }
+  }
+
+  function patch(index: number, update: Partial<CmsStat>) {
+    const next = rows.map((entry, i) =>
+      i === index ? { ...entry, ...update } : entry,
+    );
+    setRows(next);
+    void persist(next);
+  }
+
+  return (
+    <div className="space-y-3 border-t border-zinc-100 pt-4">
+      <h3 className="text-sm font-semibold">{t("settings.overview")}</h3>
+      <p className="text-xs text-zinc-500">{t("settings.hint")}</p>
+      {rows.map((stat, index) => (
+        <div key={stat.id} className="grid gap-2 sm:grid-cols-3">
+          <p className="self-end text-xs font-medium text-zinc-600">
+            {t(statLabels[stat.id] ?? "settings.overview")}
+          </p>
+          <input
+            className="admin-input"
+            placeholder={t("settings.value")}
+            value={stat.value ?? ""}
+            onChange={(event) => {
+              const raw = event.target.value.trim();
+              const value = raw === "" ? null : Number(raw);
+              setRows((current) =>
+                current.map((entry, i) =>
+                  i === index
+                    ? {
+                        ...entry,
+                        value: Number.isNaN(value) ? entry.value : value,
+                      }
+                    : entry,
+                ),
+              );
+            }}
+            onBlur={(event) => {
+              const raw = event.target.value.trim();
+              const value = raw === "" ? null : Number(raw);
+              patch(index, {
+                value: Number.isNaN(value) ? stat.value : value,
+              });
+            }}
+          />
+          <div className="grid grid-cols-2 gap-2">
+            <input
+              className="admin-input"
+              placeholder={t("settings.suffix")}
+              value={stat.suffix}
+              onChange={(event) =>
+                setRows((current) =>
+                  current.map((entry, i) =>
+                    i === index
+                      ? { ...entry, suffix: event.target.value }
+                      : entry,
+                  ),
+                )
+              }
+              onBlur={(event) => patch(index, { suffix: event.target.value })}
+            />
+            <input
+              className="admin-input"
+              placeholder={t("settings.display")}
+              value={stat.display}
+              onChange={(event) =>
+                setRows((current) =>
+                  current.map((entry, i) =>
+                    i === index
+                      ? { ...entry, display: event.target.value }
+                      : entry,
+                  ),
+                )
+              }
+              onBlur={(event) => patch(index, { display: event.target.value })}
+            />
+          </div>
+        </div>
+      ))}
     </div>
   );
 }
