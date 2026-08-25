@@ -75,6 +75,7 @@ export function AdminShell({
                 <Link
                   key={link.href}
                   href={link.href}
+                  prefetch={false}
                   onClick={() => setOpen(false)}
                   className={cn(
                     "mb-0.5 flex items-center gap-2.5 rounded-md px-3 py-2 text-sm transition-colors",

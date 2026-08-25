@@ -58,7 +58,7 @@ async function sign(payload: string) {
 }
 
 export async function encodeSession(username: string) {
-  const payload = `v2|${username}|${Date.now() + SESSION_MS}`;
+  const payload = `v2:${username}:${Date.now() + SESSION_MS}`;
   return `${payload}.${await sign(payload)}`;
 }
 
@@ -74,7 +74,7 @@ export async function verifySessionToken(token: string | undefined) {
 
   const payload = token.slice(0, separator);
   const signature = token.slice(separator + 1);
-  const parts = payload.split("|");
+  const parts = payload.split(":");
   if (parts.length !== 3 || parts[0] !== "v2") {
     return null;
   }

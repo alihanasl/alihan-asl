@@ -39,9 +39,15 @@ export async function requireAdmin() {
 
 export async function createAdminSession(username: string) {
   const store = await cookies();
-  store.set(adminSessionCookie, await encodeSession(username), {
+  // Drop the previous Path=/admin cookie so a duplicate name cannot win.
+  store.set(adminSessionCookie, "", {
     ...cookieBase,
     path: "/admin",
+    maxAge: 0,
+  });
+  store.set(adminSessionCookie, await encodeSession(username), {
+    ...cookieBase,
+    path: "/",
     maxAge: adminSessionMaxAge / 1000,
   });
 }
