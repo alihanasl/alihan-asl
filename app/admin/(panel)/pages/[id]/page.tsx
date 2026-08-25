@@ -8,13 +8,23 @@ export default async function AdminPageEditor({
   params: Promise<{ id: string }>;
 }) {
   const { id } = await params;
-  const { layout, copy, profile } = await getAdminBundle();
+  const { layout, copy, profile, projects, experiences, skills, experiments } =
+    await getAdminBundle();
   const page = layout.pages.find((item) => item.id === id);
   if (!page) {
     notFound();
   }
 
   return (
-    <PageStudio layout={layout} copy={copy} profile={profile} pageId={id} />
+    <PageStudio
+      layout={layout}
+      copy={copy}
+      profile={profile}
+      pageId={id}
+      projects={projects}
+      experiences={experiences}
+      skills={skills}
+      experiments={experiments}
+    />
   );
 }

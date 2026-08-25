@@ -115,7 +115,19 @@
     "quote": "Alıntı",
     "person": "Kişi",
     "date": "Tarih",
-    "addBlock": "Blok ekle"
+    "addBlock": "Blok ekle",
+    "workItems": "İşler",
+    "workHint": "Bu kartlar sitede İşler bölümünde görünür. Görsel ekle veya kaldır, iş ekle veya sil. Değişiklikler hemen kaydedilir.",
+    "addWork": "İş ekle",
+    "removeImage": "Görseli kaldır",
+    "editStory": "Hikâyeyi düzenle",
+    "hideStory": "Hikâyeyi gizle",
+    "experienceItems": "Deneyim",
+    "addExperience": "Deneyim ekle",
+    "labItems": "Lab kayıtları",
+    "addLab": "Lab kaydı ekle",
+    "skillItems": "Teknolojiler",
+    "addSkill": "Teknoloji ekle"
   },
   "projects": {
     "title": "Projeler",

@@ -4,7 +4,7 @@ import { useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { GripVertical, EyeOff, Plus, Trash2 } from "lucide-react";
-import type { CopyMap, Profile } from "@/lib/cms/types";
+import type { CopyMap, Profile, CmsProject, CmsExperience, CmsSkill, CmsExperiment } from "@/lib/cms/types";
 import {
   blankSection,
   copyKeysBySection,
@@ -22,6 +22,7 @@ import { useAdminI18n } from "@/components/admin/admin-i18n";
 import { useAdminToast } from "@/components/admin/toast";
 import { MediaPicker } from "@/components/admin/media-manager";
 import { ConfirmDialog } from "@/components/admin/confirm";
+import { SectionRecords } from "@/components/admin/section-records";
 
 function setLoc(value: Localized, locale: "tr" | "en", next: string): Localized {
   return { ...value, [locale]: next };
@@ -32,11 +33,19 @@ export function PageStudio({
   copy: initialCopy,
   profile: initialProfile,
   pageId,
+  projects,
+  experiences,
+  skills,
+  experiments,
 }: {
   layout: SiteLayout;
   copy: CopyMap;
   profile: Profile;
   pageId: string;
+  projects: CmsProject[];
+  experiences: CmsExperience[];
+  skills: CmsSkill[];
+  experiments: CmsExperiment[];
 }) {
   const router = useRouter();
   const { t, contentLocale, errorText, fieldLabel } = useAdminI18n();
@@ -374,6 +383,14 @@ export function PageStudio({
               buttons={section.buttons}
               locale={contentLocale}
               onChange={(buttons) => updateSection(section.id, { buttons })}
+            />
+
+            <SectionRecords
+              type={section.type}
+              projects={projects}
+              experiences={experiences}
+              skills={skills}
+              experiments={experiments}
             />
           </section>
         ) : null}

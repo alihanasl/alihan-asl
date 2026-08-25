@@ -115,7 +115,19 @@
     "quote": "Quote",
     "person": "Person",
     "date": "Date",
-    "addBlock": "Add block"
+    "addBlock": "Add block",
+    "workItems": "Work items",
+    "workHint": "These cards appear in the Work section. Add or remove images, add or delete items. Changes save immediately.",
+    "addWork": "Add work",
+    "removeImage": "Remove image",
+    "editStory": "Edit story",
+    "hideStory": "Hide story",
+    "experienceItems": "Experience",
+    "addExperience": "Add experience",
+    "labItems": "Lab items",
+    "addLab": "Add lab item",
+    "skillItems": "Skills",
+    "addSkill": "Add skill"
   },
   "projects": {
     "title": "Projects",

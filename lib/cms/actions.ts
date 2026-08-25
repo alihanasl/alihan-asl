@@ -19,6 +19,7 @@ import {
   recordLoginFailure,
 } from "@/lib/cms/rate-limit";
 import { revalidatePublicSite } from "@/lib/cms/revalidate";
+import type { Locale } from "@/lib/i18n/config";
 import { layouts, type CmsProject, type CopyMap, type Profile } from "@/lib/cms/types";
 import { slugify } from "@/lib/cms/present";
 import { allContentKeys } from "@/lib/cms/keys";
@@ -166,6 +167,141 @@ export async function saveProjectAction(formData: FormData) {
   return { ...actionOk(), id: projectId, slug };
 }
 
+export async function upsertStudioProjectAction(payload: string) {
+  await requireAdmin();
+  let data: {
+    id?: string;
+    locale?: Locale;
+    title?: string;
+    shortDescription?: string;
+    year?: string;
+    category?: string;
+    technologies?: string;
+    coverImage?: string;
+    gallery?: string[];
+    published?: boolean;
+    problem?: string;
+    idea?: string;
+    build?: string;
+    result?: string;
+  };
+  try {
+    data = JSON.parse(payload) as typeof data;
+  } catch {
+    return actionError("saveFailed");
+  }
+
+  const locale: Locale = data.locale === "en" ? "en" : "tr";
+  const projects = await readProjects();
+  const existing = data.id
+    ? projects.find((project) => project.id === data.id)
+    : undefined;
+  const projectId = existing?.id || randomUUID();
+  const titleTr =
+    locale === "tr" && data.title !== undefined
+      ? data.title
+      : (existing?.titleTr ?? "");
+  const titleEn =
+    locale === "en" && data.title !== undefined
+      ? data.title
+      : (existing?.titleEn ?? "");
+  const shortTr =
+    locale === "tr" && data.shortDescription !== undefined
+      ? data.shortDescription
+      : (existing?.shortDescriptionTr ?? "");
+  const shortEn =
+    locale === "en" && data.shortDescription !== undefined
+      ? data.shortDescription
+      : (existing?.shortDescriptionEn ?? "");
+  function locField(
+    key: "problem" | "idea" | "build" | "result",
+    tr: string,
+    en: string,
+  ) {
+    const incoming = data[key];
+    if (incoming === undefined) return { tr, en };
+    return locale === "tr" ? { tr: incoming, en } : { tr, en: incoming };
+  }
+  const problem = locField(
+    "problem",
+    existing?.problemTr ?? "",
+    existing?.problemEn ?? "",
+  );
+  const idea = locField("idea", existing?.ideaTr ?? "", existing?.ideaEn ?? "");
+  const build = locField(
+    "build",
+    existing?.buildTr ?? "",
+    existing?.buildEn ?? "",
+  );
+  const result = locField(
+    "result",
+    existing?.resultTr ?? "",
+    existing?.resultEn ?? "",
+  );
+  const slugSource =
+    existing?.slug ||
+    slugify(titleEn || titleTr) ||
+    `work-${projectId.slice(0, 8)}`;
+
+  const next: CmsProject = {
+    id: projectId,
+    slug: slugSource,
+    titleTr: titleTr || (existing ? existing.titleTr : titleEn),
+    titleEn: titleEn || (existing ? existing.titleEn : titleTr),
+    shortDescriptionTr: shortTr,
+    shortDescriptionEn: shortEn,
+    problemTr: problem.tr,
+    problemEn: problem.en,
+    ideaTr: idea.tr,
+    ideaEn: idea.en,
+    buildTr: build.tr,
+    buildEn: build.en,
+    resultTr: result.tr,
+    resultEn: result.en,
+    captionTr: existing?.captionTr ?? "",
+    captionEn: existing?.captionEn ?? "",
+    category: data.category || existing?.category || "tools",
+    technologies:
+      data.technologies !== undefined
+        ? splitList(data.technologies)
+        : (existing?.technologies ?? []),
+    year: data.year !== undefined ? data.year : (existing?.year ?? ""),
+    githubUrl: existing?.githubUrl ?? "",
+    liveUrl: existing?.liveUrl ?? "",
+    coverImage:
+      data.coverImage !== undefined
+        ? data.coverImage
+        : (existing?.coverImage ?? ""),
+    gallery: data.gallery !== undefined ? data.gallery : (existing?.gallery ?? []),
+    featured: existing?.featured ?? false,
+    published:
+      data.published !== undefined
+        ? data.published
+        : (existing?.published ?? true),
+    sortOrder: existing?.sortOrder ?? projects.length,
+    layout: existing?.layout ?? "visual-right",
+    createdAt: existing?.createdAt || nowIso(),
+    updatedAt: nowIso(),
+  };
+
+  const list = existing
+    ? projects.map((project) => (project.id === projectId ? next : project))
+    : [...projects, next];
+
+  try {
+    await persistJson(
+      contentPaths.projects,
+      list,
+      `cms: ${existing ? "update" : "add"} project ${next.slug}`,
+    );
+  } catch {
+    return actionError("saveFailed");
+  }
+
+  revalidatePublicSite(next.slug);
+  return { ...actionOk(), project: next };
+}
+
 export async function deleteProjectAction(id: string) {
   await requireAdmin();
   const projects = await readProjects();
@@ -277,7 +413,7 @@ export async function saveExperienceAction(formData: FormData) {
     return actionError("saveFailed");
   }
   revalidatePublicSite();
-  return actionOk();
+  return { ...actionOk(), id: next.id };
 }
 
 export async function deleteExperienceAction(id: string) {
@@ -342,7 +478,7 @@ export async function saveSkillAction(formData: FormData) {
     return actionError("saveFailed");
   }
   revalidatePublicSite();
-  return actionOk();
+  return { ...actionOk(), id: next.id };
 }
 
 export async function deleteSkillAction(id: string) {
@@ -405,7 +541,7 @@ export async function saveExperimentAction(formData: FormData) {
     return actionError("saveFailed");
   }
   revalidatePublicSite();
-  return actionOk();
+  return { ...actionOk(), id: next.id };
 }
 
 export async function deleteExperimentAction(id: string) {
