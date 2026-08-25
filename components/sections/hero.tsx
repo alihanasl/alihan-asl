@@ -38,7 +38,11 @@ export function Hero({ section }: { section?: SiteSection }) {
 
   const shiftX = (pointer.x - 0.5) * 18;
   const shiftY = (pointer.y - 0.5) * 18;
-  const roles = [t("hero.roleIt"), t("hero.roleBuilder"), t("hero.roleCreator")];
+  const roles = [
+    t("hero.roleIt"),
+    t("hero.roleBuilder"),
+    t("hero.roleCreator"),
+  ].filter((role) => role.trim());
 
   return (
     <section
@@ -89,6 +93,11 @@ export function Hero({ section }: { section?: SiteSection }) {
             <p className="fade-rise mt-8 max-w-md text-[1.05rem] leading-relaxed text-graphite md:mt-10 md:text-lg">
               {t("hero.tagline")}
             </p>
+            {t("hero.support") ? (
+              <p className="fade-rise mt-4 max-w-md text-sm leading-relaxed text-stone md:text-[0.95rem]">
+                {t("hero.support")}
+              </p>
+            ) : null}
             <SectionButtons buttons={section?.buttons ?? []} className="mt-8" />
           </div>
 

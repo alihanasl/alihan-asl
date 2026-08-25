@@ -6,13 +6,14 @@ import type { CmsStat } from "@/lib/cms/types";
 import { saveStatsAction } from "@/lib/cms/actions";
 import { useAdminToast } from "@/components/admin/toast";
 import { useAdminI18n } from "@/components/admin/admin-i18n";
+import { scaleStatIds } from "@/lib/cms/keys";
 import type { AdminMessageKey } from "@/lib/i18n/admin";
 
 const labels: Record<string, AdminMessageKey> = {
-  servers: "settings.servers",
   switches: "settings.switches",
-  projects: "settings.projects",
-  problems: "settings.problems",
+  accessPoints: "settings.accessPoints",
+  servers: "settings.servers",
+  clients: "settings.clients",
 };
 
 export function SettingsForm({
@@ -28,7 +29,7 @@ export function SettingsForm({
   const { toast } = useAdminToast();
   const { t, errorText } = useAdminI18n();
   const [saving, setSaving] = useState(false);
-  const rows = ["servers", "switches", "projects", "problems"].map((id) => {
+  const rows = scaleStatIds.map((id) => {
     return stats.find((stat) => stat.id === id) ?? {
       id,
       value: null,

@@ -6,9 +6,10 @@ import { Reveal } from "@/components/ui/reveal";
 import { useLocale } from "@/components/i18n/locale-provider";
 import { useCms } from "@/components/cms/cms-provider";
 import type { MessageKey } from "@/lib/i18n/translate";
+import type { Locale } from "@/lib/i18n/config";
 
 export function SystemOverview({ index = "01" }: { index?: string }) {
-  const { t } = useLocale();
+  const { t, locale } = useLocale();
   const { stats } = useCms();
 
   return (
@@ -47,6 +48,7 @@ export function SystemOverview({ index = "01" }: { index?: string }) {
                   value={stat.value}
                   suffix={stat.suffix}
                   display={stat.display}
+                  locale={locale}
                 />
                 <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-stone">
                   {t(`system.${stat.id}` as MessageKey)}
@@ -60,22 +62,29 @@ export function SystemOverview({ index = "01" }: { index?: string }) {
   );
 }
 
+function formatStat(value: number, locale: Locale) {
+  return value.toLocaleString(locale === "tr" ? "tr-TR" : "en-US");
+}
+
 function StatValue({
   value,
   suffix,
   display,
+  locale,
 }: {
   value: number | null;
   suffix?: string;
   display?: string;
+  locale: Locale;
 }) {
   const ref = useRef<HTMLParagraphElement>(null);
   const [shown, setShown] = useState(
-    value === null ? (display ?? "∞") : "0",
+    value === null ? (display || "—") : "0",
   );
 
   useEffect(() => {
     if (value === null) {
+      setShown(display || "—");
       return;
     }
 
@@ -92,7 +101,7 @@ function StatValue({
           "(prefers-reduced-motion: reduce)",
         ).matches;
         if (reduced) {
-          setShown(`${target}${suffix ?? ""}`);
+          setShown(`${formatStat(target, locale)}${suffix ?? ""}`);
           return;
         }
 
@@ -103,7 +112,7 @@ function StatValue({
           const progress = Math.min((now - start) / duration, 1);
           const eased = 1 - Math.pow(1 - progress, 3);
           const current = Math.round(target * eased);
-          setShown(`${current}${suffix ?? ""}`);
+          setShown(`${formatStat(current, locale)}${suffix ?? ""}`);
           if (progress < 1) requestAnimationFrame(tick);
         }
 
@@ -114,7 +123,7 @@ function StatValue({
 
     observer.observe(node);
     return () => observer.disconnect();
-  }, [display, suffix, value]);
+  }, [display, locale, suffix, value]);
 
   return (
     <p

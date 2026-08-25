@@ -26,6 +26,7 @@ import { MediaPicker } from "@/components/admin/media-manager";
 import { ConfirmDialog } from "@/components/admin/confirm";
 import { useAdminI18n } from "@/components/admin/admin-i18n";
 import { useAdminToast } from "@/components/admin/toast";
+import { scaleStatIds } from "@/lib/cms/keys";
 import type { SiteSectionType } from "@/lib/cms/layout";
 import type { AdminMessageKey } from "@/lib/i18n/admin";
 import type { SkillCategory } from "@/lib/cms/types";
@@ -985,17 +986,17 @@ function SkillsRecords({ initial }: { initial: CmsSkill[] }) {
 }
 
 const statLabels: Record<string, AdminMessageKey> = {
-  servers: "settings.servers",
   switches: "settings.switches",
-  projects: "settings.projects",
-  problems: "settings.problems",
+  accessPoints: "settings.accessPoints",
+  servers: "settings.servers",
+  clients: "settings.clients",
 };
 
 function StatsRecords({ initial }: { initial: CmsStat[] }) {
   const { t, errorText } = useAdminI18n();
   const { toast } = useAdminToast();
   const [rows, setRows] = useState(
-    ["servers", "switches", "projects", "problems"].map(
+    [...scaleStatIds].map(
       (id) =>
         initial.find((stat) => stat.id === id) ?? {
           id,

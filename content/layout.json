@@ -11,7 +11,7 @@
     },
     {
       "id": "about",
-      "href": "/#about",
+      "href": "/about",
       "visible": true,
       "label": {
         "tr": "Hakkında",
@@ -51,9 +51,9 @@
     },
     {
       "id": "about",
-      "path": "/#about",
-      "focusSection": "about",
-      "recordsHref": "/admin/about",
+      "path": "/about",
+      "focusSection": "think",
+      "recordsHref": "/admin/experience",
       "title": {
         "tr": "Hakkında",
         "en": "About"
@@ -67,16 +67,6 @@
       "title": {
         "tr": "Projeler",
         "en": "Projects"
-      }
-    },
-    {
-      "id": "experience",
-      "path": "/#about",
-      "focusSection": "about",
-      "recordsHref": "/admin/experience",
-      "title": {
-        "tr": "Deneyim",
-        "en": "Experience"
       }
     },
     {
@@ -97,14 +87,19 @@
       "image": "",
       "gallery": [],
       "buttons": [],
-      "heading": {
-        "tr": "",
-        "en": ""
-      },
-      "body": {
-        "tr": "",
-        "en": ""
-      },
+      "heading": { "tr": "", "en": "" },
+      "body": { "tr": "", "en": "" },
+      "items": []
+    },
+    {
+      "id": "position",
+      "type": "position",
+      "visible": true,
+      "image": "",
+      "gallery": [],
+      "buttons": [],
+      "heading": { "tr": "", "en": "" },
+      "body": { "tr": "", "en": "" },
       "items": []
     },
     {
@@ -114,14 +109,19 @@
       "image": "",
       "gallery": [],
       "buttons": [],
-      "heading": {
-        "tr": "",
-        "en": ""
-      },
-      "body": {
-        "tr": "",
-        "en": ""
-      },
+      "heading": { "tr": "", "en": "" },
+      "body": { "tr": "", "en": "" },
+      "items": []
+    },
+    {
+      "id": "approach",
+      "type": "approach",
+      "visible": true,
+      "image": "",
+      "gallery": [],
+      "buttons": [],
+      "heading": { "tr": "", "en": "" },
+      "body": { "tr": "", "en": "" },
       "items": []
     },
     {
@@ -131,14 +131,19 @@
       "image": "",
       "gallery": [],
       "buttons": [],
-      "heading": {
-        "tr": "",
-        "en": ""
-      },
-      "body": {
-        "tr": "",
-        "en": ""
-      },
+      "heading": { "tr": "", "en": "" },
+      "body": { "tr": "", "en": "" },
+      "items": []
+    },
+    {
+      "id": "think",
+      "type": "think",
+      "visible": true,
+      "image": "",
+      "gallery": [],
+      "buttons": [],
+      "heading": { "tr": "", "en": "" },
+      "body": { "tr": "", "en": "" },
       "items": []
     },
     {
@@ -148,48 +153,8 @@
       "image": "",
       "gallery": [],
       "buttons": [],
-      "heading": {
-        "tr": "",
-        "en": ""
-      },
-      "body": {
-        "tr": "",
-        "en": ""
-      },
-      "items": []
-    },
-    {
-      "id": "about",
-      "type": "about",
-      "visible": true,
-      "image": "",
-      "gallery": [],
-      "buttons": [],
-      "heading": {
-        "tr": "",
-        "en": ""
-      },
-      "body": {
-        "tr": "",
-        "en": ""
-      },
-      "items": []
-    },
-    {
-      "id": "toolbox",
-      "type": "toolbox",
-      "visible": true,
-      "image": "",
-      "gallery": [],
-      "buttons": [],
-      "heading": {
-        "tr": "",
-        "en": ""
-      },
-      "body": {
-        "tr": "",
-        "en": ""
-      },
+      "heading": { "tr": "", "en": "" },
+      "body": { "tr": "", "en": "" },
       "items": []
     },
     {
@@ -199,14 +164,8 @@
       "image": "",
       "gallery": [],
       "buttons": [],
-      "heading": {
-        "tr": "",
-        "en": ""
-      },
-      "body": {
-        "tr": "",
-        "en": ""
-      },
+      "heading": { "tr": "", "en": "" },
+      "body": { "tr": "", "en": "" },
       "items": []
     }
   ]

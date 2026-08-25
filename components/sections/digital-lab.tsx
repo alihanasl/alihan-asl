@@ -19,14 +19,14 @@ export function DigitalLab({ index = "03" }: { index?: string }) {
       aria-labelledby="lab-heading"
     >
       <div aria-hidden className="grid-lab pointer-events-none absolute inset-0" />
-      <div className="relative mx-auto max-w-[1400px] px-5 py-24 md:px-10 md:py-32 lg:px-14 lg:py-40">
+      <div className="relative mx-auto max-w-[1400px] px-5 py-20 md:px-10 md:py-28 lg:px-14">
         <Reveal>
           <div className="mb-16 flex flex-col gap-6 md:mb-20 md:flex-row md:items-end md:justify-between">
             <div>
               <SectionLabel index={index} label={t("lab.index")} tone="lab" />
               <h2
                 id="lab-heading"
-                className="font-display mt-4 text-[clamp(2.8rem,8vw,6rem)] leading-[0.9] tracking-[-0.045em]"
+                className="font-display mt-4 text-[clamp(2rem,5vw,3.4rem)] leading-[0.95] tracking-[-0.04em]"
               >
                 {t("lab.title")}
               </h2>

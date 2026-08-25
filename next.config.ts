@@ -7,6 +7,15 @@ const nextConfig: NextConfig = {
   images: {
     localPatterns: [{ pathname: "/uploads/**", search: "" }],
   },
+  async redirects() {
+    return [
+      {
+        source: "/projects/laniff",
+        destination: "/projects/it-asset-management",
+        permanent: true,
+      },
+    ];
+  },
 };
 
 export default nextConfig;

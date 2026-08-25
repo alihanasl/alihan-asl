@@ -70,7 +70,7 @@ export function CaseStudy({ slug }: CaseStudyProps) {
                 {t("project.stack")}
               </dt>
               <dd className="mt-2 text-sm text-ink">
-                {project.technologies.join(" / ")}
+                {project.technologies.join(" · ")}
               </dd>
             </div>
           </dl>

@@ -46,8 +46,11 @@ export type TimelineItem = {
 
 export type SiteSectionType =
   | "hero"
+  | "position"
   | "system"
+  | "approach"
   | "work"
+  | "think"
   | "lab"
   | "about"
   | "toolbox"
@@ -94,8 +97,11 @@ export const sectionTypes: {
   builtin?: boolean;
 }[] = [
   { id: "hero", label: { tr: "Hero", en: "Hero" }, builtin: true },
-  { id: "system", label: { tr: "Özet", en: "Overview" }, builtin: true },
+  { id: "position", label: { tr: "Konum", en: "Position" }, builtin: true },
+  { id: "system", label: { tr: "Ölçek", en: "Scale" }, builtin: true },
+  { id: "approach", label: { tr: "Yaklaşım", en: "Approach" }, builtin: true },
   { id: "work", label: { tr: "İşler", en: "Work" }, builtin: true },
+  { id: "think", label: { tr: "Bakış", en: "Thinking" }, builtin: true },
   { id: "lab", label: { tr: "Lab", en: "Lab" }, builtin: true },
   { id: "about", label: { tr: "Hakkında", en: "About" }, builtin: true },
   { id: "toolbox", label: { tr: "Araçlar", en: "Toolbox" }, builtin: true },
@@ -113,22 +119,51 @@ export const copyKeysBySection: Partial<Record<SiteSectionType, string[]>> = {
     "hero.index",
     "hero.lab",
     "hero.tagline",
+    "hero.support",
     "hero.roleIt",
     "hero.roleBuilder",
     "hero.roleCreator",
     "hero.scroll",
     "hero.scrollHref",
   ],
+  position: ["position.index", "position.copy"],
   system: [
     "system.index",
     "system.title",
     "system.copy",
-    "system.servers",
     "system.switches",
-    "system.projects",
-    "system.problems",
+    "system.accessPoints",
+    "system.servers",
+    "system.clients",
+  ],
+  approach: [
+    "approach.index",
+    "approach.title",
+    "approach.copy",
+    "approach.observe",
+    "approach.observeCopy",
+    "approach.identify",
+    "approach.identifyCopy",
+    "approach.design",
+    "approach.designCopy",
+    "approach.automate",
+    "approach.automateCopy",
+    "approach.improve",
+    "approach.improveCopy",
   ],
   work: ["work.index", "work.title", "work.copy", "work.caseStudy", "work.open"],
+  think: [
+    "think.index",
+    "think.title",
+    "think.copy",
+    "think.see",
+    "think.seeCopy",
+    "think.root",
+    "think.rootCopy",
+    "think.beyond",
+    "think.beyondCopy",
+    "think.more",
+  ],
   lab: [
     "lab.index",
     "lab.title",
@@ -141,10 +176,9 @@ export const copyKeysBySection: Partial<Record<SiteSectionType, string[]>> = {
     "lab.experimental",
   ],
   about: [
-    "about.index",
-    "about.manifestoOne",
-    "about.manifestoTwo",
-    "about.copy",
+    "about.kicker",
+    "about.title",
+    "about.lead",
   ],
   toolbox: ["toolbox.index", "toolbox.title", "toolbox.copy"],
   contact: [
@@ -155,7 +189,6 @@ export const copyKeysBySection: Partial<Record<SiteSectionType, string[]>> = {
     "contact.email",
     "contact.linkedin",
     "contact.github",
-    "contact.youtube",
   ],
 };
 
@@ -199,7 +232,7 @@ export const defaultSiteLayout: SiteLayout = {
     },
     {
       id: "about",
-      href: "/#about",
+      href: "/about",
       visible: true,
       label: { tr: "Hakkında", en: "About" },
     },
@@ -225,9 +258,9 @@ export const defaultSiteLayout: SiteLayout = {
     },
     {
       id: "about",
-      path: "/#about",
-      focusSection: "about",
-      recordsHref: "/admin/about",
+      path: "/about",
+      focusSection: "think",
+      recordsHref: "/admin/experience",
       title: { tr: "Hakkında", en: "About" },
     },
     {
@@ -238,98 +271,24 @@ export const defaultSiteLayout: SiteLayout = {
       title: { tr: "Projeler", en: "Projects" },
     },
     {
-      id: "experience",
-      path: "/#about",
-      focusSection: "about",
-      recordsHref: "/admin/experience",
-      title: { tr: "Deneyim", en: "Experience" },
-    },
-    {
       id: "contact",
       path: "/#contact",
       focusSection: "contact",
       title: { tr: "İletişim", en: "Contact" },
     },
   ],
-  sections: [
-    {
-      id: "hero",
-      type: "hero",
-      visible: true,
-      image: "",
-      gallery: [],
-      buttons: [],
-      heading: emptyLocalized(),
-      body: emptyLocalized(),
-      items: [],
-    },
-    {
-      id: "system",
-      type: "system",
-      visible: true,
-      image: "",
-      gallery: [],
-      buttons: [],
-      heading: emptyLocalized(),
-      body: emptyLocalized(),
-      items: [],
-    },
-    {
-      id: "work",
-      type: "work",
-      visible: true,
-      image: "",
-      gallery: [],
-      buttons: [],
-      heading: emptyLocalized(),
-      body: emptyLocalized(),
-      items: [],
-    },
-    {
-      id: "lab",
-      type: "lab",
-      visible: true,
-      image: "",
-      gallery: [],
-      buttons: [],
-      heading: emptyLocalized(),
-      body: emptyLocalized(),
-      items: [],
-    },
-    {
-      id: "about",
-      type: "about",
-      visible: true,
-      image: "",
-      gallery: [],
-      buttons: [],
-      heading: emptyLocalized(),
-      body: emptyLocalized(),
-      items: [],
-    },
-    {
-      id: "toolbox",
-      type: "toolbox",
-      visible: true,
-      image: "",
-      gallery: [],
-      buttons: [],
-      heading: emptyLocalized(),
-      body: emptyLocalized(),
-      items: [],
-    },
-    {
-      id: "contact",
-      type: "contact",
-      visible: true,
-      image: "",
-      gallery: [],
-      buttons: [],
-      heading: emptyLocalized(),
-      body: emptyLocalized(),
-      items: [],
-    },
-  ],
+  sections: (
+    [
+      "hero",
+      "position",
+      "system",
+      "approach",
+      "work",
+      "think",
+      "lab",
+      "contact",
+    ] as SiteSectionType[]
+  ).map((type) => ({ ...blankSection(type), id: type })),
 };
 
 export function normalizeLayout(input: unknown): SiteLayout {

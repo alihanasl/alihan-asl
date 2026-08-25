@@ -27,7 +27,7 @@ export function SelectedWork({ index = "02" }: { index?: string }) {
               <SectionLabel index={index} label={t("work.index")} />
               <h2
                 id="work-heading"
-                className="font-display mt-4 max-w-xl text-[clamp(2.8rem,8vw,6rem)] leading-[0.9] tracking-[-0.045em]"
+                className="font-display mt-4 max-w-xl text-[clamp(2.2rem,6vw,4.2rem)] leading-[0.9] tracking-[-0.045em]"
               >
                 {t("work.title")}
               </h2>

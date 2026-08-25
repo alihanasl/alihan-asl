@@ -22,13 +22,13 @@ export function ProjectVisual({
         role="presentation"
       >
         {project.slug === "ping-alert-v2" && <PingAlertMark caption={caption} />}
-        {project.slug === "laniff" && <LaniffMark caption={caption} />}
+        {project.slug === "it-asset-management" && <AssetMark caption={caption} />}
         {project.slug === "guest-assist-ai" && (
           <GuestAssistMark caption={caption} />
         )}
         {project.slug === "it-toolkit" && <ToolkitMark caption={caption} />}
         {project.slug !== "ping-alert-v2" &&
-          project.slug !== "laniff" &&
+          project.slug !== "it-asset-management" &&
           project.slug !== "guest-assist-ai" &&
           project.slug !== "it-toolkit" && <DefaultMark caption={caption} />}
       </svg>
@@ -73,7 +73,7 @@ function PingAlertMark({ caption }: { caption: string }) {
   );
 }
 
-function LaniffMark({ caption }: { caption: string }) {
+function AssetMark({ caption }: { caption: string }) {
   const cells = Array.from({ length: 24 }, (_, index) => index);
 
   return (

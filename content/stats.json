@@ -1,30 +1,30 @@
 [
   {
-    "id": "servers",
-    "value": 20,
+    "id": "switches",
+    "value": 150,
     "display": "",
     "suffix": "+",
     "sortOrder": 0
   },
   {
-    "id": "switches",
-    "value": 150,
+    "id": "accessPoints",
+    "value": 1500,
     "display": "",
     "suffix": "+",
     "sortOrder": 1
   },
   {
-    "id": "projects",
-    "value": 10,
+    "id": "servers",
+    "value": 25,
     "display": "",
     "suffix": "+",
     "sortOrder": 2
   },
   {
-    "id": "problems",
-    "value": null,
-    "display": "∞",
-    "suffix": "",
+    "id": "clients",
+    "value": 300,
+    "display": "",
+    "suffix": "+",
     "sortOrder": 3
   }
 ]

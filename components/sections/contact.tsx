@@ -32,7 +32,6 @@ export function Contact({
           ? { id: "linkedin", href: profile.linkedinUrl }
           : null,
         profile.githubUrl ? { id: "github", href: profile.githubUrl } : null,
-        profile.youtubeUrl ? { id: "youtube", href: profile.youtubeUrl } : null,
       ].filter((item): item is { id: string; href: string } => Boolean(item));
 
   return (

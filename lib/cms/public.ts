@@ -58,10 +58,13 @@ async function loadPublicCms(): Promise<PublicCms> {
   };
 }
 
-export const getPublicCms = unstable_cache(loadPublicCms, ["public-cms"], {
+const cachedPublicCms = unstable_cache(loadPublicCms, ["public-cms"], {
   tags: ["cms"],
   revalidate: 30,
 });
+
+export const getPublicCms =
+  process.env.NODE_ENV === "development" ? loadPublicCms : cachedPublicCms;
 
 export async function getCmsProjectBySlug(slug: string) {
   const cms = await getPublicCms();

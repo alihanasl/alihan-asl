@@ -4,7 +4,7 @@
     "nameTr": "Ağ İzleme",
     "nameEn": "Network Monitoring",
     "noteTr": "Ağ altyapısını gerçek zamanlı takip etmek için geliştirilen monitoring çözümü.",
-    "noteEn": "A desktop app that watches the network.",
+    "noteEn": "A monitoring solution built to follow the network in real time.",
     "status": "active",
     "ref": "01",
     "published": true,
@@ -13,11 +13,11 @@
   {
     "id": "guest-assistant",
     "nameTr": "Misafir Asistanı",
-    "nameEn": "AI Guest Assistant",
-    "noteTr": "Tesis bilgilerine hızlı ve doğal erişim sağlayan yapay zekâ destekli asistan.",
-    "noteEn": "Help for hotel guests, based on how the property actually runs.",
+    "nameEn": "Guest Assistant",
+    "noteTr": "Tesis bilgisini erişilebilir hale getiren yapay zekâ destekli asistan.",
+    "noteEn": "An AI assistant that makes property knowledge reachable.",
     "status": "building",
-    "ref": "03",
+    "ref": "02",
     "published": true,
     "sortOrder": 1
   },
@@ -25,10 +25,10 @@
     "id": "internal-tools",
     "nameTr": "İç IT Araçları",
     "nameEn": "Internal IT Tools",
-    "noteTr": "IT operasyonlarını hızlandırmak ve tekrarlayan işleri otomatikleştirmek için geliştirilen araçlar.",
-    "noteEn": "Small tools. They stay if people use them.",
+    "noteTr": "IT operasyonlarını hızlandıran ve tekrarlayan işleri otomatikleştiren araçlar.",
+    "noteEn": "Tools that speed up IT operations and take repeating work off the desk.",
     "status": "experimental",
-    "ref": "04",
+    "ref": "03",
     "published": true,
     "sortOrder": 2
   }

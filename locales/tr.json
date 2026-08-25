@@ -1,10 +1,10 @@
 {
   "meta": {
-    "title": "Alihan Asl — IT Yöneticisi ve Dijital Üretici",
-    "description": "Alihan Asl, IT yöneticisi. Araç, sistem ve dijital ürün geliştiriyor.",
-    "jobTitle": "IT Yöneticisi",
-    "ogRoles": "IT Yöneticisi · Ürün Geliştirici · İçerik Üreticisi",
-    "keywords": "Alihan Asl, IT Yöneticisi, Dijital Üretici, Ürün Geliştirici, Ağ İzleme, Dahili Araçlar"
+    "title": "Alihan Asliyuce — IT Manager",
+    "description": "Büyük ölçekli IT operasyonlarını yöneten IT manager. Sistemleri bir bütün olarak görüyor, operasyonel problemleri kalıcı teknoloji çözümlerine dönüştürüyor.",
+    "jobTitle": "IT Manager",
+    "ogRoles": "IT Manager · Technology · Transformation",
+    "keywords": "Alihan Asliyuce, IT Manager, IT Operasyonu, Teknoloji Dönüşümü, Ağ Altyapısı, Otomasyon"
   },
   "a11y": {
     "skip": "İçeriğe geç",
@@ -25,47 +25,116 @@
     "close": "Kapat"
   },
   "hero": {
-    "index": "00  —  Giriş",
-    "lab": "Dijital Lab",
-    "tagline": "İşin içinde çıkan problemler için araç ve sistem geliştiriyorum.",
+    "index": "IT Manager",
+    "lab": "Technology · Operations · Transformation",
+    "tagline": "Teknolojiyi problem çözmek, operasyonu iyileştirmek ve kalıcı sistemler oluşturmak için kullanıyorum.",
+    "support": "Kritik IT operasyonlarını yönetiyorum, sistemleri bir bütün olarak değerlendiriyorum ve operasyonel problemleri kalıcı teknoloji çözümlerine dönüştürüyorum.",
     "scroll": "Aşağı",
-    "scrollHref": "#system",
-    "roleIt": "IT Yöneticisi",
-    "roleBuilder": "Ürün Geliştirici",
-    "roleCreator": "İçerik Üreticisi"
+    "scrollHref": "#position",
+    "roleIt": "9+ yıl IT",
+    "roleBuilder": "IT Operations",
+    "roleCreator": "Technology · Transformation"
+  },
+  "position": {
+    "index": "Konum",
+    "copy": "Büyük ölçekli IT operasyonu. Sistemleri bir bütün olarak görme. Problemleri teknoloji, otomasyon ve kalıcı dijital çözümlere dönüştürme."
   },
   "system": {
-    "index": "Sistem",
-    "title": "Özet",
-    "copy": "Çalışan altyapı. Yanında da geliştirdiğim ürünler.",
+    "index": "Ölçek",
+    "title": "Technology at Scale",
+    "copy": "Canlı, büyük ölçekli operasyonda yürüyen altyapı.",
+    "switches": "Network Switch",
+    "accessPoints": "Access Point",
     "servers": "Sunucu",
-    "switches": "Switch",
-    "projects": "Proje",
-    "problems": "Problem"
+    "clients": "İstemci"
+  },
+  "approach": {
+    "index": "Yöntem",
+    "title": "Transformation Approach",
+    "copy": "Observe → Identify → Design → Automate → Improve",
+    "observe": "Observe",
+    "observeCopy": "Sistemi, kullanıcıyı ve operasyonu birlikte gözlemlerim.",
+    "identify": "Identify",
+    "identifyCopy": "Problemin görünen semptomundan çok kök nedenini belirlerim.",
+    "design": "Design",
+    "designCopy": "İhtiyaca uygun, sürdürülebilir çözümü tasarlarım.",
+    "automate": "Automate",
+    "automateCopy": "Tekrarlayan ve manuel süreçleri mümkün olduğunca otomatikleştiririm.",
+    "improve": "Improve",
+    "improveCopy": "Kurulan sistemi olduğu yerde bırakmam; sonuçlarına göre sürekli geliştiririm."
   },
   "work": {
-    "index": "Liste",
-    "title": "Seçilen işler",
-    "copy": "İhtiyaç olduğu için yaptıklarım. Masada kalmış fikirler değil.",
+    "index": "İşler",
+    "title": "Selected Projects",
+    "copy": "Operasyonel ihtiyaçtan çıkan işler.",
     "caseStudy": "İncele",
     "open": "Aç"
   },
+  "think": {
+    "index": "Bakış",
+    "title": "How I Think",
+    "copy": "Sistemleri yalnızca yönetmem; nasıl daha iyi çalışabileceklerini de düşünürüm.",
+    "see": "See the System",
+    "seeCopy": "Problemi tek bir cihaz veya uygulama olarak değil, bütün operasyonun parçası olarak ele alırım.",
+    "root": "Build for the Root Cause",
+    "rootCopy": "Geçici çözümler yerine tekrar eden problemleri ortadan kaldıracak sistemler geliştiririm.",
+    "beyond": "Think Beyond IT",
+    "beyondCopy": "Teknolojiyi yalnızca IT'nin değil, tüm işletmenin verimliliğini artıracak şekilde konumlandırırım.",
+    "more": "Hakkımda"
+  },
   "lab": {
-    "index": "Defter",
-    "title": "Dijital lab",
-    "copy": "Fikir listesi değil. Hâlâ üzerinde durduğum işler.",
-    "experiment": "Deney",
+    "index": "Lab",
+    "title": "Dijital Lab",
+    "copy": "Yeni teknolojileri araştırdığım, prototipleri geliştirdiğim ve fikirleri çalışan çözümlere dönüştürdüğüm alan.",
+    "experiment": "İş",
     "status": "Durum",
     "ref": "Ref",
     "active": "Aktif",
-    "building": "Gelişiyor",
-    "experimental": "Deneysel"
+    "building": "Geliştiriliyor",
+    "experimental": "AR-GE"
   },
   "about": {
-    "index": "Konum",
-    "manifestoOne": "IT'de sorun çözerim.",
-    "manifestoTwo": "Anlamak için üretirim.",
-    "copy": "Canlı bir operasyonda teknolojiyi ben yürütüyorum. Sunucular, ağ, bozulunca fark edilen sistemler. Orada gördüğüm tıkanıklık için araç yazıyorum. Buradaki her şey oradan geliyor."
+    "index": "Hakkında",
+    "kicker": "Hakkında",
+    "title": "Teknoloji, operasyon ve ikisinin arası.",
+    "lead": "Canlı operasyonda IT'yi yönetiyorum. Resmin bütününe bakıyorum: insanlar, sistemler ve hizmet ettikleri işletme. Operasyonel sürtünmeyi kalıcı teknoloji çözümüne çevirmek oradan geliyor.",
+    "careerKicker": "Yol",
+    "careerTitle": "9+ Years in IT",
+    "careerCopy": "Büyük ölçekli IT operasyonu. Her rol çerçeveyi genişletti: sistemleri ayakta tutmaktan fonksiyonu yönetmeye.",
+    "leadershipKicker": "Yönetim",
+    "leadershipTitle": "Nasıl yönetirim",
+    "leadershipCopy": "Operasyon, proje, tedarikçi ve ekip — bir şey kırıldığında veya değişmesi gerektiğinde tek bakışta.",
+    "leadershipTeam": "4 kişilik IT ekibi",
+    "leadershipOps": "IT Operations",
+    "leadershipProjects": "Proje Yönetimi",
+    "leadershipCrisis": "Kriz Yönetimi",
+    "leadershipProcess": "Süreç İyileştirme",
+    "leadershipVendor": "Tedarikçi Yönetimi",
+    "impactKicker": "Etki",
+    "impactTitle": "İş Etkisi",
+    "impactOpsTitle": "Operasyonel verimlilik",
+    "impactOpsCopy": "Tekrarlayan işleri ve operasyonel darboğazları belirleyerek süreçleri daha hızlı ve sürdürülebilir hale getiriyorum.",
+    "impactCostTitle": "Maliyet optimizasyonu",
+    "impactCostCopy": "Teknoloji yatırımlarını yalnızca teknik ihtiyaçlara göre değil, uzun vadeli verimlilik ve işletme değeri açısından değerlendiriyorum.",
+    "impactAutoTitle": "Otomasyon",
+    "impactAutoCopy": "Manuel ve tekrarlayan süreçleri otomasyon ve yazılım çözümleriyle daha verimli iş akışlarına dönüştürüyorum.",
+    "impactProcessTitle": "Süreç iyileştirme",
+    "impactProcessCopy": "IT operasyonlarını sürekli değerlendirerek gereksiz adımları azaltıyor, sistemlerin ve ekiplerin daha verimli çalışmasını sağlıyorum.",
+    "lensKicker": "Çerçeve",
+    "lensTitle": "People · Technology · Business",
+    "lensCopy": "Teknoloji kararlarını yalnızca sistemlerin değil, insanların ve işletmenin ihtiyaçlarıyla birlikte değerlendiriyorum.",
+    "peopleTitle": "People",
+    "peopleCopy": "Ekip, kullanıcı ve paydaş yönetimi.",
+    "techTitle": "Technology",
+    "techCopy": "Altyapı, sistemler, güvenlik ve dijital çözümler.",
+    "businessTitle": "Business",
+    "businessCopy": "Operasyon, verimlilik, maliyet ve süreç.",
+    "philosophyKicker": "Yaklaşım",
+    "philosophyTitle": "Resmin bütünü",
+    "philosophyCopy": "İşi ayıran tek bir araç değil. Operasyonu tek sistem olarak görmek — ve oraya ait teknolojiyi kurmak.",
+    "beyondKicker": "Aside",
+    "beyondTitle": "Beyond IT",
+    "beyondCopy": "Technology · Digital Products · Media"
   },
   "toolbox": {
     "index": "Stack",
@@ -73,18 +142,18 @@
     "copy": "Kurarken ve ayakta tutarken kullandıklarım."
   },
   "contact": {
-    "index": "Kapanış",
-    "titleLine1": "Bir şey",
-    "titleLine2": "kuralım.",
-    "copy": "Canlı bir sistem, yarım bir araç, karışık bir operasyon. Konuşulacaksa buradan.",
+    "index": "Sırada",
+    "titleLine1": "Let's build",
+    "titleLine2": "what comes next.",
+    "copy": "Technology · Transformation · Digital Solutions",
     "email": "E-posta",
     "linkedin": "LinkedIn",
     "github": "GitHub",
     "youtube": "YouTube"
   },
   "footer": {
-    "descriptor": "Dijital üretici",
-    "note": "Meraktan.",
+    "descriptor": "IT Manager",
+    "note": "Technology · Transformation",
     "year": "2026"
   },
   "notFound": {
@@ -97,8 +166,8 @@
     "category": "Kategori",
     "year": "Yıl",
     "stack": "Stack",
-    "problem": "Sorun",
-    "idea": "Fikir",
+    "problem": "Problem",
+    "idea": "Çözüm",
     "build": "Yapılış",
     "technology": "Teknoloji",
     "result": "Sonuç",
@@ -110,8 +179,8 @@
     "stillAlt": "{name} görseli"
   },
   "categories": {
-    "desktop": "Masaüstü uygulama",
-    "platform": "Platform",
+    "desktop": "İzleme",
+    "platform": "Operasyon platformu",
     "ai": "Yapay zeka ürünü",
     "tools": "İç araçlar"
   }

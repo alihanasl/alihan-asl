@@ -22,7 +22,7 @@ import { revalidatePublicSite } from "@/lib/cms/revalidate";
 import type { Locale } from "@/lib/i18n/config";
 import { layouts, type CmsProject, type CopyMap, type Profile } from "@/lib/cms/types";
 import { slugify } from "@/lib/cms/present";
-import { allContentKeys } from "@/lib/cms/keys";
+import { allContentKeys, scaleStatIds } from "@/lib/cms/keys";
 import {
   ALLOWED_MEDIA_TYPES,
   mediaExtension,
@@ -606,7 +606,7 @@ export async function saveContentAction(formData: FormData) {
 
 export async function saveStatsAction(formData: FormData) {
   await requireAdmin();
-  const ids = ["servers", "switches", "projects", "problems"];
+  const ids = [...scaleStatIds];
   const rows = ids.map((id, index) => {
     const raw = text(formData, `${id}_value`);
     return {

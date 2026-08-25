@@ -9,11 +9,10 @@ export const socials = [
   { id: "email", href: `mailto:${site.email}` },
   { id: "linkedin", href: "https://www.linkedin.com/in/alihanasl" },
   { id: "github", href: "https://github.com/alihanasl" },
-  { id: "youtube", href: "https://www.youtube.com/@alihanasl" },
 ] as const;
 
 export const nav = [
   { id: "work", href: "/#work" },
-  { id: "about", href: "/#about" },
+  { id: "about", href: "/about" },
   { id: "lab", href: "/#lab" },
 ] as const;

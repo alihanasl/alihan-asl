@@ -82,6 +82,11 @@ async function readLocalJson<T>(relative: string): Promise<T | null> {
 }
 
 export async function readJsonFile<T>(relative: string, fallback: T): Promise<T> {
+  if (canWriteLocally()) {
+    const local = await readLocalJson<T>(relative);
+    if (local !== null) return local;
+  }
+
   if (isGitHubConfigured()) {
     const remote = await readGithubFile(relative);
     if (remote) {

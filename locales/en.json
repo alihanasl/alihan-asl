@@ -1,10 +1,10 @@
 {
   "meta": {
-    "title": "Alihan Asl — IT Manager & Digital Builder",
-    "description": "Alihan Asl is an IT manager who builds tools, systems, and digital products.",
+    "title": "Alihan Asliyuce — IT Manager",
+    "description": "IT manager running large-scale operations. Sees systems as a whole and turns operational problems into lasting technology solutions.",
     "jobTitle": "IT Manager",
-    "ogRoles": "IT Manager · Product Builder · Digital Creator",
-    "keywords": "Alihan Asl, IT Manager, Digital Builder, Product Creator, Network Monitoring, Internal Tools"
+    "ogRoles": "IT Manager · Technology · Transformation",
+    "keywords": "Alihan Asliyuce, IT Manager, IT Operations, Technology Transformation, Network Infrastructure, Automation"
   },
   "a11y": {
     "skip": "Skip to content",
@@ -25,47 +25,116 @@
     "close": "Close"
   },
   "hero": {
-    "index": "00  —  Intro",
-    "lab": "Digital Lab",
-    "tagline": "I build tools for problems I actually have to solve.",
+    "index": "IT Manager",
+    "lab": "Technology · Operations · Transformation",
+    "tagline": "I use technology to solve problems, improve operations, and build systems that last.",
+    "support": "I run critical IT operations, look at systems as a whole, and turn operational problems into lasting technology solutions.",
     "scroll": "Scroll",
-    "scrollHref": "#system",
-    "roleIt": "IT Manager",
-    "roleBuilder": "Product Builder",
-    "roleCreator": "Digital Creator"
+    "scrollHref": "#position",
+    "roleIt": "9+ years in IT",
+    "roleBuilder": "IT Operations",
+    "roleCreator": "Technology · Transformation"
+  },
+  "position": {
+    "index": "Position",
+    "copy": "Large-scale IT operations. Systems seen as a whole. Problems turned into technology, automation, and lasting digital solutions."
   },
   "system": {
-    "index": "System",
-    "title": "Overview",
-    "copy": "Live infrastructure. And the products built next to it.",
+    "index": "Scale",
+    "title": "Technology at Scale",
+    "copy": "Infrastructure run in live, large-scale operations.",
+    "switches": "Network Switches",
+    "accessPoints": "Access Points",
     "servers": "Servers",
-    "switches": "Switches",
-    "projects": "Projects",
-    "problems": "Problems solved"
+    "clients": "Clients"
+  },
+  "approach": {
+    "index": "Method",
+    "title": "Transformation Approach",
+    "copy": "Observe → Identify → Design → Automate → Improve",
+    "observe": "Observe",
+    "observeCopy": "I watch the system, the people using it, and the operation around it — together.",
+    "identify": "Identify",
+    "identifyCopy": "I look past the symptom and find the root cause.",
+    "design": "Design",
+    "designCopy": "I design a solution that fits the need and can be sustained.",
+    "automate": "Automate",
+    "automateCopy": "I take repeating, manual work out of the way wherever it makes sense.",
+    "improve": "Improve",
+    "improveCopy": "I do not leave a system where it landed. I keep shaping it against the result."
   },
   "work": {
-    "index": "Index",
-    "title": "Selected work",
-    "copy": "Built because they were needed. Not made up for a portfolio.",
+    "index": "Work",
+    "title": "Selected Projects",
+    "copy": "Work that started as an operational need.",
     "caseStudy": "View",
     "open": "Open"
   },
+  "think": {
+    "index": "Thinking",
+    "title": "How I Think",
+    "copy": "I do not only run systems. I think about how they should work better.",
+    "see": "See the System",
+    "seeCopy": "I treat a problem as part of the whole operation — not as a single device or app.",
+    "root": "Build for the Root Cause",
+    "rootCopy": "I build systems that remove repeating problems, not patches that buy time.",
+    "beyond": "Think Beyond IT",
+    "beyondCopy": "I place technology where it improves the business, not only the IT stack.",
+    "more": "About the work"
+  },
   "lab": {
-    "index": "Register",
-    "title": "Digital lab",
-    "copy": "Not a list of ideas. Work that's still moving.",
-    "experiment": "Experiment",
+    "index": "Lab",
+    "title": "Digital Lab",
+    "copy": "Where I research new technology, build prototypes, and turn ideas into working solutions.",
+    "experiment": "Work",
     "status": "Status",
     "ref": "Ref",
     "active": "Active",
     "building": "Building",
-    "experimental": "Experimental"
+    "experimental": "R&D"
   },
   "about": {
-    "index": "Position",
-    "manifestoOne": "I solve problems in IT.",
-    "manifestoTwo": "I figure them out by building.",
-    "copy": "I run technology in a live operation. Servers, networks, the systems people only notice when they fail. That job taught me to see the snag first, then build the tool. Monitoring software, internal platforms, digital products — they all come from that job."
+    "index": "About",
+    "kicker": "About",
+    "title": "Technology, operations, and the space between.",
+    "lead": "I run IT in live operations. The work taught me to see the whole picture — people, systems, and the business they serve — then turn friction into lasting solutions.",
+    "careerKicker": "Path",
+    "careerTitle": "9+ Years in IT",
+    "careerCopy": "Large-scale IT operations. Each role widened the frame: from keeping systems up to leading the function.",
+    "leadershipKicker": "Leadership",
+    "leadershipTitle": "How I lead",
+    "leadershipCopy": "Operations, projects, vendors, and people — held in one view when something breaks or something needs to change.",
+    "leadershipTeam": "4-person IT team",
+    "leadershipOps": "IT Operations",
+    "leadershipProjects": "Project Management",
+    "leadershipCrisis": "Crisis Management",
+    "leadershipProcess": "Process Improvement",
+    "leadershipVendor": "Vendor Management",
+    "impactKicker": "Impact",
+    "impactTitle": "Business impact",
+    "impactOpsTitle": "Operational efficiency",
+    "impactOpsCopy": "I find repeating work and operational bottlenecks, then make the process faster and easier to sustain.",
+    "impactCostTitle": "Cost discipline",
+    "impactCostCopy": "I judge technology spend by long-term efficiency and business value — not by the ticket in front of us.",
+    "impactAutoTitle": "Automation",
+    "impactAutoCopy": "I turn manual, repeating work into software and workflows that keep moving without extra hands.",
+    "impactProcessTitle": "Process improvement",
+    "impactProcessCopy": "I keep reviewing IT operations, cut steps that do not earn their place, and help systems and teams run cleaner.",
+    "lensKicker": "Lens",
+    "lensTitle": "People · Technology · Business",
+    "lensCopy": "I weigh technology decisions with the people who use them and the business that pays for them — not only with the systems themselves.",
+    "peopleTitle": "People",
+    "peopleCopy": "Teams, users, and stakeholders.",
+    "techTitle": "Technology",
+    "techCopy": "Infrastructure, systems, security, and digital solutions.",
+    "businessTitle": "Business",
+    "businessCopy": "Operations, efficiency, cost, and process.",
+    "philosophyKicker": "Philosophy",
+    "philosophyTitle": "The whole picture",
+    "philosophyCopy": "What sets the work apart is not a single tool. It is seeing the operation as one system — then building the technology that belongs there.",
+    "beyondKicker": "Aside",
+    "beyondTitle": "Beyond IT",
+    "beyondCopy": "Technology · Digital Products · Media"
   },
   "toolbox": {
     "index": "Stack",
@@ -73,18 +142,18 @@
     "copy": "What I use to build things and keep them running."
   },
   "contact": {
-    "index": "Close",
+    "index": "Next",
     "titleLine1": "Let's build",
-    "titleLine2": "something.",
-    "copy": "If it's already in production, half-finished, or messy — that's usually worth talking about.",
+    "titleLine2": "what comes next.",
+    "copy": "Technology · Transformation · Digital Solutions",
     "email": "Email",
     "linkedin": "LinkedIn",
     "github": "GitHub",
     "youtube": "YouTube"
   },
   "footer": {
-    "descriptor": "Digital Builder",
-    "note": "Made out of curiosity.",
+    "descriptor": "IT Manager",
+    "note": "Technology · Transformation",
     "year": "2026"
   },
   "notFound": {
@@ -98,10 +167,10 @@
     "year": "Year",
     "stack": "Stack",
     "problem": "Problem",
-    "idea": "Idea",
+    "idea": "Solution",
     "build": "Build",
     "technology": "Technology",
-    "result": "Result",
+    "result": "Outcome",
     "open": "Open project",
     "previous": "Previous",
     "next": "Next",
@@ -110,8 +179,8 @@
     "stillAlt": "{name} still"
   },
   "categories": {
-    "desktop": "Desktop app",
-    "platform": "Platform",
+    "desktop": "Monitoring",
+    "platform": "Operations platform",
     "ai": "AI product",
     "tools": "Internal tools"
   }

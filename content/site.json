@@ -1,155 +1,159 @@
 {
   "meta.title": {
-    "en": "Alihan Asl — IT Manager & Digital Builder",
-    "tr": "Alihan Asl — IT Yöneticisi ve Dijital Üretici"
+    "en": "Alihan Asliyuce — IT Manager",
+    "tr": "Alihan Asliyuce — IT Manager"
   },
   "meta.description": {
-    "en": "Alihan Asl is an IT manager who builds tools, systems, and digital products.",
-    "tr": "Alihan Asl, IT yöneticisi. Araç, sistem ve dijital ürün geliştiriyor."
+    "en": "IT manager running large-scale operations. Sees systems as a whole and turns operational problems into lasting technology solutions.",
+    "tr": "Büyük ölçekli IT operasyonlarını yöneten IT manager. Sistemleri bir bütün olarak görüyor, operasyonel problemleri kalıcı teknoloji çözümlerine dönüştürüyor."
   },
   "meta.jobTitle": {
     "en": "IT Manager",
-    "tr": "IT Yöneticisi"
+    "tr": "IT Manager"
   },
   "meta.ogRoles": {
-    "en": "IT Manager · Product Builder · Digital Creator",
-    "tr": "IT Yöneticisi · Ürün Geliştirici · İçerik Üreticisi"
+    "en": "IT Manager · Technology · Transformation",
+    "tr": "IT Manager · Technology · Transformation"
+  },
+  "meta.keywords": {
+    "en": "Alihan Asliyuce, IT Manager, IT Operations, Technology Transformation, Network Infrastructure, Automation",
+    "tr": "Alihan Asliyuce, IT Manager, IT Operasyonu, Teknoloji Dönüşümü, Ağ Altyapısı, Otomasyon"
   },
   "hero.index": {
-    "en": "00  —  Intro",
-    "tr": "00  —  Giriş"
+    "en": "IT Manager",
+    "tr": "IT Manager"
   },
   "hero.lab": {
-    "en": "Digital Lab",
-    "tr": "Dijital Lab"
+    "en": "Technology · Operations · Transformation",
+    "tr": "Technology · Operations · Transformation"
   },
   "hero.tagline": {
-    "en": "I build tools for problems I actually have to solve.",
-    "tr": "Teknolojiyi kullanarak operasyonel verimliliği artıran, süreçleri sadeleştiren ve ölçülebilir değer üreten dijital çözümler geliştiriyorum."
+    "en": "I use technology to solve problems, improve operations, and build systems that last.",
+    "tr": "Teknolojiyi problem çözmek, operasyonu iyileştirmek ve kalıcı sistemler oluşturmak için kullanıyorum."
   },
-  "hero.roleIt": {
-    "en": "IT Manager",
-    "tr": "IT Yöneticisi"
-  },
-  "hero.roleBuilder": {
-    "en": "Product Builder",
-    "tr": "Ürün Geliştirici"
-  },
-  "hero.roleCreator": {
-    "en": "Digital Creator",
-    "tr": "İçerik Üreticisi"
-  },
-  "system.index": {
-    "en": "System",
-    "tr": "Sistem"
-  },
-  "system.title": {
-    "en": "Overview",
-    "tr": "Alt Yapıdan Ürüne"
-  },
-  "system.copy": {
-    "en": "Live infrastructure. And the products built next to it.",
-    "tr": "Operasyonel altyapıları yönetiyor, gerçek ihtiyaçlardan dijital çözümler üretiyorum."
-  },
-  "system.servers": {
-    "en": "Servers",
-    "tr": "Sunucu"
-  },
-  "system.switches": {
-    "en": "Switches",
-    "tr": "Network Cihazı"
-  },
-  "system.projects": {
-    "en": "Projects",
-    "tr": "Dijital Proje"
-  },
-  "system.problems": {
-    "en": "Problems solved",
-    "tr": "Çözüm"
-  },
-  "work.index": {
-    "en": "Index",
-    "tr": "Liste"
-  },
-  "work.title": {
-    "en": "Selected work",
-    "tr": "Seçili Projeler"
-  },
-  "work.copy": {
-    "en": "Built because they were needed. Not made up for a portfolio.",
-    "tr": "Operasyonel problemlere, verimlilik ihtiyaçlarına ve teknoloji fırsatlarına yönelik geliştirdiğim sistemler."
-  },
-  "lab.index": {
-    "en": "Register",
-    "tr": "Defter"
-  },
-  "lab.title": {
-    "en": "Digital lab",
-    "tr": "Dijital lab"
-  },
-  "lab.copy": {
-    "en": "Not a list of ideas. Work that's still moving.",
-    "tr": "Yeni teknolojileri araştırdığım, prototipleri geliştirdiğim ve fikirleri çalışan çözümlere dönüştürdüğüm alan."
-  },
-  "about.index": {
-    "en": "Position",
-    "tr": "Konum"
-  },
-  "about.manifestoOne": {
-    "en": "I solve problems in IT.",
-    "tr": "IT'de sorun çözerim."
-  },
-  "about.manifestoTwo": {
-    "en": "I figure them out by building.",
-    "tr": "Anlamak için üretirim."
-  },
-  "about.copy": {
-    "en": "I run technology in a live operation. Servers, networks, the systems people only notice when they fail. That job taught me to see the snag first, then build the tool. Monitoring software, internal platforms, digital products — they all come from that job.",
-    "tr": "Canlı bir operasyonda teknolojiyi ben yürütüyorum. Sunucular, ağ, bozulunca fark edilen sistemler. Orada gördüğüm tıkanıklık için araç yazıyorum. Buradaki her şey oradan geliyor."
-  },
-  "toolbox.index": {
-    "en": "Stack",
-    "tr": "Stack"
-  },
-  "toolbox.title": {
-    "en": "Toolbox",
-    "tr": "Araçlar"
-  },
-  "toolbox.copy": {
-    "en": "What I use to build things and keep them running.",
-    "tr": "Kurarken ve ayakta tutarken kullandıklarım."
-  },
-  "contact.index": {
-    "en": "Close",
-    "tr": "Kapanış"
-  },
-  "contact.titleLine1": {
-    "en": "Let's build",
-    "tr": "Bir şey"
-  },
-  "contact.titleLine2": {
-    "en": "something.",
-    "tr": "kuralım."
-  },
-  "contact.copy": {
-    "en": "If it's already in production, half-finished, or messy — that's usually worth talking about.",
-    "tr": "Canlı bir sistem, yarım bir araç, karışık bir operasyon. Konuşulacaksa buradan."
-  },
-  "footer.descriptor": {
-    "en": "Digital Builder",
-    "tr": "Dijital üretici"
-  },
-  "footer.note": {
-    "en": "Made out of curiosity.",
-    "tr": ""
+  "hero.support": {
+    "en": "I run critical IT operations, look at systems as a whole, and turn operational problems into lasting technology solutions.",
+    "tr": "Kritik IT operasyonlarını yönetiyorum, sistemleri bir bütün olarak değerlendiriyorum ve operasyonel problemleri kalıcı teknoloji çözümlerine dönüştürüyorum."
   },
   "hero.scroll": {
     "en": "Scroll",
     "tr": "Aşağı"
   },
   "hero.scrollHref": {
-    "en": "#system",
-    "tr": "#system"
+    "en": "#position",
+    "tr": "#position"
+  },
+  "hero.roleIt": {
+    "en": "9+ years in IT",
+    "tr": "9+ yıl IT"
+  },
+  "hero.roleBuilder": {
+    "en": "IT Operations",
+    "tr": "IT Operations"
+  },
+  "hero.roleCreator": {
+    "en": "Technology · Transformation",
+    "tr": "Technology · Transformation"
+  },
+  "position.index": {
+    "en": "Position",
+    "tr": "Konum"
+  },
+  "position.copy": {
+    "en": "Large-scale IT operations. Systems seen as a whole. Problems turned into technology, automation, and lasting digital solutions.",
+    "tr": "Büyük ölçekli IT operasyonu. Sistemleri bir bütün olarak görme. Problemleri teknoloji, otomasyon ve kalıcı dijital çözümlere dönüştürme."
+  },
+  "system.index": {
+    "en": "Scale",
+    "tr": "Ölçek"
+  },
+  "system.title": {
+    "en": "Technology at Scale",
+    "tr": "Technology at Scale"
+  },
+  "system.copy": {
+    "en": "Infrastructure run in live, large-scale operations.",
+    "tr": "Canlı, büyük ölçekli operasyonda yürüyen altyapı."
+  },
+  "system.switches": {
+    "en": "Network Switches",
+    "tr": "Network Switch"
+  },
+  "system.accessPoints": {
+    "en": "Access Points",
+    "tr": "Access Point"
+  },
+  "system.servers": {
+    "en": "Servers",
+    "tr": "Sunucu"
+  },
+  "system.clients": {
+    "en": "Clients",
+    "tr": "İstemci"
+  },
+  "approach.index": {
+    "en": "Method",
+    "tr": "Yöntem"
+  },
+  "approach.title": {
+    "en": "Transformation Approach",
+    "tr": "Transformation Approach"
+  },
+  "approach.copy": {
+    "en": "Observe → Identify → Design → Automate → Improve",
+    "tr": "Observe → Identify → Design → Automate → Improve"
+  },
+  "approach.observe": {
+    "en": "Observe",
+    "tr": "Observe"
+  },
+  "approach.observeCopy": {
+    "en": "I watch the system, the people using it, and the operation around it — together.",
+    "tr": "Sistemi, kullanıcıyı ve operasyonu birlikte gözlemlerim."
+  },
+  "approach.identify": {
+    "en": "Identify",
+    "tr": "Identify"
+  },
+  "approach.identifyCopy": {
+    "en": "I look past the symptom and find the root cause.",
+    "tr": "Problemin görünen semptomundan çok kök nedenini belirlerim."
+  },
+  "approach.design": {
+    "en": "Design",
+    "tr": "Design"
+  },
+  "approach.designCopy": {
+    "en": "I design a solution that fits the need and can be sustained.",
+    "tr": "İhtiyaca uygun, sürdürülebilir çözümü tasarlarım."
+  },
+  "approach.automate": {
+    "en": "Automate",
+    "tr": "Automate"
+  },
+  "approach.automateCopy": {
+    "en": "I take repeating, manual work out of the way wherever it makes sense.",
+    "tr": "Tekrarlayan ve manuel süreçleri mümkün olduğunca otomatikleştiririm."
+  },
+  "approach.improve": {
+    "en": "Improve",
+    "tr": "Improve"
+  },
+  "approach.improveCopy": {
+    "en": "I do not leave a system where it landed. I keep shaping it against the result.",
+    "tr": "Kurulan sistemi olduğu yerde bırakmam; sonuçlarına göre sürekli geliştiririm."
+  },
+  "work.index": {
+    "en": "Work",
+    "tr": "İşler"
+  },
+  "work.title": {
+    "en": "Selected Projects",
+    "tr": "Selected Projects"
+  },
+  "work.copy": {
+    "en": "Work that started as an operational need.",
+    "tr": "Operasyonel ihtiyaçtan çıkan işler."
   },
   "work.caseStudy": {
     "en": "View",
@@ -159,9 +163,61 @@
     "en": "Open",
     "tr": "Aç"
   },
+  "think.index": {
+    "en": "Thinking",
+    "tr": "Bakış"
+  },
+  "think.title": {
+    "en": "How I Think",
+    "tr": "How I Think"
+  },
+  "think.copy": {
+    "en": "I do not only run systems. I think about how they should work better.",
+    "tr": "Sistemleri yalnızca yönetmem; nasıl daha iyi çalışabileceklerini de düşünürüm."
+  },
+  "think.see": {
+    "en": "See the System",
+    "tr": "See the System"
+  },
+  "think.seeCopy": {
+    "en": "I treat a problem as part of the whole operation — not as a single device or app.",
+    "tr": "Problemi tek bir cihaz veya uygulama olarak değil, bütün operasyonun parçası olarak ele alırım."
+  },
+  "think.root": {
+    "en": "Build for the Root Cause",
+    "tr": "Build for the Root Cause"
+  },
+  "think.rootCopy": {
+    "en": "I build systems that remove repeating problems, not patches that buy time.",
+    "tr": "Geçici çözümler yerine tekrar eden problemleri ortadan kaldıracak sistemler geliştiririm."
+  },
+  "think.beyond": {
+    "en": "Think Beyond IT",
+    "tr": "Think Beyond IT"
+  },
+  "think.beyondCopy": {
+    "en": "I place technology where it improves the business, not only the IT stack.",
+    "tr": "Teknolojiyi yalnızca IT'nin değil, tüm işletmenin verimliliğini artıracak şekilde konumlandırırım."
+  },
+  "think.more": {
+    "en": "About the work",
+    "tr": "Hakkımda"
+  },
+  "lab.index": {
+    "en": "Lab",
+    "tr": "Lab"
+  },
+  "lab.title": {
+    "en": "Digital Lab",
+    "tr": "Dijital Lab"
+  },
+  "lab.copy": {
+    "en": "Where I research new technology, build prototypes, and turn ideas into working solutions.",
+    "tr": "Yeni teknolojileri araştırdığım, prototipleri geliştirdiğim ve fikirleri çalışan çözümlere dönüştürdüğüm alan."
+  },
   "lab.experiment": {
-    "en": "Experiment",
-    "tr": "Deney"
+    "en": "Work",
+    "tr": "İş"
   },
   "lab.status": {
     "en": "Status",
@@ -177,11 +233,191 @@
   },
   "lab.building": {
     "en": "Building",
-    "tr": "Gelişiyor"
+    "tr": "Geliştiriliyor"
   },
   "lab.experimental": {
-    "en": "Experimental",
-    "tr": "Deneysel"
+    "en": "R&D",
+    "tr": "AR-GE"
+  },
+  "about.index": {
+    "en": "About",
+    "tr": "Hakkında"
+  },
+  "about.kicker": {
+    "en": "About",
+    "tr": "Hakkında"
+  },
+  "about.title": {
+    "en": "Technology, operations, and the space between.",
+    "tr": "Teknoloji, operasyon ve ikisinin arası."
+  },
+  "about.lead": {
+    "en": "I run IT in live operations. The work taught me to see the whole picture — people, systems, and the business they serve — then turn friction into lasting solutions.",
+    "tr": "Canlı operasyonda IT'yi yönetiyorum. Resmin bütününe bakıyorum: insanlar, sistemler ve hizmet ettikleri işletme. Operasyonel sürtünmeyi kalıcı teknoloji çözümüne çevirmek oradan geliyor."
+  },
+  "about.careerKicker": {
+    "en": "Path",
+    "tr": "Yol"
+  },
+  "about.careerTitle": {
+    "en": "9+ Years in IT",
+    "tr": "9+ Years in IT"
+  },
+  "about.careerCopy": {
+    "en": "Large-scale IT operations. Each role widened the frame: from keeping systems up to leading the function.",
+    "tr": "Büyük ölçekli IT operasyonu. Her rol çerçeveyi genişletti: sistemleri ayakta tutmaktan fonksiyonu yönetmeye."
+  },
+  "about.leadershipKicker": {
+    "en": "Leadership",
+    "tr": "Yönetim"
+  },
+  "about.leadershipTitle": {
+    "en": "How I lead",
+    "tr": "Nasıl yönetirim"
+  },
+  "about.leadershipCopy": {
+    "en": "Operations, projects, vendors, and people — held in one view when something breaks or something needs to change.",
+    "tr": "Operasyon, proje, tedarikçi ve ekip — bir şey kırıldığında veya değişmesi gerektiğinde tek bakışta."
+  },
+  "about.leadershipTeam": {
+    "en": "4-person IT team",
+    "tr": "4 kişilik IT ekibi"
+  },
+  "about.leadershipOps": {
+    "en": "IT Operations",
+    "tr": "IT Operations"
+  },
+  "about.leadershipProjects": {
+    "en": "Project Management",
+    "tr": "Proje Yönetimi"
+  },
+  "about.leadershipCrisis": {
+    "en": "Crisis Management",
+    "tr": "Kriz Yönetimi"
+  },
+  "about.leadershipProcess": {
+    "en": "Process Improvement",
+    "tr": "Süreç İyileştirme"
+  },
+  "about.leadershipVendor": {
+    "en": "Vendor Management",
+    "tr": "Tedarikçi Yönetimi"
+  },
+  "about.impactKicker": {
+    "en": "Impact",
+    "tr": "Etki"
+  },
+  "about.impactTitle": {
+    "en": "Business impact",
+    "tr": "İş Etkisi"
+  },
+  "about.impactOpsTitle": {
+    "en": "Operational efficiency",
+    "tr": "Operasyonel verimlilik"
+  },
+  "about.impactOpsCopy": {
+    "en": "I find repeating work and operational bottlenecks, then make the process faster and easier to sustain.",
+    "tr": "Tekrarlayan işleri ve operasyonel darboğazları belirleyerek süreçleri daha hızlı ve sürdürülebilir hale getiriyorum."
+  },
+  "about.impactCostTitle": {
+    "en": "Cost discipline",
+    "tr": "Maliyet optimizasyonu"
+  },
+  "about.impactCostCopy": {
+    "en": "I judge technology spend by long-term efficiency and business value — not by the ticket in front of us.",
+    "tr": "Teknoloji yatırımlarını yalnızca teknik ihtiyaçlara göre değil, uzun vadeli verimlilik ve işletme değeri açısından değerlendiriyorum."
+  },
+  "about.impactAutoTitle": {
+    "en": "Automation",
+    "tr": "Otomasyon"
+  },
+  "about.impactAutoCopy": {
+    "en": "I turn manual, repeating work into software and workflows that keep moving without extra hands.",
+    "tr": "Manuel ve tekrarlayan süreçleri otomasyon ve yazılım çözümleriyle daha verimli iş akışlarına dönüştürüyorum."
+  },
+  "about.impactProcessTitle": {
+    "en": "Process improvement",
+    "tr": "Süreç iyileştirme"
+  },
+  "about.impactProcessCopy": {
+    "en": "I keep reviewing IT operations, cut steps that do not earn their place, and help systems and teams run cleaner.",
+    "tr": "IT operasyonlarını sürekli değerlendirerek gereksiz adımları azaltıyor, sistemlerin ve ekiplerin daha verimli çalışmasını sağlıyorum."
+  },
+  "about.lensKicker": {
+    "en": "Lens",
+    "tr": "Çerçeve"
+  },
+  "about.lensTitle": {
+    "en": "People · Technology · Business",
+    "tr": "People · Technology · Business"
+  },
+  "about.lensCopy": {
+    "en": "I weigh technology decisions with the people who use them and the business that pays for them — not only with the systems themselves.",
+    "tr": "Teknoloji kararlarını yalnızca sistemlerin değil, insanların ve işletmenin ihtiyaçlarıyla birlikte değerlendiriyorum."
+  },
+  "about.peopleTitle": {
+    "en": "People",
+    "tr": "People"
+  },
+  "about.peopleCopy": {
+    "en": "Teams, users, and stakeholders.",
+    "tr": "Ekip, kullanıcı ve paydaş yönetimi."
+  },
+  "about.techTitle": {
+    "en": "Technology",
+    "tr": "Technology"
+  },
+  "about.techCopy": {
+    "en": "Infrastructure, systems, security, and digital solutions.",
+    "tr": "Altyapı, sistemler, güvenlik ve dijital çözümler."
+  },
+  "about.businessTitle": {
+    "en": "Business",
+    "tr": "Business"
+  },
+  "about.businessCopy": {
+    "en": "Operations, efficiency, cost, and process.",
+    "tr": "Operasyon, verimlilik, maliyet ve süreç."
+  },
+  "about.philosophyKicker": {
+    "en": "Philosophy",
+    "tr": "Yaklaşım"
+  },
+  "about.philosophyTitle": {
+    "en": "The whole picture",
+    "tr": "Resmin bütünü"
+  },
+  "about.philosophyCopy": {
+    "en": "What sets the work apart is not a single tool. It is seeing the operation as one system — then building the technology that belongs there.",
+    "tr": "İşi ayıran tek bir araç değil. Operasyonu tek sistem olarak görmek — ve oraya ait teknolojiyi kurmak."
+  },
+  "about.beyondKicker": {
+    "en": "Aside",
+    "tr": "Aside"
+  },
+  "about.beyondTitle": {
+    "en": "Beyond IT",
+    "tr": "Beyond IT"
+  },
+  "about.beyondCopy": {
+    "en": "Technology · Digital Products · Media",
+    "tr": "Technology · Digital Products · Media"
+  },
+  "contact.index": {
+    "en": "Next",
+    "tr": "Sırada"
+  },
+  "contact.titleLine1": {
+    "en": "Let's build",
+    "tr": "Let's build"
+  },
+  "contact.titleLine2": {
+    "en": "what comes next.",
+    "tr": "what comes next."
+  },
+  "contact.copy": {
+    "en": "Technology · Transformation · Digital Solutions",
+    "tr": "Technology · Transformation · Digital Solutions"
   },
   "contact.email": {
     "en": "Email",
@@ -199,13 +435,17 @@
     "en": "YouTube",
     "tr": "YouTube"
   },
+  "footer.descriptor": {
+    "en": "IT Manager",
+    "tr": "IT Manager"
+  },
+  "footer.note": {
+    "en": "Technology · Transformation",
+    "tr": "Technology · Transformation"
+  },
   "footer.year": {
     "en": "2026",
     "tr": "2026"
-  },
-  "meta.keywords": {
-    "en": "Alihan Asl, IT Manager, Digital Builder, Product Creator, Network Monitoring, Internal Tools",
-    "tr": "Alihan Asl, IT Yöneticisi, Dijital Üretici, Ürün Geliştirici, Ağ İzleme, Dahili Araçlar"
   },
   "notFound.line1": {
     "en": "This page",
@@ -237,11 +477,11 @@
   },
   "project.problem": {
     "en": "Problem",
-    "tr": "Sorun"
+    "tr": "Problem"
   },
   "project.idea": {
-    "en": "Idea",
-    "tr": "Fikir"
+    "en": "Solution",
+    "tr": "Çözüm"
   },
   "project.build": {
     "en": "Build",
@@ -252,7 +492,7 @@
     "tr": "Teknoloji"
   },
   "project.result": {
-    "en": "Result",
+    "en": "Outcome",
     "tr": "Sonuç"
   },
   "project.open": {
@@ -268,12 +508,12 @@
     "tr": "Sonraki"
   },
   "categories.desktop": {
-    "en": "Desktop app",
-    "tr": "Masaüstü uygulama"
+    "en": "Monitoring",
+    "tr": "İzleme"
   },
   "categories.platform": {
-    "en": "Platform",
-    "tr": "Platform"
+    "en": "Operations platform",
+    "tr": "Operasyon platformu"
   },
   "categories.ai": {
     "en": "AI product",

@@ -7,7 +7,6 @@ import type { DisplayProject } from "@/lib/cms/present";
 import { Reveal } from "@/components/ui/reveal";
 import { ProjectVisual } from "@/components/projects/project-visual";
 import { useLocale } from "@/components/i18n/locale-provider";
-import type { MessageKey } from "@/lib/i18n/translate";
 
 type ProjectPreviewProps = {
   project: DisplayProject;
@@ -19,9 +18,6 @@ export function ProjectPreview({ project }: ProjectPreviewProps) {
   const visualRef = useRef<HTMLDivElement>(null);
   const description = project.description;
   const caption = project.caption;
-  const categoryLabel = t(`categories.${project.category}` as MessageKey);
-  const category =
-    categoryLabel.startsWith("categories.") ? project.category : categoryLabel;
 
   function handleMove(event: React.MouseEvent<HTMLDivElement>) {
     const visual = visualRef.current;
@@ -53,17 +49,14 @@ export function ProjectPreview({ project }: ProjectPreviewProps) {
         <h3 className="font-display text-[clamp(2.4rem,6vw,5rem)] leading-[0.9] tracking-[-0.04em] text-ink transition-[letter-spacing] duration-500 group-hover:tracking-[-0.055em]">
           {project.name}
         </h3>
-        <p className="mt-5 max-w-md text-[1.05rem] leading-relaxed text-graphite">
-          {description}
-        </p>
       </div>
       <div className="flex flex-wrap items-end justify-between gap-6">
         <div>
           <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-stone">
-            {category}
+            {description}
           </p>
           <p className="mt-2 max-w-sm font-mono text-[11px] uppercase tracking-[0.14em] text-graphite">
-            {project.technologies.join("  /  ")}
+            {project.technologies.join("  ·  ")}
           </p>
         </div>
         <span className="inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.18em] text-ink">
