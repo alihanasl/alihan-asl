@@ -45,11 +45,11 @@
   },
   "system.title": {
     "en": "Overview",
-    "tr": "Özet"
+    "tr": "Alt Yapıdan Ürüne"
   },
   "system.copy": {
     "en": "Live infrastructure. And the products built next to it.",
-    "tr": "Çalışan altyapı. Yanında da geliştirdiğim ürünler."
+    "tr": "Operasyonel altyapıları yönetiyor, gerçek ihtiyaçlardan dijital çözümler üretiyorum."
   },
   "system.servers": {
     "en": "Servers",
@@ -57,15 +57,15 @@
   },
   "system.switches": {
     "en": "Switches",
-    "tr": "Switch"
+    "tr": "Network Cihazı"
   },
   "system.projects": {
     "en": "Projects",
-    "tr": "Proje"
+    "tr": "Dijital Proje"
   },
   "system.problems": {
     "en": "Problems solved",
-    "tr": "Problem"
+    "tr": "Çözüm"
   },
   "work.index": {
     "en": "Index",
