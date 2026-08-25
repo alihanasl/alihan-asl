@@ -30,7 +30,9 @@
     "featured": true,
     "published": true,
     "sortOrder": 0,
-    "layout": "visual-right"
+    "layout": "visual-right",
+    "createdAt": "2026-08-25T16:50:05.504Z",
+    "updatedAt": "2026-08-25T16:50:05.504Z"
   },
   {
     "id": "laniff",
