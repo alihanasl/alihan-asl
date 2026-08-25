@@ -9,7 +9,6 @@ import {
   reorderSkillsAction,
   saveSkillAction,
 } from "@/lib/cms/actions";
-import { LangTabs } from "@/components/admin/lang-tabs";
 import { SortableList } from "@/components/admin/sortable-list";
 import { ConfirmDialog } from "@/components/admin/confirm";
 import { useAdminToast } from "@/components/admin/toast";
@@ -98,7 +97,6 @@ export function SkillsManager({ items }: { items: CmsSkill[] }) {
           <h2 className="admin-section-title">
             {selected.id ? t("skills.editItem") : t("skills.newItem")}
           </h2>
-          <LangTabs />
         </div>
         {selected.id ? <input type="hidden" name="id" defaultValue={selected.id} /> : null}
         <input type="hidden" name="sort_order" defaultValue={selected.sortOrder} />
@@ -118,13 +116,13 @@ export function SkillsManager({ items }: { items: CmsSkill[] }) {
         </label>
         <div className={contentLocale === "tr" ? "block" : "hidden"}>
           <label className="admin-field">
-            <span>{t("skills.note")} (TR)</span>
+            <span>{t("skills.note")}</span>
             <textarea name="note_tr" rows={3} defaultValue={selected.noteTr} />
           </label>
         </div>
         <div className={contentLocale === "en" ? "block" : "hidden"}>
           <label className="admin-field">
-            <span>{t("skills.note")} (EN)</span>
+            <span>{t("skills.note")}</span>
             <textarea name="note_en" rows={3} defaultValue={selected.noteEn} />
           </label>
         </div>

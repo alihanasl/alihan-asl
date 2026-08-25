@@ -5,7 +5,9 @@ import experiments from "@/content/experiments.json";
 import profile from "@/content/about.json";
 import copy from "@/content/site.json";
 import stats from "@/content/stats.json";
+import layout from "@/content/layout.json";
 import { isGitHubConfigured } from "@/lib/github/commit";
+import { normalizeLayout } from "@/lib/cms/layout";
 import type {
   CmsExperiment,
   CmsExperience,
@@ -41,6 +43,7 @@ export async function getPublicCms(): Promise<PublicCms> {
       .slice()
       .sort((a, b) => a.sortOrder - b.sortOrder),
     stats: (stats as CmsStat[]).slice().sort((a, b) => a.sortOrder - b.sortOrder),
+    layout: normalizeLayout(layout),
   };
 }
 

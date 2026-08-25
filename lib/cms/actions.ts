@@ -19,7 +19,7 @@ import {
   recordLoginFailure,
 } from "@/lib/cms/rate-limit";
 import { revalidatePublicSite } from "@/lib/cms/revalidate";
-import { layouts, type CmsProject } from "@/lib/cms/types";
+import { layouts, type CmsProject, type CopyMap, type Profile } from "@/lib/cms/types";
 import { slugify } from "@/lib/cms/present";
 import { allContentKeys } from "@/lib/cms/keys";
 import {
@@ -35,12 +35,18 @@ import {
   readCopy,
   readExperiences,
   readExperiments,
+  readLayout,
   readMedia,
   readProfile,
   readProjects,
   readSkills,
   type MediaItem,
 } from "@/lib/cms/store";
+import {
+  collectMediaUsage,
+  normalizeLayout,
+  type SiteLayout,
+} from "@/lib/cms/layout";
 
 function text(form: FormData, key: string) {
   return String(form.get(key) ?? "").trim();
@@ -480,7 +486,15 @@ export async function saveStatsAction(formData: FormData) {
 
 export async function getMediaAction() {
   await requireAdmin();
-  return readMedia();
+  const [items, layout, projects] = await Promise.all([
+    readMedia(),
+    readLayout(),
+    readProjects(),
+  ]);
+  return {
+    items,
+    usage: collectMediaUsage(layout, projects),
+  };
 }
 
 export async function uploadMediaAction(formData: FormData) {
@@ -557,6 +571,69 @@ export async function deleteMediaAction(filePath: string) {
   } catch {
     return actionError("deleteFailed");
   }
+  revalidatePublicSite();
+  return actionOk();
+}
+
+export async function saveSiteLayoutAction(payload: string) {
+  await requireAdmin();
+  let parsed: { layout?: SiteLayout; copy?: CopyMap; profile?: Profile };
+  try {
+    parsed = JSON.parse(payload) as {
+      layout?: SiteLayout;
+      copy?: CopyMap;
+      profile?: Profile;
+    };
+  } catch {
+    return actionError("saveFailed");
+  }
+
+  const layout = normalizeLayout(parsed.layout);
+  const copy = parsed.copy && typeof parsed.copy === "object" ? parsed.copy : null;
+  if (!copy) {
+    return actionError("saveFailed");
+  }
+
+  const files: { path: string; content: string }[] = [
+    {
+      path: contentPaths.layout,
+      content: `${JSON.stringify(layout, null, 2)}\n`,
+    },
+    {
+      path: contentPaths.site,
+      content: `${JSON.stringify(copy, null, 2)}\n`,
+    },
+  ];
+
+  if (parsed.profile && typeof parsed.profile === "object") {
+    const current = await readProfile();
+    files.push({
+      path: contentPaths.about,
+      content: `${JSON.stringify(
+        {
+          id: current.id || "profile",
+          name: String(parsed.profile.name ?? current.name).trim(),
+          email: String(parsed.profile.email ?? current.email).trim(),
+          githubUrl: String(parsed.profile.githubUrl ?? current.githubUrl).trim(),
+          linkedinUrl: String(
+            parsed.profile.linkedinUrl ?? current.linkedinUrl,
+          ).trim(),
+          youtubeUrl: String(
+            parsed.profile.youtubeUrl ?? current.youtubeUrl,
+          ).trim(),
+        },
+        null,
+        2,
+      )}\n`,
+    });
+  }
+
+  try {
+    await persistFiles(files, "cms: update site layout");
+  } catch {
+    return actionError("saveFailed");
+  }
+
   revalidatePublicSite();
   return actionOk();
 }

@@ -10,7 +10,6 @@ import {
   saveContentAction,
   saveExperimentAction,
 } from "@/lib/cms/actions";
-import { LangTabs } from "@/components/admin/lang-tabs";
 import { ConfirmDialog } from "@/components/admin/confirm";
 import { useAdminToast } from "@/components/admin/toast";
 import { useAdminI18n } from "@/components/admin/admin-i18n";
@@ -47,7 +46,6 @@ export function ContentForm({
       >
         <div className="flex flex-wrap items-center justify-between gap-3">
           <h2 className="text-lg font-semibold">{t("content.siteCopy")}</h2>
-          <LangTabs />
         </div>
 
         {contentGroups.map((group) => (
@@ -56,7 +54,7 @@ export function ContentForm({
             {group.keys.map((item) => (
               <div key={item.key}>
                 <label className={contentLocale === "tr" ? "admin-field" : "hidden"}>
-                  <span>{fieldLabel(item.key)} (TR)</span>
+                  <span>{fieldLabel(item.key)}</span>
                   {item.multiline ? (
                     <textarea
                       name={`${item.key}::tr`}
@@ -71,7 +69,7 @@ export function ContentForm({
                   )}
                 </label>
                 <label className={contentLocale === "en" ? "admin-field" : "hidden"}>
-                  <span>{fieldLabel(item.key)} (EN)</span>
+                  <span>{fieldLabel(item.key)}</span>
                   {item.multiline ? (
                     <textarea
                       name={`${item.key}::en`}
@@ -116,22 +114,26 @@ export function ContentForm({
           >
             <input type="hidden" name="id" value={item.id} />
             <input type="hidden" name="sort_order" value={item.sortOrder} />
-            <label className="admin-field">
-              <span>{t("content.nameTr")}</span>
-              <input name="name_tr" defaultValue={item.nameTr} />
-            </label>
-            <label className="admin-field">
-              <span>{t("content.nameEn")}</span>
-              <input name="name_en" defaultValue={item.nameEn} />
-            </label>
-            <label className="admin-field">
-              <span>{t("content.noteTr")}</span>
-              <textarea name="note_tr" rows={2} defaultValue={item.noteTr} />
-            </label>
-            <label className="admin-field">
-              <span>{t("content.noteEn")}</span>
-              <textarea name="note_en" rows={2} defaultValue={item.noteEn} />
-            </label>
+            <div className={contentLocale === "tr" ? "contents" : "hidden"}>
+              <label className="admin-field">
+                <span>{t("content.name")}</span>
+                <input name="name_tr" defaultValue={item.nameTr} />
+              </label>
+              <label className="admin-field">
+                <span>{t("content.note")}</span>
+                <textarea name="note_tr" rows={2} defaultValue={item.noteTr} />
+              </label>
+            </div>
+            <div className={contentLocale === "en" ? "contents" : "hidden"}>
+              <label className="admin-field">
+                <span>{t("content.name")}</span>
+                <input name="name_en" defaultValue={item.nameEn} />
+              </label>
+              <label className="admin-field">
+                <span>{t("content.note")}</span>
+                <textarea name="note_en" rows={2} defaultValue={item.noteEn} />
+              </label>
+            </div>
             <label className="admin-field">
               <span>{t("content.status")}</span>
               <select name="status" defaultValue={item.status}>
@@ -185,22 +187,26 @@ export function ContentForm({
           <h3 className="admin-section-title md:col-span-2">{t("content.labNew")}</h3>
           <input type="hidden" name="sort_order" value={experiments.length} />
           <input type="hidden" name="published" value="true" />
-          <label className="admin-field">
-            <span>{t("content.nameTr")}</span>
-            <input name="name_tr" />
-          </label>
-          <label className="admin-field">
-            <span>{t("content.nameEn")}</span>
-            <input name="name_en" />
-          </label>
-          <label className="admin-field">
-            <span>{t("content.noteTr")}</span>
-            <textarea name="note_tr" rows={2} />
-          </label>
-          <label className="admin-field">
-            <span>{t("content.noteEn")}</span>
-            <textarea name="note_en" rows={2} />
-          </label>
+          <div className={contentLocale === "tr" ? "contents" : "hidden"}>
+            <label className="admin-field">
+              <span>{t("content.name")}</span>
+              <input name="name_tr" />
+            </label>
+            <label className="admin-field">
+              <span>{t("content.note")}</span>
+              <textarea name="note_tr" rows={2} />
+            </label>
+          </div>
+          <div className={contentLocale === "en" ? "contents" : "hidden"}>
+            <label className="admin-field">
+              <span>{t("content.name")}</span>
+              <input name="name_en" />
+            </label>
+            <label className="admin-field">
+              <span>{t("content.note")}</span>
+              <textarea name="note_en" rows={2} />
+            </label>
+          </div>
           <label className="admin-field">
             <span>{t("content.status")}</span>
             <select name="status" defaultValue="experimental">

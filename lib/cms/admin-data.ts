@@ -8,21 +8,32 @@ import {
   readProjects,
   readSkills,
   readStats,
+  readLayout,
 } from "@/lib/cms/store";
 
 export async function getAdminBundle() {
   const { username } = await requireAdmin();
-  const [profile, copy, projects, experiences, skills, experiments, stats, media] =
-    await Promise.all([
-      readProfile(),
-      readCopy(),
-      readProjects(),
-      readExperiences(),
-      readSkills(),
-      readExperiments(),
-      readStats(),
-      readMedia(),
-    ]);
+  const [
+    profile,
+    copy,
+    projects,
+    experiences,
+    skills,
+    experiments,
+    stats,
+    media,
+    layout,
+  ] = await Promise.all([
+    readProfile(),
+    readCopy(),
+    readProjects(),
+    readExperiences(),
+    readSkills(),
+    readExperiments(),
+    readStats(),
+    readMedia(),
+    readLayout(),
+  ]);
 
   return {
     username,
@@ -34,5 +45,6 @@ export async function getAdminBundle() {
     experiments: experiments.slice().sort((a, b) => a.sortOrder - b.sortOrder),
     stats: stats.slice().sort((a, b) => a.sortOrder - b.sortOrder),
     media,
+    layout,
   };
 }

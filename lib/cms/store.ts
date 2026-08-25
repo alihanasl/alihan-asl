@@ -14,6 +14,7 @@ import type {
   CopyMap,
   Profile,
 } from "@/lib/cms/types";
+import { defaultSiteLayout, normalizeLayout, type SiteLayout } from "@/lib/cms/layout";
 
 export const contentPaths = {
   projects: "content/projects.json",
@@ -24,6 +25,7 @@ export const contentPaths = {
   site: "content/site.json",
   stats: "content/stats.json",
   media: "content/media.json",
+  layout: "content/layout.json",
 } as const;
 
 export type MediaItem = {
@@ -178,4 +180,10 @@ export async function readStats() {
 
 export async function readMedia() {
   return readJsonFile<MediaItem[]>(contentPaths.media, []);
+}
+
+export async function readLayout() {
+  return normalizeLayout(
+    await readJsonFile<SiteLayout>(contentPaths.layout, defaultSiteLayout),
+  );
 }

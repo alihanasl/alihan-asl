@@ -7,7 +7,6 @@ import type { CmsProject } from "@/lib/cms/types";
 import { layouts } from "@/lib/cms/types";
 import { slugify } from "@/lib/cms/present";
 import { deleteProjectAction, saveProjectAction } from "@/lib/cms/actions";
-import { LangTabs } from "@/components/admin/lang-tabs";
 import { MediaPicker } from "@/components/admin/media-manager";
 import { ConfirmDialog } from "@/components/admin/confirm";
 import { useAdminToast } from "@/components/admin/toast";
@@ -159,7 +158,6 @@ export function ProjectForm({
         <section className="admin-card">
           <div className="flex flex-wrap items-center justify-between gap-3">
             <h2 className="admin-section-title">{t("projects.content")}</h2>
-            <LangTabs />
           </div>
 
           <div className={contentLocale === "tr" ? "mt-4 space-y-4" : "hidden"}>

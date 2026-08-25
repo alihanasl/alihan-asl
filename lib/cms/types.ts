@@ -1,4 +1,5 @@
 import type { Locale } from "@/lib/i18n/config";
+import type { SiteLayout } from "@/lib/cms/layout";
 
 export const layouts = [
   "visual-right",
@@ -116,6 +117,7 @@ export type PublicCms = {
   skills: CmsSkill[];
   experiments: CmsExperiment[];
   stats: CmsStat[];
+  layout: SiteLayout;
 };
 
 export function pickLocale(

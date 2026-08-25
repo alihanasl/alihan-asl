@@ -3,10 +3,14 @@
 import { useLocale } from "@/components/i18n/locale-provider";
 import { useCms } from "@/components/cms/cms-provider";
 import { site } from "@/data/site";
+import { pickLocalized } from "@/lib/cms/layout";
 
 export function Footer() {
-  const { t } = useLocale();
-  const { profile } = useCms();
+  const { t, locale } = useLocale();
+  const { profile, layout } = useCms();
+  const extra = layout.footer.links.filter((link) =>
+    pickLocalized(locale, link.label),
+  );
 
   return (
     <footer className="border-t border-line">
@@ -26,6 +30,15 @@ export function Footer() {
           <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-stone">
             {t("footer.note")}
           </p>
+          {extra.map((link) => (
+            <a
+              key={link.id}
+              href={link.href}
+              className="font-mono text-[11px] uppercase tracking-[0.18em] text-stone transition-colors hover:text-ink"
+            >
+              {pickLocalized(locale, link.label)}
+            </a>
+          ))}
         </div>
       </div>
     </footer>

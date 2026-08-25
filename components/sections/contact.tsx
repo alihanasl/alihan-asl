@@ -6,19 +6,27 @@ import { Magnetic } from "@/components/ui/magnetic";
 import { useLocale } from "@/components/i18n/locale-provider";
 import { useCms } from "@/components/cms/cms-provider";
 import type { MessageKey } from "@/lib/i18n/translate";
+import type { SiteSection } from "@/lib/cms/layout";
+import { SectionButtons } from "@/components/site/section-buttons";
+import { pickLocalized } from "@/lib/cms/layout";
 
-export function Contact() {
-  const { t } = useLocale();
+export function Contact({ section }: { section?: SiteSection }) {
+  const { t, locale } = useLocale();
   const { profile } = useCms();
   const email = profile.email;
-  const socials = [
-    email ? { id: "email", href: `mailto:${email}` } : null,
-    profile.linkedinUrl
-      ? { id: "linkedin", href: profile.linkedinUrl }
-      : null,
-    profile.githubUrl ? { id: "github", href: profile.githubUrl } : null,
-    profile.youtubeUrl ? { id: "youtube", href: profile.youtubeUrl } : null,
-  ].filter((item): item is { id: string; href: string } => Boolean(item));
+  const managed = (section?.buttons ?? []).filter((button) =>
+    pickLocalized(locale, button.label),
+  );
+  const socials = managed.length
+    ? []
+    : [
+        email ? { id: "email", href: `mailto:${email}` } : null,
+        profile.linkedinUrl
+          ? { id: "linkedin", href: profile.linkedinUrl }
+          : null,
+        profile.githubUrl ? { id: "github", href: profile.githubUrl } : null,
+        profile.youtubeUrl ? { id: "youtube", href: profile.youtubeUrl } : null,
+      ].filter((item): item is { id: string; href: string } => Boolean(item));
 
   return (
     <section
@@ -46,6 +54,9 @@ export function Contact() {
             <p className="max-w-sm text-sm leading-relaxed text-graphite">
               {t("contact.copy")}
             </p>
+            {managed.length ? (
+              <SectionButtons buttons={section?.buttons ?? []} />
+            ) : (
             <ul className="flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:gap-x-8 sm:gap-y-3">
               {socials.map((item) => (
                 <li key={item.id}>
@@ -63,6 +74,7 @@ export function Contact() {
                 </li>
               ))}
             </ul>
+            )}
           </div>
         </Reveal>
 

@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { nav, site } from "@/data/site";
+import { nav as fallbackNav, site } from "@/data/site";
 import { cn } from "@/lib/cn";
 import { Magnetic } from "@/components/ui/magnetic";
 import { LanguageSwitcher } from "@/components/i18n/language-switcher";
@@ -10,8 +10,8 @@ import { useLocale } from "@/components/i18n/locale-provider";
 import { useCms } from "@/components/cms/cms-provider";
 
 export function Navigation() {
-  const { t } = useLocale();
-  const { profile } = useCms();
+  const { t, locale } = useLocale();
+  const { profile, layout } = useCms();
   const brand = profile.name || site.name;
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
@@ -33,13 +33,17 @@ export function Navigation() {
     };
   }, [open]);
 
-  const items = [
-    ...nav.map((item) => ({
-      href: item.href,
-      label: t(`nav.${item.id}`),
-    })),
-    { href: "/#contact", label: t("nav.contact") },
-  ];
+  const menu = (layout.menu.length ? layout.menu : fallbackNav.map((item) => ({
+    id: item.id,
+    href: item.href,
+    visible: true,
+    label: { tr: t(`nav.${item.id}`), en: t(`nav.${item.id}`) },
+  }))).filter((item) => item.visible);
+
+  const items = menu.map((item) => ({
+    href: item.href,
+    label: item.label[locale] || item.label.en || item.label.tr,
+  }));
 
   return (
     <header
@@ -65,24 +69,16 @@ export function Navigation() {
           className="hidden items-center gap-5 lg:gap-8 md:flex"
           aria-label={t("a11y.primary")}
         >
-          {nav.map((item) => (
-            <Magnetic key={item.href} strength={22}>
+          {menu.map((item) => (
+            <Magnetic key={item.id} strength={22}>
               <Link
                 href={item.href}
                 className="whitespace-nowrap font-mono text-[11px] uppercase tracking-[0.2em] text-graphite transition-colors duration-300 hover:text-ink"
               >
-                {t(`nav.${item.id}`)}
+                {item.label[locale] || item.label.en || item.label.tr}
               </Link>
             </Magnetic>
           ))}
-          <Magnetic strength={22}>
-            <Link
-              href="/#contact"
-              className="whitespace-nowrap font-mono text-[11px] uppercase tracking-[0.2em] text-stone transition-colors duration-300 hover:text-ink"
-            >
-              {t("nav.contact")}
-            </Link>
-          </Magnetic>
           <LanguageSwitcher className="border-l border-line pl-5 lg:pl-6" />
         </nav>
 

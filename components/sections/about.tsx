@@ -5,8 +5,10 @@ import { Reveal } from "@/components/ui/reveal";
 import { useLocale } from "@/components/i18n/locale-provider";
 import { useCms } from "@/components/cms/cms-provider";
 import { pickLocale } from "@/lib/cms/types";
+import type { SiteSection } from "@/lib/cms/layout";
+import { SectionButtons } from "@/components/site/section-buttons";
 
-export function About() {
+export function About({ section }: { section?: SiteSection }) {
   const { t, locale } = useLocale();
   const { experiences } = useCms();
 
@@ -36,9 +38,20 @@ export function About() {
 
           <div className="flex flex-col justify-between gap-16">
             <Reveal delay={0.08}>
-              <p className="max-w-md text-[1.05rem] leading-[1.7] text-graphite">
-                {t("about.copy")}
-              </p>
+              <div>
+                {section?.image ? (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img
+                    src={section.image}
+                    alt=""
+                    className="mb-8 max-h-64 w-full max-w-sm object-cover"
+                  />
+                ) : null}
+                <p className="max-w-md text-[1.05rem] leading-[1.7] text-graphite">
+                  {t("about.copy")}
+                </p>
+                <SectionButtons buttons={section?.buttons ?? []} className="mt-8" />
+              </div>
             </Reveal>
 
             <Reveal delay={0.12}>

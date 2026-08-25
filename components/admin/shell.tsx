@@ -4,6 +4,7 @@ import { useState } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import {
+  Files,
   FolderKanban,
   Image as ImageIcon,
   LayoutDashboard,
@@ -24,6 +25,7 @@ import type { AdminMessageKey } from "@/lib/i18n/admin";
 
 const links: { href: string; labelKey: AdminMessageKey; icon: typeof LayoutDashboard }[] = [
   { href: "/admin", labelKey: "nav.dashboard", icon: LayoutDashboard },
+  { href: "/admin/pages", labelKey: "nav.pages", icon: Files },
   { href: "/admin/projects", labelKey: "nav.projects", icon: FolderKanban },
   { href: "/admin/experience", labelKey: "nav.experience", icon: Briefcase },
   { href: "/admin/about", labelKey: "nav.about", icon: User },

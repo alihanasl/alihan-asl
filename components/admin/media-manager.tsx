@@ -11,6 +11,7 @@ import { ConfirmDialog } from "@/components/admin/confirm";
 import { useAdminToast } from "@/components/admin/toast";
 import { useAdminI18n } from "@/components/admin/admin-i18n";
 import type { MediaItem } from "@/lib/cms/store";
+import type { MediaUsageLabel } from "@/lib/cms/layout";
 
 export function MediaManager({
   selectable = false,
@@ -20,8 +21,9 @@ export function MediaManager({
   onSelect?: (url: string) => void;
 }) {
   const { toast } = useAdminToast();
-  const { t, errorText } = useAdminI18n();
+  const { t, contentLocale, errorText } = useAdminI18n();
   const [items, setItems] = useState<MediaItem[]>([]);
+  const [usage, setUsage] = useState<Record<string, MediaUsageLabel[]>>({});
   const [status, setStatus] = useState<"idle" | "loading" | "uploading">("loading");
   const [pendingDelete, setPendingDelete] = useState<MediaItem | null>(null);
 
@@ -29,7 +31,8 @@ export function MediaManager({
     let active = true;
     getMediaAction().then((next) => {
       if (!active) return;
-      setItems(next);
+      setItems(next.items);
+      setUsage(next.usage);
       setStatus("idle");
     });
     return () => {
@@ -39,7 +42,8 @@ export function MediaManager({
 
   async function refresh() {
     const next = await getMediaAction();
-    setItems(next);
+    setItems(next.items);
+    setUsage(next.usage);
     setStatus("idle");
   }
 
@@ -87,25 +91,36 @@ export function MediaManager({
             <li key={item.path} className="overflow-hidden rounded-lg border border-zinc-200 bg-white">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img src={item.url} alt="" className="aspect-[4/3] w-full object-cover" />
-              <div className="flex items-center justify-between gap-2 p-2">
-                {selectable ? (
+              <div className="space-y-2 p-2">
+                <div className="flex items-center justify-between gap-2">
+                  {selectable ? (
+                    <button
+                      type="button"
+                      className="text-xs font-medium text-zinc-800"
+                      onClick={() => onSelect?.(item.url)}
+                    >
+                      {t("common.select")}
+                    </button>
+                  ) : (
+                    <span className="truncate text-xs text-zinc-500">{item.name}</span>
+                  )}
                   <button
                     type="button"
-                    className="text-xs font-medium text-zinc-800"
-                    onClick={() => onSelect?.(item.url)}
+                    className="text-xs text-red-600"
+                    onClick={() => setPendingDelete(item)}
                   >
-                    {t("common.select")}
+                    {t("common.delete")}
                   </button>
-                ) : (
-                  <span className="truncate text-xs text-zinc-500">{item.name}</span>
-                )}
-                <button
-                  type="button"
-                  className="text-xs text-red-600"
-                  onClick={() => setPendingDelete(item)}
-                >
-                  {t("common.delete")}
-                </button>
+                </div>
+                <p className="text-[11px] leading-snug text-zinc-500">
+                  {(usage[item.url] ?? []).length
+                    ? `${t("media.usedIn")} ${usage[item.url]
+                        .map((entry) =>
+                          contentLocale === "tr" ? entry.tr : entry.en,
+                        )
+                        .join(" · ")}`
+                    : t("media.unused")}
+                </p>
               </div>
             </li>
           ))}

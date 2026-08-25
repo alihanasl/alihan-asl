@@ -19,6 +19,12 @@ const emptyCms: PublicCms = {
   skills: [],
   experiments: [],
   stats: [],
+  layout: {
+    menu: [],
+    footer: { links: [] },
+    pages: [],
+    sections: [],
+  },
 };
 
 const CmsContext = createContext<PublicCms>(emptyCms);

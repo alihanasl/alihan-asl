@@ -8,7 +8,6 @@ import {
   reorderExperiencesAction,
   saveExperienceAction,
 } from "@/lib/cms/actions";
-import { LangTabs } from "@/components/admin/lang-tabs";
 import { SortableList } from "@/components/admin/sortable-list";
 import { ConfirmDialog } from "@/components/admin/confirm";
 import { useAdminToast } from "@/components/admin/toast";
@@ -94,7 +93,6 @@ export function ExperienceManager({ items }: { items: CmsExperience[] }) {
           <h2 className="admin-section-title">
             {selected.id ? t("experience.editItem") : t("experience.newItem")}
           </h2>
-          <LangTabs />
         </div>
         {selected.id ? <input type="hidden" name="id" defaultValue={selected.id} /> : null}
         <input type="hidden" name="sort_order" defaultValue={selected.sortOrder} />

@@ -1,0 +1,144 @@
+{
+  "menu": [
+    {
+      "id": "work",
+      "href": "/#work",
+      "visible": true,
+      "label": { "tr": "İşler", "en": "Work" }
+    },
+    {
+      "id": "about",
+      "href": "/#about",
+      "visible": true,
+      "label": { "tr": "Hakkında", "en": "About" }
+    },
+    {
+      "id": "lab",
+      "href": "/#lab",
+      "visible": true,
+      "label": { "tr": "Lab", "en": "Lab" }
+    },
+    {
+      "id": "contact",
+      "href": "/#contact",
+      "visible": true,
+      "label": { "tr": "İletişim", "en": "Contact" }
+    }
+  ],
+  "footer": {
+    "links": []
+  },
+  "pages": [
+    {
+      "id": "home",
+      "path": "/",
+      "title": { "tr": "Ana sayfa", "en": "Home" }
+    },
+    {
+      "id": "about",
+      "path": "/#about",
+      "focusSection": "about",
+      "recordsHref": "/admin/about",
+      "title": { "tr": "Hakkında", "en": "About" }
+    },
+    {
+      "id": "projects",
+      "path": "/#work",
+      "focusSection": "work",
+      "recordsHref": "/admin/projects",
+      "title": { "tr": "Projeler", "en": "Projects" }
+    },
+    {
+      "id": "experience",
+      "path": "/#about",
+      "focusSection": "about",
+      "recordsHref": "/admin/experience",
+      "title": { "tr": "Deneyim", "en": "Experience" }
+    },
+    {
+      "id": "contact",
+      "path": "/#contact",
+      "focusSection": "contact",
+      "title": { "tr": "İletişim", "en": "Contact" }
+    }
+  ],
+  "sections": [
+    {
+      "id": "hero",
+      "type": "hero",
+      "visible": true,
+      "image": "",
+      "gallery": [],
+      "buttons": [],
+      "heading": { "tr": "", "en": "" },
+      "body": { "tr": "", "en": "" },
+      "items": []
+    },
+    {
+      "id": "system",
+      "type": "system",
+      "visible": true,
+      "image": "",
+      "gallery": [],
+      "buttons": [],
+      "heading": { "tr": "", "en": "" },
+      "body": { "tr": "", "en": "" },
+      "items": []
+    },
+    {
+      "id": "work",
+      "type": "work",
+      "visible": true,
+      "image": "",
+      "gallery": [],
+      "buttons": [],
+      "heading": { "tr": "", "en": "" },
+      "body": { "tr": "", "en": "" },
+      "items": []
+    },
+    {
+      "id": "lab",
+      "type": "lab",
+      "visible": true,
+      "image": "",
+      "gallery": [],
+      "buttons": [],
+      "heading": { "tr": "", "en": "" },
+      "body": { "tr": "", "en": "" },
+      "items": []
+    },
+    {
+      "id": "about",
+      "type": "about",
+      "visible": true,
+      "image": "",
+      "gallery": [],
+      "buttons": [],
+      "heading": { "tr": "", "en": "" },
+      "body": { "tr": "", "en": "" },
+      "items": []
+    },
+    {
+      "id": "toolbox",
+      "type": "toolbox",
+      "visible": true,
+      "image": "",
+      "gallery": [],
+      "buttons": [],
+      "heading": { "tr": "", "en": "" },
+      "body": { "tr": "", "en": "" },
+      "items": []
+    },
+    {
+      "id": "contact",
+      "type": "contact",
+      "visible": true,
+      "image": "",
+      "gallery": [],
+      "buttons": [],
+      "heading": { "tr": "", "en": "" },
+      "body": { "tr": "", "en": "" },
+      "items": []
+    }
+  ]
+}

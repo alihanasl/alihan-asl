@@ -42,7 +42,10 @@ export function DashboardView({
         ))}
       </div>
       <div className="mt-8 flex flex-wrap gap-2">
-        <Link href="/admin/projects/new" className="admin-btn">
+        <Link href="/admin/pages" className="admin-btn">
+          {t("dashboard.pagesCta")}
+        </Link>
+        <Link href="/admin/projects/new" className="admin-btn-ghost">
           {t("dashboard.addProject")}
         </Link>
         <Link href="/admin/experience" className="admin-btn-ghost">
