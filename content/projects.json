@@ -87,7 +87,9 @@
     "captionTr": "",
     "captionEn": "",
     "category": "tools",
-    "technologies": [],
+    "technologies": [
+      "Next.js"
+    ],
     "year": "2026",
     "githubUrl": "",
     "liveUrl": "",
@@ -98,6 +100,6 @@
     "sortOrder": 2,
     "layout": "visual-right",
     "createdAt": "2026-08-25T20:27:11.023Z",
-    "updatedAt": "2026-08-25T20:28:35.533Z"
+    "updatedAt": "2026-08-25T20:29:38.123Z"
   }
 ]
