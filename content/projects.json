@@ -72,7 +72,7 @@
   {
     "id": "d9d13e6d-d883-4864-a401-1c15bdedb927",
     "slug": "yeni-is",
-    "titleTr": "Yeni iş",
+    "titleTr": "Guest Ai Agent",
     "titleEn": "Yeni iş",
     "shortDescriptionTr": "",
     "shortDescriptionEn": "",
@@ -98,6 +98,6 @@
     "sortOrder": 2,
     "layout": "visual-right",
     "createdAt": "2026-08-25T20:27:11.023Z",
-    "updatedAt": "2026-08-25T20:27:11.023Z"
+    "updatedAt": "2026-08-25T20:27:22.766Z"
   }
 ]
