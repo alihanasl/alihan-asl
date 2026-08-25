@@ -3,7 +3,7 @@
     "id": "network-monitoring",
     "nameTr": "Ağ İzleme",
     "nameEn": "Network Monitoring",
-    "noteTr": "Ağı izleyen masaüstü uygulama.",
+    "noteTr": "Ağ altyapısını gerçek zamanlı takip etmek için geliştirilen monitoring çözümü.",
     "noteEn": "A desktop app that watches the network.",
     "status": "active",
     "ref": "01",
