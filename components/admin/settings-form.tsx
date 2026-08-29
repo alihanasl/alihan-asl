@@ -1,6 +1,5 @@
 "use client";
 
-import { useRouter } from "next/navigation";
 import { useState } from "react";
 import type { CmsStat } from "@/lib/cms/types";
 import { saveStatsAction } from "@/lib/cms/actions";
@@ -25,7 +24,6 @@ export function SettingsForm({
   githubConfigured: boolean;
   authConfigured: boolean;
 }) {
-  const router = useRouter();
   const { toast } = useAdminToast();
   const { t, errorText } = useAdminI18n();
   const [saving, setSaving] = useState(false);
@@ -63,7 +61,6 @@ export function SettingsForm({
             return;
           }
           toast(t("settings.saved"));
-          router.refresh();
         }}
       >
         <h2 className="admin-section-title">{t("settings.overview")}</h2>

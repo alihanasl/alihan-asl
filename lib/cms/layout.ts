@@ -156,6 +156,7 @@ export const copyKeysBySection: Partial<Record<SiteSectionType, string[]>> = {
     "think.index",
     "think.title",
     "think.copy",
+    "think.group",
     "think.see",
     "think.seeCopy",
     "think.root",

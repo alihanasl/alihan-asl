@@ -31,17 +31,17 @@
     "support": "Kritik IT operasyonlarını yönetiyorum, sistemleri bir bütün olarak değerlendiriyorum ve operasyonel problemleri kalıcı teknoloji çözümlerine dönüştürüyorum.",
     "scroll": "Aşağı",
     "scrollHref": "#position",
-    "roleIt": "9+ yıl IT",
+    "roleIt": "",
     "roleBuilder": "IT Operasyonu",
     "roleCreator": "Teknoloji · Dönüşüm"
   },
   "position": {
     "index": "Konum",
-    "copy": "Büyük ölçekli IT operasyonu. Sistemleri bir bütün olarak görme. Problemleri teknoloji, otomasyon ve kalıcı dijital çözümlere dönüştürme."
+    "copy": "Teknolojiyi yalnızca yöneten değil, iş süreçlerini yeniden tasarlayan; otomasyon, entegrasyon ve yazılım çözümleriyle operasyonları daha verimli hale getiren bir IT profesyoneli."
   },
   "system": {
     "index": "Ölçek",
-    "title": "Ölçekte Teknoloji",
+    "title": "Yönetilen Altyapı",
     "copy": "Canlı, büyük ölçekli operasyonda yürüyen altyapı.",
     "switches": "Network Switch",
     "accessPoints": "Access Point",
@@ -50,18 +50,18 @@
   },
   "approach": {
     "index": "Yöntem",
-    "title": "Dönüşüm Yaklaşımı",
-    "copy": "Gözlemle → Tespit et → Tasarla → Otomatikleştir → İyileştir",
-    "observe": "Gözlemle",
-    "observeCopy": "Sistemi, kullanıcıyı ve operasyonu birlikte gözlemlerim.",
-    "identify": "Tespit et",
-    "identifyCopy": "Problemin görünen semptomundan çok kök nedenini belirlerim.",
-    "design": "Tasarla",
-    "designCopy": "İhtiyaca uygun, sürdürülebilir çözümü tasarlarım.",
-    "automate": "Otomatikleştir",
-    "automateCopy": "Tekrarlayan ve manuel süreçleri mümkün olduğunca otomatikleştiririm.",
-    "improve": "İyileştir",
-    "improveCopy": "Kurulan sistemi olduğu yerde bırakmam; sonuçlarına göre sürekli geliştiririm."
+    "title": "Dönüşüm Metodolojim",
+    "copy": "Problemleri geçici çözümlerle kapatmak yerine, kalıcı sistemlere dönüştürmeyi hedefliyorum. Her proje; analiz, tasarım, otomasyon ve sürekli iyileştirme prensipleri üzerine inşa ediliyor.",
+    "observe": "Analiz Et",
+    "observeCopy": "Operasyonları, kullanıcı davranışlarını ve teknik altyapıyı birlikte değerlendirerek mevcut durumu net şekilde ortaya çıkarıyorum.",
+    "identify": "Kök Nedeni Bul",
+    "identifyCopy": "Belirtilere değil, problemi oluşturan temel sebeplere odaklanıyor; riskleri ve darboğazları tespit ediyorum.",
+    "design": "Çözümü Tasarla",
+    "designCopy": "İş ihtiyaçlarıyla uyumlu, ölçeklenebilir ve sürdürülebilir mimariler tasarlıyorum.",
+    "automate": "Otomasyonla Güçlendir",
+    "automateCopy": "Manuel iş yükünü azaltmak, hata oranlarını düşürmek ve verimliliği artırmak için süreçleri otomasyonla destekliyorum.",
+    "improve": "Sürekli Geliştir",
+    "improveCopy": "Sistemleri canlı bir yapı olarak görür; performans, geri bildirim ve yeni ihtiyaçlara göre sürekli optimize ediyorum."
   },
   "work": {
     "index": "İşler",
@@ -72,14 +72,15 @@
   },
   "think": {
     "index": "Bakış",
-    "title": "Nasıl Düşünürüm",
-    "copy": "Sistemleri yalnızca yönetmem; nasıl daha iyi çalışabileceklerini de düşünürüm.",
-    "see": "Sistemi gör",
-    "seeCopy": "Problemi tek bir cihaz veya uygulama olarak değil, bütün operasyonun parçası olarak ele alırım.",
-    "root": "Kök neden için kur",
-    "rootCopy": "Geçici çözümler yerine tekrar eden problemleri ortadan kaldıracak sistemler geliştiririm.",
-    "beyond": "IT'nin ötesini düşün",
-    "beyondCopy": "Teknolojiyi yalnızca IT'nin değil, tüm işletmenin verimliliğini artıracak şekilde konumlandırırım.",
+    "title": "İyi Bir Sistem Nedir?",
+    "copy": "Benim için iyi bir sistem; çalışan, ölçeklenebilen, otomatikleştirilebilen ve sürekli iyileştirilen bir sistemdir.",
+    "group": "Sistem Odaklı Yaklaşım",
+    "see": "Bütünü gör",
+    "seeCopy": "Problemleri tek bir cihaz, uygulama veya kullanıcı üzerinden değil; tüm altyapı ve operasyonun bir parçası olarak değerlendiriyorum.",
+    "root": "Kalıcı çözüm geliştir",
+    "rootCopy": "Geçici müdahaleler yerine, problemin kök nedenini ortadan kaldıran ve tekrarını önleyen sistemler geliştiriyorum.",
+    "beyond": "İş değerine odaklan",
+    "beyondCopy": "Teknolojiyi yalnızca IT operasyonlarını değil, tüm işletmenin verimliliğini, sürekliliğini ve çalışma biçimini geliştirecek şekilde konumlandırıyorum.",
     "more": "Hakkımda"
   },
   "lab": {
@@ -142,9 +143,9 @@
     "copy": "Kurarken ve ayakta tutarken kullandıklarım."
   },
   "contact": {
-    "index": "Sırada",
-    "titleLine1": "Sırada olanı",
-    "titleLine2": "kuralım.",
+    "index": "Yönetim ve İnşa",
+    "titleLine1": "Bugünü yönet.",
+    "titleLine2": "Yarını inşa et.",
     "copy": "Teknoloji · Dönüşüm · Dijital çözümler",
     "email": "E-posta",
     "linkedin": "LinkedIn",
@@ -168,7 +169,7 @@
     "stack": "Stack",
     "problem": "Problem",
     "idea": "Çözüm",
-    "build": "Yapılış",
+    "build": "Yaklaşım",
     "technology": "Teknoloji",
     "result": "Sonuç",
     "open": "Projeyi aç",

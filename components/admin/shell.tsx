@@ -1,7 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
+import { installAdminTypingGuards } from "@/components/admin/keyboard";
 import Link from "next/link";
 import {
   Files,
@@ -45,6 +46,8 @@ export function AdminShell({
   const pathname = usePathname();
   const { t } = useAdminI18n();
   const [open, setOpen] = useState(false);
+
+  useEffect(() => installAdminTypingGuards(), []);
 
   return (
     <div className="admin-app min-h-svh bg-zinc-100 text-zinc-900">

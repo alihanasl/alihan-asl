@@ -24,17 +24,15 @@ export function TransformationApproach({ index = "03" }: { index?: string }) {
     >
       <div className="mx-auto max-w-[1400px] px-5 py-20 md:px-10 md:py-28 lg:px-14">
         <Reveal>
-          <div className="mb-12 flex flex-col gap-4 md:mb-16 md:flex-row md:items-end md:justify-between">
-            <div>
-              <SectionLabel index={index} label={t("approach.index")} />
-              <h2
-                id="approach-heading"
-                className="font-display mt-4 max-w-xl text-[clamp(2rem,5vw,3.4rem)] leading-[0.95] tracking-[-0.04em]"
-              >
-                {t("approach.title")}
-              </h2>
-            </div>
-            <p className="max-w-xs font-mono text-[11px] uppercase tracking-[0.16em] text-stone md:pb-2 md:text-right">
+          <div className="mb-12 md:mb-16">
+            <SectionLabel index={index} label={t("approach.index")} />
+            <h2
+              id="approach-heading"
+              className="font-display mt-4 max-w-xl text-[clamp(2rem,5vw,3.4rem)] leading-[0.95] tracking-[-0.04em]"
+            >
+              {t("approach.title")}
+            </h2>
+            <p className="mt-6 max-w-2xl text-base leading-relaxed text-graphite">
               {t("approach.copy")}
             </p>
           </div>
@@ -47,7 +45,7 @@ export function TransformationApproach({ index = "03" }: { index?: string }) {
                 <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-stone">
                   {String(stepIndex + 1).padStart(2, "0")}
                 </p>
-                <h3 className="mt-4 font-mono text-[12px] uppercase tracking-[0.18em] text-ink">
+                <h3 className="mt-4 text-[0.95rem] leading-snug tracking-[-0.02em] text-ink">
                   {t(`approach.${step}` as MessageKey)}
                 </h3>
                 <p className="mt-3 max-w-xs text-sm leading-relaxed text-graphite">

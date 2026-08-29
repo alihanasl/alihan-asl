@@ -1,14 +1,26 @@
 import type { Metadata, Viewport } from "next";
-import { geist, geistMono, instrument } from "@/lib/fonts";
+import { headers } from "next/headers";
+import { geist, geistMono, newsreader } from "@/lib/fonts";
 import { site } from "@/data/site";
 import { LocaleProvider } from "@/components/i18n/locale-provider";
-import { CmsProvider } from "@/components/cms/cms-provider";
+import { CmsProvider, emptyPublicCms } from "@/components/cms/cms-provider";
 import { getRequestLocale } from "@/lib/i18n/get-locale";
 import { translate } from "@/lib/i18n/translate";
 import { getPublicCms } from "@/lib/cms/public";
 import "./globals.css";
 
+async function isAdminRequest() {
+  return (await headers()).get("x-admin-route") === "1";
+}
+
 export async function generateMetadata(): Promise<Metadata> {
+  if (await isAdminRequest()) {
+    return {
+      title: "Admin",
+      robots: { index: false, follow: false },
+    };
+  }
+
   const locale = await getRequestLocale();
   const cms = await getPublicCms();
   const title =
@@ -69,13 +81,13 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   const locale = await getRequestLocale();
-  const cms = await getPublicCms();
+  const cms = (await isAdminRequest()) ? emptyPublicCms : await getPublicCms();
 
   return (
     <html
       lang={locale}
       suppressHydrationWarning
-      className={`${geist.variable} ${geistMono.variable} ${instrument.variable}`}
+      className={`${geist.variable} ${geistMono.variable} ${newsreader.variable}`}
     >
       <body className="bg-paper text-ink antialiased">
         <CmsProvider value={cms}>

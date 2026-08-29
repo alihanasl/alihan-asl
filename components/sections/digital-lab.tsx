@@ -44,7 +44,21 @@ export function DigitalLab({ index = "03" }: { index?: string }) {
             <span className="text-right">{t("lab.ref")}</span>
           </div>
 
-          {experiments.map((experiment, index) => (
+          {experiments.map((experiment, index) => {
+            const chapters = (
+              [
+                ["problem", experiment.problemTr, experiment.problemEn],
+                ["idea", experiment.ideaTr, experiment.ideaEn],
+                ["build", experiment.buildTr, experiment.buildEn],
+              ] as const
+            )
+              .map(([key, tr, en]) => ({
+                label: t(`project.${key}` as MessageKey),
+                body: pickLocale(locale, tr ?? "", en ?? ""),
+              }))
+              .filter((chapter) => chapter.body.trim());
+
+            return (
             <Reveal key={experiment.id} delay={index * 0.05}>
               <article className="grid gap-3 border-t border-lab-line py-8 md:grid-cols-[1fr_0.7fr_7rem] md:items-baseline md:gap-6 md:py-10">
                 <div>
@@ -70,9 +84,24 @@ export function DigitalLab({ index = "03" }: { index?: string }) {
                 <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-lab-muted md:text-right">
                   {experiment.ref}
                 </p>
+                {chapters.length ? (
+                  <div className="grid gap-8 md:col-span-3 md:grid-cols-3 md:gap-10 md:pt-4">
+                    {chapters.map((chapter) => (
+                      <section key={chapter.label}>
+                        <h4 className="font-mono text-[11px] uppercase tracking-[0.2em] text-lab-muted">
+                          {chapter.label}
+                        </h4>
+                        <p className="mt-3 max-w-sm text-sm leading-relaxed text-paper/80">
+                          {chapter.body}
+                        </p>
+                      </section>
+                    ))}
+                  </div>
+                ) : null}
               </article>
             </Reveal>
-          ))}
+            );
+          })}
         </div>
       </div>
     </section>

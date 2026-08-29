@@ -1,21 +1,22 @@
-import { Geist, Geist_Mono, Instrument_Serif } from "next/font/google";
+import { Geist, Geist_Mono, Newsreader } from "next/font/google";
 
 export const geist = Geist({
-  subsets: ["latin"],
+  subsets: ["latin", "latin-ext"],
   variable: "--font-geist",
   display: "swap",
 });
 
 export const geistMono = Geist_Mono({
-  subsets: ["latin"],
+  subsets: ["latin", "latin-ext"],
   variable: "--font-geist-mono",
   display: "swap",
 });
 
-export const instrument = Instrument_Serif({
-  subsets: ["latin"],
-  weight: "400",
-  style: ["normal", "italic"],
-  variable: "--font-instrument",
+export const newsreader = Newsreader({
+  subsets: ["latin", "latin-ext"],
   display: "swap",
+  variable: "--font-newsreader",
+  weight: "variable",
+  style: ["normal", "italic"],
+  axes: ["opsz"],
 });

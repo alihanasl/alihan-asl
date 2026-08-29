@@ -13,11 +13,21 @@ function withAdminHeaders(response: NextResponse) {
   return response;
 }
 
+function nextAdmin(request: NextRequest) {
+  const requestHeaders = new Headers(request.headers);
+  requestHeaders.set("x-admin-route", "1");
+  return withAdminHeaders(
+    NextResponse.next({
+      request: { headers: requestHeaders },
+    }),
+  );
+}
+
 export async function middleware(request: NextRequest) {
   // Sensitive env vars are not always present in Edge. If they are missing,
   // skip the cookie check here; the Node admin layout still enforces auth.
   if (!isAdminAuthConfigured()) {
-    return withAdminHeaders(NextResponse.next());
+    return nextAdmin(request);
   }
 
   const pathname = request.nextUrl.pathname;
@@ -32,7 +42,7 @@ export async function middleware(request: NextRequest) {
       url.search = "";
       return withAdminHeaders(NextResponse.redirect(url));
     }
-    return withAdminHeaders(NextResponse.next());
+    return nextAdmin(request);
   }
 
   if (!user) {
@@ -42,7 +52,7 @@ export async function middleware(request: NextRequest) {
     return withAdminHeaders(NextResponse.redirect(url));
   }
 
-  return withAdminHeaders(NextResponse.next());
+  return nextAdmin(request);
 }
 
 export const config = {

@@ -31,7 +31,7 @@
     "support": "I run critical IT operations, look at systems as a whole, and turn operational problems into lasting technology solutions.",
     "scroll": "Scroll",
     "scrollHref": "#position",
-    "roleIt": "9+ years in IT",
+    "roleIt": "",
     "roleBuilder": "IT Operations",
     "roleCreator": "Technology · Transformation"
   },
@@ -74,6 +74,7 @@
     "index": "Thinking",
     "title": "How I Think",
     "copy": "I do not only run systems. I think about how they should work better.",
+    "group": "A Systems Approach",
     "see": "See the System",
     "seeCopy": "I treat a problem as part of the whole operation — not as a single device or app.",
     "root": "Build for the Root Cause",

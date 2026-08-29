@@ -11,6 +11,24 @@ import { useCms } from "@/components/cms/cms-provider";
 import { adjacentProjects, toDisplayProject } from "@/lib/cms/present";
 import type { MessageKey } from "@/lib/i18n/translate";
 
+function RichCopy({ text }: { text: string }) {
+  const parts = text.split(/(\*\*[^*]+\*\*)/g);
+  return (
+    <>
+      {parts.map((part, index) => {
+        if (part.startsWith("**") && part.endsWith("**")) {
+          return (
+            <strong key={index} className="font-medium text-ink">
+              {part.slice(2, -2)}
+            </strong>
+          );
+        }
+        return <span key={index}>{part}</span>;
+      })}
+    </>
+  );
+}
+
 type CaseStudyProps = {
   slug: string;
 };
@@ -106,8 +124,8 @@ export function CaseStudy({ slug }: CaseStudyProps) {
                 <h2 className="font-mono text-[11px] uppercase tracking-[0.2em] text-stone">
                   {chapter.label}
                 </h2>
-                <p className="mt-4 max-w-sm text-[1.05rem] leading-[1.7] text-graphite">
-                  {chapter.body}
+                <p className="mt-4 max-w-md text-[1.05rem] leading-[1.7] text-graphite">
+                  <RichCopy text={chapter.body} />
                 </p>
               </section>
             </Reveal>

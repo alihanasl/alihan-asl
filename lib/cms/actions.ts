@@ -528,12 +528,29 @@ export async function saveExperimentAction(formData: FormData) {
   const items = await readExperiments();
   const existing = items.find((item) => item.id === id);
   const next = {
+    ...existing,
     id: existing?.id || randomUUID(),
-    nameTr: text(formData, "name_tr"),
-    nameEn: text(formData, "name_en"),
-    noteTr: text(formData, "note_tr"),
-    noteEn: text(formData, "note_en"),
-    status: (text(formData, "status") || "experimental") as (typeof items)[number]["status"],
+    nameTr: text(formData, "name_tr") || existing?.nameTr || "",
+    nameEn: text(formData, "name_en") || existing?.nameEn || "",
+    noteTr: text(formData, "note_tr") || existing?.noteTr || "",
+    noteEn: text(formData, "note_en") || existing?.noteEn || "",
+    problemTr: formData.has("problem_tr")
+      ? text(formData, "problem_tr")
+      : existing?.problemTr || "",
+    problemEn: formData.has("problem_en")
+      ? text(formData, "problem_en")
+      : existing?.problemEn || "",
+    ideaTr: formData.has("idea_tr") ? text(formData, "idea_tr") : existing?.ideaTr || "",
+    ideaEn: formData.has("idea_en") ? text(formData, "idea_en") : existing?.ideaEn || "",
+    buildTr: formData.has("build_tr")
+      ? text(formData, "build_tr")
+      : existing?.buildTr || "",
+    buildEn: formData.has("build_en")
+      ? text(formData, "build_en")
+      : existing?.buildEn || "",
+    status: (text(formData, "status") ||
+      existing?.status ||
+      "experimental") as (typeof items)[number]["status"],
     ref: text(formData, "ref"),
     published: checked(formData, "published"),
     sortOrder: Number(text(formData, "sort_order") || existing?.sortOrder || items.length),

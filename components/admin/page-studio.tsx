@@ -1,7 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
-import { useRouter } from "next/navigation";
+import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { GripVertical, EyeOff, Plus, Trash2 } from "lucide-react";
 import type { CopyMap, Profile, CmsProject, CmsExperience, CmsSkill, CmsExperiment, CmsStat } from "@/lib/cms/types";
@@ -49,7 +48,6 @@ export function PageStudio({
   experiments: CmsExperiment[];
   stats: CmsStat[];
 }) {
-  const router = useRouter();
   const { t, contentLocale, errorText, fieldLabel } = useAdminI18n();
   const { toast } = useAdminToast();
   const page = initialLayout.pages.find((item) => item.id === pageId);
@@ -63,6 +61,41 @@ export function PageStudio({
   const [picker, setPicker] = useState<"image" | "gallery" | null>(null);
   const [pendingDelete, setPendingDelete] = useState<string | null>(null);
   const [dragId, setDragId] = useState<string | null>(null);
+
+  useEffect(() => {
+    const key = `admin:studio:${pageId}`;
+    try {
+      const raw = sessionStorage.getItem(key);
+      if (!raw) return;
+      const draft = JSON.parse(raw) as {
+        layout?: SiteLayout;
+        copy?: CopyMap;
+        profile?: Profile;
+        selected?: string;
+      };
+      if (draft.layout) setLayout(draft.layout);
+      if (draft.copy) setCopy(draft.copy);
+      if (draft.profile) setProfile(draft.profile);
+      if (draft.selected) setSelected(draft.selected);
+    } catch {
+      // ignore broken drafts
+    }
+  }, [pageId]);
+
+  useEffect(() => {
+    const key = `admin:studio:${pageId}`;
+    const timer = window.setTimeout(() => {
+      try {
+        sessionStorage.setItem(
+          key,
+          JSON.stringify({ layout, copy, profile, selected }),
+        );
+      } catch {
+        // quota / private mode
+      }
+    }, 250);
+    return () => window.clearTimeout(timer);
+  }, [pageId, layout, copy, profile, selected]);
 
   const section = layout.sections.find((item) => item.id === selected);
   const chrome = selected === "menu" || selected === "footer";
@@ -128,12 +161,19 @@ export function PageStudio({
       toast(errorText(result.error), "error");
       return;
     }
+    try {
+      sessionStorage.removeItem(`admin:studio:${pageId}`);
+    } catch {
+      // ignore
+    }
     toast(t("pages.saved"));
-    router.refresh();
   }
 
   return (
-    <div className="grid gap-6 xl:grid-cols-[16rem_minmax(0,1fr)_18rem]">
+    <form
+      className="grid gap-6 xl:grid-cols-[16rem_minmax(0,1fr)_18rem]"
+      onSubmit={(event) => event.preventDefault()}
+    >
       <aside>
         <div className="mb-3 flex items-center justify-between">
           <h2 className="text-sm font-semibold">{t("pages.sections")}</h2>
@@ -166,9 +206,10 @@ export function PageStudio({
           {sidebar.map((item) => (
             <li
               key={item.id}
-              draggable={item.id !== "menu" && item.id !== "footer"}
-              onDragStart={() => setDragId(item.id)}
-              onDragOver={(event) => event.preventDefault()}
+              onDragOver={(event) => {
+                if (item.id === "menu" || item.id === "footer") return;
+                event.preventDefault();
+              }}
               onDrop={() => {
                 if (dragId && item.id !== "menu" && item.id !== "footer") {
                   reorder(dragId, item.id);
@@ -177,25 +218,40 @@ export function PageStudio({
               }}
               className="border-b border-zinc-100 last:border-0"
             >
-              <button
-                type="button"
-                onClick={() => setSelected(item.id)}
+              <div
                 className={
                   selected === item.id
-                    ? "flex w-full items-center gap-2 bg-zinc-100 px-3 py-2.5 text-left text-sm"
-                    : "flex w-full items-center gap-2 px-3 py-2.5 text-left text-sm text-zinc-600 hover:bg-zinc-50"
+                    ? "flex w-full items-center gap-2 bg-zinc-100 px-3 py-2.5 text-sm"
+                    : "flex w-full items-center gap-2 px-3 py-2.5 text-sm text-zinc-600 hover:bg-zinc-50"
                 }
               >
                 {item.id !== "menu" && item.id !== "footer" ? (
-                  <GripVertical className="h-3.5 w-3.5 shrink-0 text-zinc-400" />
+                  <span
+                    draggable
+                    onDragStart={(event) => {
+                      event.stopPropagation();
+                      setDragId(item.id);
+                    }}
+                    onDragEnd={() => setDragId(null)}
+                    className="shrink-0 cursor-grab text-zinc-400 active:cursor-grabbing"
+                    aria-hidden
+                  >
+                    <GripVertical className="h-3.5 w-3.5" />
+                  </span>
                 ) : (
                   <span className="w-3.5" />
                 )}
-                <span className="min-w-0 flex-1 truncate">{item.label}</span>
+                <button
+                  type="button"
+                  onClick={() => setSelected(item.id)}
+                  className="min-w-0 flex-1 truncate text-left"
+                >
+                  {item.label}
+                </button>
                 {"hidden" in item && item.hidden ? (
                   <EyeOff className="h-3.5 w-3.5 text-zinc-400" />
                 ) : null}
-              </button>
+              </div>
             </li>
           ))}
         </ul>
@@ -490,7 +546,7 @@ export function PageStudio({
           setPendingDelete(null);
         }}
       />
-    </div>
+    </form>
   );
 }
 

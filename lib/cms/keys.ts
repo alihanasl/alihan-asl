@@ -96,6 +96,7 @@ export const contentGroups: ContentGroup[] = [
       { key: "think.index", label: "Bölüm etiketi" },
       { key: "think.title", label: "Başlık" },
       { key: "think.copy", label: "Açıklama", multiline: true },
+      { key: "think.group", label: "Grup başlığı" },
       { key: "think.see", label: "İlke 1" },
       { key: "think.seeCopy", label: "İlke 1 metni", multiline: true },
       { key: "think.root", label: "İlke 2" },

@@ -35,13 +35,16 @@ export function HowIThink({ index = "05" }: { index?: string }) {
           </div>
         </Reveal>
 
+        <h3 className="mb-8 font-display text-[clamp(1.4rem,2.4vw,1.85rem)] leading-[1.15] tracking-[-0.03em] text-ink">
+          {t("think.group")}
+        </h3>
         <ul className="grid gap-10 border-t border-line pt-10 md:grid-cols-3 md:gap-12">
           {principles.map((item, itemIndex) => (
             <Reveal key={item} delay={itemIndex * 0.05}>
               <li>
-                <h3 className="font-mono text-[12px] uppercase tracking-[0.18em] text-ink">
+                <h4 className="text-[0.95rem] leading-snug tracking-[-0.02em] text-ink">
                   {t(`think.${item}` as MessageKey)}
-                </h3>
+                </h4>
                 <p className="mt-4 max-w-sm text-sm leading-relaxed text-graphite">
                   {t(`think.${item}Copy` as MessageKey)}
                 </p>

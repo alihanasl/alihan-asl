@@ -41,7 +41,6 @@ export function ContentForm({
             return;
           }
           toast(t("content.saved"));
-          router.refresh();
         }}
       >
         <div className="flex flex-wrap items-center justify-between gap-3">

@@ -92,6 +92,12 @@ export type CmsExperiment = {
   nameEn: string;
   noteTr: string;
   noteEn: string;
+  problemTr?: string;
+  problemEn?: string;
+  ideaTr?: string;
+  ideaEn?: string;
+  buildTr?: string;
+  buildEn?: string;
   status: LabStatus;
   ref: string;
   published: boolean;

@@ -18,7 +18,7 @@ export function Positioning({ index = "01" }: { index?: string }) {
           <SectionLabel index={index} label={t("position.index")} />
           <p
             id="position-copy"
-            className="font-display mt-8 max-w-3xl text-[clamp(1.6rem,3.4vw,2.6rem)] leading-[1.2] tracking-[-0.03em] text-ink"
+            className="font-display mt-8 max-w-3xl text-[clamp(1.6rem,3.4vw,2.6rem)] leading-[1.22] tracking-[-0.018em] text-ink"
           >
             {t("position.copy")}
           </p>

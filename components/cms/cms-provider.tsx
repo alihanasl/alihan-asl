@@ -3,7 +3,7 @@
 import { createContext, useContext } from "react";
 import type { PublicCms } from "@/lib/cms/types";
 
-const emptyCms: PublicCms = {
+export const emptyPublicCms: PublicCms = {
   configured: false,
   profile: {
     id: "",
@@ -27,7 +27,7 @@ const emptyCms: PublicCms = {
   },
 };
 
-const CmsContext = createContext<PublicCms>(emptyCms);
+const CmsContext = createContext<PublicCms>(emptyPublicCms);
 
 export function CmsProvider({
   value,

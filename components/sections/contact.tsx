@@ -48,7 +48,7 @@ export function Contact({
         <Reveal delay={0.05}>
           <h2
             id="contact-heading"
-            className="font-display mt-6 max-w-5xl text-[clamp(3.2rem,12vw,9rem)] leading-[0.84] tracking-[-0.05em]"
+            className="font-display mt-6 max-w-5xl text-[clamp(2.4rem,8vw,5.6rem)] leading-[0.9] tracking-[-0.04em]"
           >
             {t("contact.titleLine1")}
             <span className="block">{t("contact.titleLine2")}</span>

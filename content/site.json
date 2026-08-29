@@ -44,8 +44,8 @@
     "tr": "#position"
   },
   "hero.roleIt": {
-    "en": "9+ years in IT",
-    "tr": "9+ yıl IT"
+    "en": "",
+    "tr": ""
   },
   "hero.roleBuilder": {
     "en": "IT Operations",
@@ -61,7 +61,7 @@
   },
   "position.copy": {
     "en": "Large-scale IT operations. Systems seen as a whole. Problems turned into technology, automation, and lasting digital solutions.",
-    "tr": "Büyük ölçekli IT operasyonu. Sistemleri bir bütün olarak görme. Problemleri teknoloji, otomasyon ve kalıcı dijital çözümlere dönüştürme."
+    "tr": "Teknolojiyi yalnızca yöneten değil, iş süreçlerini yeniden tasarlayan; otomasyon, entegrasyon ve yazılım çözümleriyle operasyonları daha verimli hale getiren bir IT profesyoneli."
   },
   "system.index": {
     "en": "Scale",
@@ -69,7 +69,7 @@
   },
   "system.title": {
     "en": "Technology at Scale",
-    "tr": "Ölçekte Teknoloji"
+    "tr": "Yönetilen Altyapı"
   },
   "system.copy": {
     "en": "Infrastructure run in live, large-scale operations.",
@@ -97,51 +97,51 @@
   },
   "approach.title": {
     "en": "Transformation Approach",
-    "tr": "Dönüşüm Yaklaşımı"
+    "tr": "Dönüşüm Metodolojim"
   },
   "approach.copy": {
     "en": "Observe → Identify → Design → Automate → Improve",
-    "tr": "Gözlemle → Tespit et → Tasarla → Otomatikleştir → İyileştir"
+    "tr": "Problemleri geçici çözümlerle kapatmak yerine, kalıcı sistemlere dönüştürmeyi hedefliyorum. Her proje; analiz, tasarım, otomasyon ve sürekli iyileştirme prensipleri üzerine inşa ediliyor."
   },
   "approach.observe": {
     "en": "Observe",
-    "tr": "Gözlemle"
+    "tr": "Analiz Et"
   },
   "approach.observeCopy": {
     "en": "I watch the system, the people using it, and the operation around it — together.",
-    "tr": "Sistemi, kullanıcıyı ve operasyonu birlikte gözlemlerim."
+    "tr": "Operasyonları, kullanıcı davranışlarını ve teknik altyapıyı birlikte değerlendirerek mevcut durumu net şekilde ortaya çıkarıyorum."
   },
   "approach.identify": {
     "en": "Identify",
-    "tr": "Tespit et"
+    "tr": "Kök Nedeni Bul"
   },
   "approach.identifyCopy": {
     "en": "I look past the symptom and find the root cause.",
-    "tr": "Problemin görünen semptomundan çok kök nedenini belirlerim."
+    "tr": "Belirtilere değil, problemi oluşturan temel sebeplere odaklanıyor; riskleri ve darboğazları tespit ediyorum."
   },
   "approach.design": {
     "en": "Design",
-    "tr": "Tasarla"
+    "tr": "Çözümü Tasarla"
   },
   "approach.designCopy": {
     "en": "I design a solution that fits the need and can be sustained.",
-    "tr": "İhtiyaca uygun, sürdürülebilir çözümü tasarlarım."
+    "tr": "İş ihtiyaçlarıyla uyumlu, ölçeklenebilir ve sürdürülebilir mimariler tasarlıyorum."
   },
   "approach.automate": {
     "en": "Automate",
-    "tr": "Otomatikleştir"
+    "tr": "Otomasyonla Güçlendir"
   },
   "approach.automateCopy": {
     "en": "I take repeating, manual work out of the way wherever it makes sense.",
-    "tr": "Tekrarlayan ve manuel süreçleri mümkün olduğunca otomatikleştiririm."
+    "tr": "Manuel iş yükünü azaltmak, hata oranlarını düşürmek ve verimliliği artırmak için süreçleri otomasyonla destekliyorum."
   },
   "approach.improve": {
     "en": "Improve",
-    "tr": "İyileştir"
+    "tr": "Sürekli Geliştir"
   },
   "approach.improveCopy": {
     "en": "I do not leave a system where it landed. I keep shaping it against the result.",
-    "tr": "Kurulan sistemi olduğu yerde bırakmam; sonuçlarına göre sürekli geliştiririm."
+    "tr": "Sistemleri canlı bir yapı olarak görür; performans, geri bildirim ve yeni ihtiyaçlara göre sürekli optimize ediyorum."
   },
   "work.index": {
     "en": "Work",
@@ -169,35 +169,39 @@
   },
   "think.title": {
     "en": "How I Think",
-    "tr": "Nasıl Düşünürüm"
+    "tr": "İyi Bir Sistem Nedir?"
   },
   "think.copy": {
     "en": "I do not only run systems. I think about how they should work better.",
-    "tr": "Sistemleri yalnızca yönetmem; nasıl daha iyi çalışabileceklerini de düşünürüm."
+    "tr": "Benim için iyi bir sistem; çalışan, ölçeklenebilen, otomatikleştirilebilen ve sürekli iyileştirilen bir sistemdir."
+  },
+  "think.group": {
+    "en": "A Systems Approach",
+    "tr": "Sistem Odaklı Yaklaşım"
   },
   "think.see": {
     "en": "See the System",
-    "tr": "Sistemi gör"
+    "tr": "Bütünü gör"
   },
   "think.seeCopy": {
     "en": "I treat a problem as part of the whole operation — not as a single device or app.",
-    "tr": "Problemi tek bir cihaz veya uygulama olarak değil, bütün operasyonun parçası olarak ele alırım."
+    "tr": "Problemleri tek bir cihaz, uygulama veya kullanıcı üzerinden değil; tüm altyapı ve operasyonun bir parçası olarak değerlendiriyorum."
   },
   "think.root": {
     "en": "Build for the Root Cause",
-    "tr": "Kök neden için kur"
+    "tr": "Kalıcı çözüm geliştir"
   },
   "think.rootCopy": {
     "en": "I build systems that remove repeating problems, not patches that buy time.",
-    "tr": "Geçici çözümler yerine tekrar eden problemleri ortadan kaldıracak sistemler geliştiririm."
+    "tr": "Geçici müdahaleler yerine, problemin kök nedenini ortadan kaldıran ve tekrarını önleyen sistemler geliştiriyorum."
   },
   "think.beyond": {
     "en": "Think Beyond IT",
-    "tr": "IT'nin ötesini düşün"
+    "tr": "İş değerine odaklan"
   },
   "think.beyondCopy": {
     "en": "I place technology where it improves the business, not only the IT stack.",
-    "tr": "Teknolojiyi yalnızca IT'nin değil, tüm işletmenin verimliliğini artıracak şekilde konumlandırırım."
+    "tr": "Teknolojiyi yalnızca IT operasyonlarını değil, tüm işletmenin verimliliğini, sürekliliğini ve çalışma biçimini geliştirecek şekilde konumlandırıyorum."
   },
   "think.more": {
     "en": "About the work",
@@ -405,15 +409,15 @@
   },
   "contact.index": {
     "en": "Next",
-    "tr": "Sırada"
+    "tr": "Yönetim ve İnşa"
   },
   "contact.titleLine1": {
     "en": "Let's build",
-    "tr": "Sırada olanı"
+    "tr": "Bugünü yönet."
   },
   "contact.titleLine2": {
     "en": "what comes next.",
-    "tr": "kuralım."
+    "tr": "Yarını inşa et."
   },
   "contact.copy": {
     "en": "Technology · Transformation · Digital Solutions",
@@ -485,7 +489,7 @@
   },
   "project.build": {
     "en": "Build",
-    "tr": "Yapılış"
+    "tr": "Yaklaşım"
   },
   "project.technology": {
     "en": "Technology",

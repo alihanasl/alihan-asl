@@ -1,6 +1,5 @@
 "use client";
 
-import { useRouter } from "next/navigation";
 import { useState } from "react";
 import type { Profile } from "@/lib/cms/types";
 import { saveProfileAction } from "@/lib/cms/actions";
@@ -8,7 +7,6 @@ import { useAdminToast } from "@/components/admin/toast";
 import { useAdminI18n } from "@/components/admin/admin-i18n";
 
 export function AboutForm({ profile }: { profile: Profile }) {
-  const router = useRouter();
   const { toast } = useAdminToast();
   const { t, errorText } = useAdminI18n();
   const [saving, setSaving] = useState(false);
@@ -26,7 +24,6 @@ export function AboutForm({ profile }: { profile: Profile }) {
           return;
         }
         toast(t("about.saved"));
-        router.refresh();
       }}
     >
       {profile.id && profile.id !== "local" ? (
