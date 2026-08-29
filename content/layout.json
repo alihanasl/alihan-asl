@@ -10,21 +10,12 @@
       }
     },
     {
-      "id": "about",
-      "href": "/about",
+      "id": "think",
+      "href": "/#think",
       "visible": true,
       "label": {
-        "tr": "Hakkında",
-        "en": "About"
-      }
-    },
-    {
-      "id": "lab",
-      "href": "/#lab",
-      "visible": true,
-      "label": {
-        "tr": "Lab",
-        "en": "Lab"
+        "tr": "Bakış",
+        "en": "Thinking"
       }
     },
     {

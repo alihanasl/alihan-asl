@@ -24,7 +24,7 @@ export function FitImage({
   return (
     <div
       className={cn(
-        "relative w-full overflow-hidden border border-line bg-paper-2",
+        className="relative w-full overflow-hidden bg-paper-2",
         ratios[ratio],
         className,
       )}

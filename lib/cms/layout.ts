@@ -232,16 +232,10 @@ export const defaultSiteLayout: SiteLayout = {
       label: { tr: "İşler", en: "Work" },
     },
     {
-      id: "about",
-      href: "/about",
+      id: "think",
+      href: "/#think",
       visible: true,
-      label: { tr: "Hakkında", en: "About" },
-    },
-    {
-      id: "lab",
-      href: "/#lab",
-      visible: true,
-      label: { tr: "Lab", en: "Lab" },
+      label: { tr: "Bakış", en: "Thinking" },
     },
     {
       id: "contact",

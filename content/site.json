@@ -40,8 +40,8 @@
     "tr": "Aşağı"
   },
   "hero.scrollHref": {
-    "en": "#position",
-    "tr": "#position"
+    "en": "#system",
+    "tr": "#system"
   },
   "hero.roleIt": {
     "en": "",
@@ -148,7 +148,7 @@
     "tr": "İşler"
   },
   "work.title": {
-    "en": "Selected Projects",
+    "en": "Selected Work",
     "tr": "Seçilen İşler"
   },
   "work.copy": {
@@ -412,11 +412,11 @@
     "tr": "Yönetim ve İnşa"
   },
   "contact.titleLine1": {
-    "en": "Let's build",
+    "en": "Building better systems",
     "tr": "Bugünü yönet."
   },
   "contact.titleLine2": {
-    "en": "what comes next.",
+    "en": "for what comes next.",
     "tr": "Yarını inşa et."
   },
   "contact.copy": {

@@ -2,11 +2,10 @@
 
 import { useRef } from "react";
 import Link from "next/link";
-import { ArrowUpRight } from "lucide-react";
 import type { DisplayProject } from "@/lib/cms/present";
-import { Reveal } from "@/components/ui/reveal";
 import { ProjectVisual } from "@/components/projects/project-visual";
 import { useLocale } from "@/components/i18n/locale-provider";
+import { cn } from "@/lib/cn";
 
 type ProjectPreviewProps = {
   project: DisplayProject;
@@ -14,126 +13,88 @@ type ProjectPreviewProps = {
 
 export function ProjectPreview({ project }: ProjectPreviewProps) {
   const { t } = useLocale();
-  const frameRef = useRef<HTMLDivElement>(null);
   const visualRef = useRef<HTMLDivElement>(null);
-  const description = project.description;
-  const caption = project.caption;
+  const titleRef = useRef<HTMLHeadingElement>(null);
 
-  function handleMove(event: React.MouseEvent<HTMLDivElement>) {
+  function handleMove(event: React.MouseEvent<HTMLAnchorElement>) {
     const visual = visualRef.current;
-    const frame = frameRef.current;
-    if (!visual || !frame) return;
-    const rect = frame.getBoundingClientRect();
+    const title = titleRef.current;
+    const rect = event.currentTarget.getBoundingClientRect();
     const x = (event.clientX - rect.left) / rect.width - 0.5;
     const y = (event.clientY - rect.top) / rect.height - 0.5;
-    visual.style.transform = `translate(${x * 12}px, ${y * 10}px) scale(1.04)`;
+    if (visual) {
+      visual.style.transform = `translate3d(${x * 16}px, ${y * 12}px, 0) scale(1.045)`;
+    }
+    if (title) {
+      title.style.transform = `translate3d(${x * 8}px, ${y * 4}px, 0)`;
+    }
   }
 
   function handleLeave() {
-    const visual = visualRef.current;
-    if (!visual) return;
-    visual.style.transform = "translate(0px, 0px) scale(1)";
+    if (visualRef.current) {
+      visualRef.current.style.transform = "translate3d(0, 0, 0) scale(1)";
+    }
+    if (titleRef.current) {
+      titleRef.current.style.transform = "translate3d(0, 0, 0)";
+    }
   }
 
-  const copy = (
-    <div className="flex h-full flex-col justify-between gap-10">
-      <div>
-        <div className="mb-6 flex items-center justify-between gap-6">
-          <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-stone">
+  return (
+    <article className="group">
+      <Link
+        href={`/projects/${project.slug}`}
+        onMouseMove={handleMove}
+        onMouseLeave={handleLeave}
+        className="site-pad mx-auto flex min-h-[100svh] w-full max-w-[1680px] cursor-pointer flex-col justify-center py-16 md:py-20"
+      >
+        <div className="mb-8 flex items-baseline justify-between gap-6 md:mb-10">
+          <p className="text-[11px] uppercase tracking-[0.22em] text-stone">
             {project.number}
           </p>
-          <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-stone">
+          <p className="text-[11px] uppercase tracking-[0.18em] text-stone">
             {project.year}
           </p>
         </div>
-        <h3 className="font-display text-[clamp(2.4rem,6vw,5rem)] leading-[0.9] tracking-[-0.04em] text-ink transition-[letter-spacing] duration-500 group-hover:tracking-[-0.055em]">
+
+        <h3
+          ref={titleRef}
+          className="font-display max-w-[14ch] text-[clamp(2.8rem,8vw,7.2rem)] leading-[0.86] tracking-[-0.055em] text-ink will-change-transform"
+          style={{
+            transition: "transform 600ms cubic-bezier(0.22, 1, 0.36, 1)",
+          }}
+        >
           {project.name}
         </h3>
-      </div>
-      <div className="flex flex-wrap items-end justify-between gap-6">
-        <div>
-          <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-stone">
-            {description}
-          </p>
-          <p className="mt-2 max-w-sm font-mono text-[11px] uppercase tracking-[0.14em] text-graphite">
-            {project.technologies.join("  ·  ")}
+
+        <div
+          className={cn(
+            "mt-6 flex max-w-xl flex-col gap-2 text-[0.95rem] leading-relaxed text-graphite",
+            "opacity-80 transition-opacity duration-500 group-hover:opacity-100",
+          )}
+        >
+          {project.description ? <p>{project.description}</p> : null}
+          {project.technologies.length ? (
+            <p className="text-[12px] uppercase tracking-[0.16em] text-stone">
+              {project.technologies.join("  ·  ")}
+            </p>
+          ) : null}
+        </div>
+
+        <div className="relative mt-10 overflow-hidden md:mt-14">
+          <div
+            ref={visualRef}
+            className="origin-center will-change-transform"
+            style={{
+              transition: "transform 700ms cubic-bezier(0.22, 1, 0.36, 1)",
+            }}
+          >
+            <ProjectVisual project={project} caption={project.caption} />
+          </div>
+          <p className="pointer-events-none absolute bottom-4 right-4 text-[11px] uppercase tracking-[0.2em] text-ink opacity-0 transition-opacity duration-500 group-hover:opacity-100 md:bottom-6 md:right-6">
+            {t("work.open")}
           </p>
         </div>
-        <span className="inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.18em] text-ink">
-          {t("work.caseStudy")}
-          <ArrowUpRight className="h-3.5 w-3.5" aria-hidden />
-        </span>
-      </div>
-    </div>
-  );
-
-  const visual = (
-    <div
-      ref={frameRef}
-      onMouseMove={handleMove}
-      onMouseLeave={handleLeave}
-      className="relative overflow-hidden"
-    >
-      <div
-        ref={visualRef}
-        className="origin-center will-change-transform"
-        style={{
-          transition: "transform 500ms cubic-bezier(0.22, 1, 0.36, 1)",
-        }}
-      >
-        <ProjectVisual
-          project={project}
-          caption={caption}
-          src={project.image}
-        />
-      </div>
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 flex items-end justify-between p-4 opacity-0 transition-opacity duration-500 group-hover:opacity-100 md:p-5">
-        <span className="font-mono text-[11px] uppercase tracking-[0.18em] text-ink">
-          {t("work.open")}
-        </span>
-        <span className="font-mono text-[11px] uppercase tracking-[0.18em] text-ink">
-          {project.number}
-        </span>
-      </div>
-    </div>
-  );
-
-  return (
-    <Reveal>
-      <article className="group">
-        <Link
-          href={`/projects/${project.slug}`}
-          className="block focus-visible:outline-offset-8"
-        >
-          {project.layout === "visual-below" && (
-            <div className="grid gap-8 lg:gap-10">
-              {copy}
-              {visual}
-            </div>
-          )}
-
-          {project.layout === "compact" && (
-            <div className="grid items-stretch gap-8 border-t border-line pt-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
-              <div className="max-w-md">{copy}</div>
-              {visual}
-            </div>
-          )}
-
-          {project.layout === "visual-right" && (
-            <div className="grid items-center gap-8 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:gap-16">
-              {copy}
-              {visual}
-            </div>
-          )}
-
-          {project.layout === "visual-left" && (
-            <div className="grid items-center gap-8 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] lg:gap-16">
-              <div className="lg:order-2">{copy}</div>
-              <div className="lg:order-1">{visual}</div>
-            </div>
-          )}
-        </Link>
-      </article>
-    </Reveal>
+      </Link>
+    </article>
   );
 }

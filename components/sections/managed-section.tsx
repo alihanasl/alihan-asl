@@ -1,6 +1,5 @@
 "use client";
 
-import { SectionLabel } from "@/components/ui/section-label";
 import { Reveal } from "@/components/ui/reveal";
 import { useLocale } from "@/components/i18n/locale-provider";
 import { SectionButtons } from "@/components/site/section-buttons";
@@ -15,7 +14,6 @@ import {
 
 export function ManagedSection({
   section,
-  index,
 }: {
   section: SiteSection;
   index: number;
@@ -24,23 +22,19 @@ export function ManagedSection({
   const heading =
     pickLocalized(locale, section.heading) || pickLocalized(locale, section.body);
   const body = pickLocalized(locale, section.body);
-  const label = String(index).padStart(2, "0");
 
   return (
     <section
       id={section.id}
-      className="scroll-mt-24 border-t border-line"
+      className="scroll-mt-24"
       aria-labelledby={`${section.id}-heading`}
     >
-      <div className="mx-auto max-w-[1400px] px-5 py-24 md:px-10 md:py-32 lg:px-14 lg:py-40">
-        <Reveal>
-          <SectionLabel index={label} label={section.type} />
-        </Reveal>
+      <div className="site-pad mx-auto max-w-[1680px] py-24 md:py-32">
         {heading ? (
-          <Reveal delay={0.05}>
+          <Reveal>
             <h2
               id={`${section.id}-heading`}
-              className="font-display mt-6 max-w-4xl text-[clamp(2.4rem,7vw,5.4rem)] leading-[0.92] tracking-[-0.045em]"
+              className="font-display max-w-4xl text-[clamp(2.4rem,7vw,5.4rem)] leading-[0.88] tracking-[-0.05em]"
             >
               {heading}
             </h2>
@@ -48,7 +42,7 @@ export function ManagedSection({
         ) : null}
         {body ? (
           <Reveal delay={0.08}>
-            <p className="mt-8 max-w-md text-sm leading-relaxed text-graphite md:text-base">
+            <p className="mt-8 max-w-md text-[1.02rem] leading-relaxed text-graphite">
               {body}
             </p>
           </Reveal>
@@ -58,13 +52,13 @@ export function ManagedSection({
         ) : null}
 
         {section.type === "faq" ? (
-          <dl className="mt-12 border-t border-line">
+          <dl className="mt-16 max-w-3xl space-y-10">
             {(section.items as FaqItem[]).map((item) => (
-              <div key={item.id} className="border-b border-line py-6">
-                <dt className="font-mono text-[12px] uppercase tracking-[0.18em] text-ink">
+              <div key={item.id}>
+                <dt className="font-display text-[clamp(1.4rem,3vw,2rem)] tracking-[-0.04em] text-ink">
                   {pickLocalized(locale, item.question)}
                 </dt>
-                <dd className="mt-3 max-w-xl text-sm leading-relaxed text-graphite">
+                <dd className="mt-3 max-w-xl text-[0.98rem] leading-relaxed text-graphite">
                   {pickLocalized(locale, item.answer)}
                 </dd>
               </div>
@@ -73,13 +67,13 @@ export function ManagedSection({
         ) : null}
 
         {section.type === "testimonials" ? (
-          <ul className="mt-12 grid gap-8 md:grid-cols-2">
+          <ul className="mt-16 max-w-3xl space-y-12">
             {(section.items as QuoteItem[]).map((item) => (
-              <li key={item.id} className="border-t border-line pt-6">
-                <p className="text-[1.05rem] leading-relaxed text-graphite">
+              <li key={item.id}>
+                <p className="font-display text-[clamp(1.4rem,3vw,2.2rem)] leading-[1.2] tracking-[-0.03em] text-ink">
                   {pickLocalized(locale, item.quote)}
                 </p>
-                <p className="mt-4 font-mono text-[11px] uppercase tracking-[0.18em] text-stone">
+                <p className="mt-4 text-[12px] uppercase tracking-[0.16em] text-stone">
                   {pickLocalized(locale, item.person)}
                 </p>
               </li>
@@ -88,30 +82,25 @@ export function ManagedSection({
         ) : null}
 
         {section.type === "timeline" ? (
-          <ol className="mt-12 border-t border-line">
+          <ol className="mt-16 max-w-3xl space-y-10">
             {(section.items as TimelineItem[]).map((item) => (
-              <li
-                key={item.id}
-                className="grid gap-3 border-b border-line py-6 md:grid-cols-[8rem_minmax(0,1fr)]"
-              >
-                <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-stone">
+              <li key={item.id}>
+                <p className="text-[11px] uppercase tracking-[0.18em] text-stone">
                   {pickLocalized(locale, item.date)}
                 </p>
-                <div>
-                  <p className="font-mono text-[12px] uppercase tracking-[0.16em] text-ink">
-                    {pickLocalized(locale, item.title)}
-                  </p>
-                  <p className="mt-2 max-w-xl text-sm leading-relaxed text-graphite">
-                    {pickLocalized(locale, item.body)}
-                  </p>
-                </div>
+                <p className="font-display mt-3 text-[clamp(1.4rem,3vw,2rem)] tracking-[-0.04em] text-ink">
+                  {pickLocalized(locale, item.title)}
+                </p>
+                <p className="mt-3 max-w-xl text-[0.98rem] leading-relaxed text-graphite">
+                  {pickLocalized(locale, item.body)}
+                </p>
               </li>
             ))}
           </ol>
         ) : null}
 
         {section.type === "gallery" && section.gallery.length ? (
-          <ul className="mt-12 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+          <ul className="mt-12 grid gap-4 sm:grid-cols-2">
             {section.gallery.map((url) => (
               <li key={url}>
                 <FitImage src={url} alt="" ratio="4/3" />

@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { headers } from "next/headers";
-import { geist, geistMono, newsreader } from "@/lib/fonts";
+import { geist, geistMono } from "@/lib/fonts";
 import { site } from "@/data/site";
 import { LocaleProvider } from "@/components/i18n/locale-provider";
 import { CmsProvider, emptyPublicCms } from "@/components/cms/cms-provider";
@@ -70,7 +70,7 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export const viewport: Viewport = {
-  themeColor: "#E4E2DC",
+  themeColor: "#F4F3F0",
   width: "device-width",
   initialScale: 1,
 };
@@ -87,7 +87,7 @@ export default async function RootLayout({
     <html
       lang={locale}
       suppressHydrationWarning
-      className={`${geist.variable} ${geistMono.variable} ${newsreader.variable}`}
+      className={`${geist.variable} ${geistMono.variable}`}
     >
       <body className="bg-paper text-ink antialiased">
         <CmsProvider value={cms}>

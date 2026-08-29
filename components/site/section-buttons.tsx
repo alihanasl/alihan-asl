@@ -42,7 +42,7 @@ export function SectionButtons({
               <a
                 href={href}
                 {...(external ? { target: "_blank", rel: "noreferrer noopener" } : {})}
-                className="inline-flex items-center gap-2 font-mono text-[12px] uppercase tracking-[0.2em] text-ink transition-opacity duration-300 hover:opacity-50"
+                className="inline-flex items-center gap-2 text-[15px] tracking-[-0.02em] text-ink transition-opacity duration-300 hover:opacity-40"
               >
                 {pickLocalized(locale, button.label)}
                 <Icon name={button.icon} />

@@ -23,10 +23,10 @@ export default async function Icon() {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          background: "#E4E2DC",
-          color: "#161615",
+          background: "#F4F3F0",
+          color: "#111111",
           fontSize: 18,
-          fontFamily: "Georgia, serif",
+          fontFamily: "ui-sans-serif, system-ui, sans-serif",
           letterSpacing: "-0.06em",
         }}
       >

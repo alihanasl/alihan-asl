@@ -1,55 +1,50 @@
 "use client";
 
 import { useState } from "react";
-import { SectionLabel } from "@/components/ui/section-label";
 import { Reveal } from "@/components/ui/reveal";
 import { cn } from "@/lib/cn";
 import { useLocale } from "@/components/i18n/locale-provider";
 import { useCms } from "@/components/cms/cms-provider";
 import { pickLocale } from "@/lib/cms/types";
 
-export function Toolbox({ index = "05" }: { index?: string }) {
+export function Toolbox() {
   const { t, locale } = useLocale();
   const { skills } = useCms();
   const [active, setActive] = useState<string | null>(null);
   const activeSkill = skills.find((skill) => skill.id === active);
 
   return (
-    <section
-      className="border-t border-line"
-      aria-labelledby="toolbox-heading"
-    >
-      <div className="mx-auto max-w-[1400px] px-5 py-24 md:px-10 md:py-28 lg:px-14">
+    <section aria-labelledby="toolbox-heading">
+      <div className="site-pad mx-auto max-w-[1680px] py-24 md:py-32">
         <Reveal>
-          <div className="mb-12 flex flex-col gap-4 md:mb-16 md:flex-row md:items-end md:justify-between">
-            <div>
-              <SectionLabel index={index} label={t("toolbox.index")} />
-              <h2
-                id="toolbox-heading"
-                className="font-display mt-4 text-[clamp(2rem,5vw,3.4rem)] leading-[0.95] tracking-[-0.04em]"
-              >
-                {t("toolbox.title")}
-              </h2>
-            </div>
-            <p className="min-h-[2.5rem] max-w-sm text-sm leading-relaxed text-graphite md:text-right">
-              {activeSkill
-                ? pickLocale(locale, activeSkill.noteTr, activeSkill.noteEn)
-                : t("toolbox.copy")}
-            </p>
-          </div>
+          <p className="text-[11px] uppercase tracking-[0.22em] text-stone">
+            {t("toolbox.index")}
+          </p>
+          <h2
+            id="toolbox-heading"
+            className="font-display mt-4 text-[clamp(2.2rem,6vw,4.4rem)] leading-[0.9] tracking-[-0.05em]"
+          >
+            {t("toolbox.title")}
+          </h2>
+          <p className="mt-6 min-h-[2.5rem] max-w-md text-[0.98rem] leading-relaxed text-graphite">
+            {activeSkill
+              ? pickLocale(locale, activeSkill.noteTr, activeSkill.noteEn)
+              : t("toolbox.copy")}
+          </p>
         </Reveal>
 
         <Reveal>
-          <ul className="grid grid-cols-1 border-t border-line sm:grid-cols-2">
+          <ul className="mt-14 flex flex-wrap gap-x-8 gap-y-4">
             {skills.map((skill) => {
               const isActive = active === skill.id;
-              const label = skill.name;
-
               return (
-                <li key={skill.id} className="border-b border-line sm:odd:border-r">
+                <li key={skill.id}>
                   <button
                     type="button"
-                    className="flex w-full items-center justify-between px-0 py-5 text-left transition-colors duration-300 hover:text-ink"
+                    className={cn(
+                      "text-[clamp(1.4rem,3vw,2rem)] tracking-[-0.04em] transition-opacity duration-300",
+                      isActive ? "text-ink" : "text-ink/35 hover:text-ink",
+                    )}
                     onMouseEnter={() => setActive(skill.id)}
                     onMouseLeave={() => setActive(null)}
                     onFocus={() => setActive(skill.id)}
@@ -60,21 +55,7 @@ export function Toolbox({ index = "05" }: { index?: string }) {
                       )
                     }
                   >
-                    <span
-                      className={cn(
-                        "font-mono text-[12px] uppercase tracking-[0.18em] transition-colors duration-300",
-                        isActive ? "text-ink" : "text-graphite",
-                      )}
-                    >
-                      {label}
-                    </span>
-                    <span
-                      className={cn(
-                        "h-px w-8 transition-all duration-300",
-                        isActive ? "w-14 bg-accent" : "bg-line-strong",
-                      )}
-                      aria-hidden
-                    />
+                    {skill.name}
                   </button>
                 </li>
               );

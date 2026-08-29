@@ -1,19 +1,15 @@
 "use client";
 
-import { SectionLabel } from "@/components/ui/section-label";
 import { Reveal } from "@/components/ui/reveal";
-import { Magnetic } from "@/components/ui/magnetic";
 import { useLocale } from "@/components/i18n/locale-provider";
 import { useCms } from "@/components/cms/cms-provider";
 import type { MessageKey } from "@/lib/i18n/translate";
 import type { SiteSection } from "@/lib/cms/layout";
 import { SectionButtons } from "@/components/site/section-buttons";
-import { FitImage } from "@/components/site/fit-image";
 import { pickLocalized } from "@/lib/cms/layout";
 
 export function Contact({
   section,
-  index = "06",
 }: {
   section?: SiteSection;
   index?: string;
@@ -37,71 +33,43 @@ export function Contact({
   return (
     <section
       id="contact"
-      className="scroll-mt-24 border-t border-line"
+      className="scroll-mt-24"
       aria-labelledby="contact-heading"
     >
-      <div className="mx-auto max-w-[1400px] px-5 py-24 md:px-10 md:py-32 lg:px-14 lg:py-40">
+      <div className="site-pad mx-auto flex min-h-[100svh] max-w-[1680px] flex-col justify-end py-20 md:py-28">
         <Reveal>
-          <SectionLabel index={index} label={t("contact.index")} />
-        </Reveal>
-
-        <Reveal delay={0.05}>
           <h2
             id="contact-heading"
-            className="font-display mt-6 max-w-5xl text-[clamp(2.4rem,8vw,5.6rem)] leading-[0.9] tracking-[-0.04em]"
+            className="font-display max-w-[12ch] text-[clamp(3.2rem,11vw,9.5rem)] leading-[0.82] tracking-[-0.06em]"
           >
             {t("contact.titleLine1")}
             <span className="block">{t("contact.titleLine2")}</span>
           </h2>
         </Reveal>
 
-        <Reveal delay={0.1}>
-          <div className="mt-12 flex flex-col justify-between gap-10 border-t border-line pt-10 md:mt-16 md:flex-row md:items-end">
-            <p className="max-w-sm text-sm leading-relaxed text-graphite">
-              {t("contact.copy")}
-            </p>
+        <Reveal delay={0.08}>
+          <div className="mt-16 md:mt-24">
             {managed.length ? (
               <SectionButtons buttons={section?.buttons ?? []} />
             ) : (
-            <ul className="flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:gap-x-8 sm:gap-y-3">
-              {socials.map((item) => (
-                <li key={item.id}>
-                  <Magnetic strength={16}>
+              <ul className="flex flex-col gap-3 sm:flex-row sm:gap-10">
+                {socials.map((item) => (
+                  <li key={item.id}>
                     <a
                       href={item.href}
                       {...(item.href.startsWith("http")
                         ? { target: "_blank", rel: "noreferrer noopener" }
                         : {})}
-                      className="font-mono text-[12px] uppercase tracking-[0.2em] text-ink transition-opacity duration-300 hover:opacity-50"
+                      className="text-[15px] tracking-[-0.02em] text-ink transition-opacity duration-300 hover:opacity-40"
                     >
                       {t(`contact.${item.id}` as MessageKey)}
                     </a>
-                  </Magnetic>
-                </li>
-              ))}
-            </ul>
+                  </li>
+                ))}
+              </ul>
             )}
           </div>
         </Reveal>
-
-        {section?.image ? (
-          <FitImage
-            src={section.image}
-            ratio="16/10"
-            className="mt-10 max-w-md"
-          />
-        ) : null}
-
-        {email ? (
-          <Reveal delay={0.14}>
-            <a
-              href={`mailto:${email}`}
-              className="mt-8 inline-block font-mono text-[12px] uppercase tracking-[0.16em] text-stone transition-colors duration-300 hover:text-ink"
-            >
-              {email}
-            </a>
-          </Reveal>
-        ) : null}
       </div>
     </section>
   );

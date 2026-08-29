@@ -2,29 +2,28 @@
 
 @theme inline {
   --font-sans: var(--font-geist), ui-sans-serif, system-ui, sans-serif;
-  --font-display: var(--font-newsreader), ui-serif, Georgia, "Times New Roman",
-    serif;
+  --font-display: var(--font-geist), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-geist-mono), ui-monospace, monospace;
 
-  --color-paper: #e4e2dc;
-  --color-paper-2: #dcd9d1;
-  --color-ink: #161615;
-  --color-graphite: #3c3b38;
-  --color-stone: #8a867e;
-  --color-line: #cdc9c0;
-  --color-line-strong: #b7b3aa;
-  --color-accent: #b8432a;
-  --color-lab: #141312;
-  --color-lab-2: #1c1b19;
-  --color-lab-line: #2e2c29;
-  --color-lab-muted: #9a958c;
+  --color-paper: #f4f3f0;
+  --color-paper-2: #ebeae6;
+  --color-ink: #111111;
+  --color-graphite: #3a3a3a;
+  --color-stone: #8c8c8c;
+  --color-line: #e4e3df;
+  --color-line-strong: #cfcfc9;
+  --color-accent: #111111;
+  --color-lab: #0c0c0c;
+  --color-lab-2: #141414;
+  --color-lab-line: #2a2a2a;
+  --color-lab-muted: #8a8a8a;
 
   --ease-editorial: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 5.5rem;
+  scroll-padding-top: 4.5rem;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -56,18 +55,6 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-body::after {
-  content: "";
-  pointer-events: none;
-  position: fixed;
-  inset: 0;
-  z-index: 80;
-  opacity: 0.04;
-  mix-blend-mode: multiply;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n' x='0' y='0'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.9'/%3E%3C/svg%3E");
-  background-size: 180px 180px;
-}
-
 ::selection {
   background: var(--color-ink);
   color: var(--color-paper);
@@ -88,27 +75,34 @@ a {
 
 .font-display {
   font-family: var(--font-display);
-  font-weight: 400;
-  font-optical-sizing: auto;
+  font-weight: 450;
 }
 
-.grid-fine {
-  background-image:
-    linear-gradient(to right, rgb(22 22 21 / 0.06) 1px, transparent 1px),
-    linear-gradient(to bottom, rgb(22 22 21 / 0.06) 1px, transparent 1px);
-  background-size: 72px 72px;
+.site-pad {
+  padding-inline: 1.25rem;
 }
 
-.grid-lab {
-  background-image:
-    linear-gradient(to right, rgb(228 226 220 / 0.06) 1px, transparent 1px),
-    linear-gradient(to bottom, rgb(228 226 220 / 0.06) 1px, transparent 1px);
-  background-size: 64px 64px;
+@media (min-width: 768px) {
+  .site-pad {
+    padding-inline: 2.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .site-pad {
+    padding-inline: 3.25rem;
+  }
+}
+
+@media (min-width: 1440px) {
+  .site-pad {
+    padding-inline: 4.5rem;
+  }
 }
 
 @keyframes clip-rise {
   from {
-    transform: translateY(110%);
+    transform: translateY(108%);
   }
   to {
     transform: translateY(0);
@@ -116,13 +110,13 @@ a {
 }
 
 .clip-rise {
-  animation: clip-rise 0.95s var(--ease-editorial) both;
+  animation: clip-rise 1.05s var(--ease-editorial) both;
 }
 
 @keyframes fade-rise {
   from {
     opacity: 0;
-    transform: translateY(10px);
+    transform: translateY(12px);
   }
   to {
     opacity: 1;
@@ -131,20 +125,49 @@ a {
 }
 
 .fade-rise {
-  animation: fade-rise 0.8s var(--ease-editorial) 0.28s both;
+  animation: fade-rise 0.9s var(--ease-editorial) 0.32s both;
 }
 
 .fade-rise-late {
-  animation: fade-rise 0.8s var(--ease-editorial) 0.38s both;
+  animation: fade-rise 0.9s var(--ease-editorial) 0.48s both;
+}
+
+@keyframes pulse-ring {
+  0% {
+    opacity: 0.45;
+    transform: scale(0.86);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.18);
+  }
+}
+
+.pulse-ring {
+  transform-origin: 400px 250px;
+  animation: pulse-ring 3.6s var(--ease-editorial) infinite;
+}
+
+@keyframes scroll-tick {
+  0%,
+  20% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  80%,
+  100% {
+    transform: translateY(14px);
+    opacity: 0;
+  }
+}
+
+.scroll-tick {
+  animation: scroll-tick 1.8s var(--ease-editorial) infinite;
 }
 
 body:has(.admin-app) {
   background: #f4f4f5;
   color: #18181b;
-}
-
-body:has(.admin-app)::after {
-  display: none;
 }
 
 .admin-app a {

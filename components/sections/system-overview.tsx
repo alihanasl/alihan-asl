@@ -1,62 +1,61 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { SectionLabel } from "@/components/ui/section-label";
-import { Reveal } from "@/components/ui/reveal";
+import { motion, useReducedMotion, useScroll, useTransform } from "motion/react";
 import { useLocale } from "@/components/i18n/locale-provider";
 import { useCms } from "@/components/cms/cms-provider";
 import type { MessageKey } from "@/lib/i18n/translate";
 import type { Locale } from "@/lib/i18n/config";
 
-export function SystemOverview({ index = "01" }: { index?: string }) {
+export function SystemOverview() {
   const { t, locale } = useLocale();
   const { stats } = useCms();
+  const sectionRef = useRef<HTMLElement>(null);
+  const reduce = useReducedMotion();
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start end", "end start"],
+  });
+  const shift = useTransform(scrollYProgress, [0, 1], reduce ? [0, 0] : [28, -28]);
 
   return (
     <section
+      ref={sectionRef}
       id="system"
-      className="scroll-mt-24 border-y border-line"
+      className="scroll-mt-24"
       aria-labelledby="system-heading"
     >
-      <div className="mx-auto max-w-[1400px] px-5 py-16 md:px-10 md:py-20 lg:px-14">
-        <Reveal>
-          <div className="mb-12 flex flex-col gap-4 md:mb-16 md:flex-row md:items-end md:justify-between">
-            <div>
-              <SectionLabel index={index} label={t("system.index")} />
-              <h2
-                id="system-heading"
-                className="font-display mt-4 text-[clamp(2rem,5vw,3.4rem)] leading-[0.95] tracking-[-0.04em]"
-              >
-                {t("system.title")}
-              </h2>
-            </div>
-            <p className="max-w-sm text-sm leading-relaxed text-graphite md:text-right">
-              {t("system.copy")}
-            </p>
-          </div>
-        </Reveal>
-
-        <div className="grid grid-cols-2 gap-px bg-line md:grid-cols-4">
-          {stats.map((stat, index) => (
-            <Reveal
-              key={stat.id}
-              delay={index * 0.06}
-              className="bg-paper even:pl-5 md:even:pl-0 md:[&:nth-child(n+2)]:pl-8"
-            >
-              <article className="flex min-h-[148px] flex-col justify-between py-8 pr-5 md:min-h-[188px] md:py-10 md:pr-10">
-                <StatValue
-                  value={stat.value}
-                  suffix={stat.suffix}
-                  display={stat.display}
-                  locale={locale}
-                />
-                <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-stone">
-                  {t(`system.${stat.id}` as MessageKey)}
-                </p>
-              </article>
-            </Reveal>
-          ))}
+      <div className="site-pad mx-auto max-w-[1680px] py-24 md:py-36 lg:py-44">
+        <div className="mb-16 flex max-w-xl flex-col gap-4 md:mb-28">
+          <p className="text-[11px] uppercase tracking-[0.22em] text-stone">
+            {t("system.index")}
+          </p>
+          <h2
+            id="system-heading"
+            className="font-display text-[clamp(2.4rem,6vw,4.6rem)] leading-[0.9] tracking-[-0.05em]"
+          >
+            {t("system.title")}
+          </h2>
+          <p className="max-w-md text-[0.95rem] leading-relaxed text-graphite">
+            {t("position.copy")}
+          </p>
         </div>
+
+        <motion.ul className="grid gap-x-10 gap-y-16 sm:grid-cols-2" style={{ y: shift }}>
+          {stats.map((stat) => (
+            <li key={stat.id} className="min-w-0">
+              <StatValue
+                value={stat.value}
+                suffix={stat.suffix}
+                display={stat.display}
+                locale={locale}
+              />
+              <p className="mt-3 text-[12px] uppercase tracking-[0.18em] text-stone">
+                {t(`system.${stat.id}` as MessageKey)}
+              </p>
+            </li>
+          ))}
+        </motion.ul>
       </div>
     </section>
   );
@@ -78,9 +77,7 @@ function StatValue({
   locale: Locale;
 }) {
   const ref = useRef<HTMLParagraphElement>(null);
-  const [shown, setShown] = useState(
-    value === null ? (display || "—") : "0",
-  );
+  const [shown, setShown] = useState(value === null ? display || "—" : "0");
 
   useEffect(() => {
     if (value === null) {
@@ -105,7 +102,7 @@ function StatValue({
           return;
         }
 
-        const duration = 1100;
+        const duration = 1400;
         const start = performance.now();
 
         function tick(now: number) {
@@ -118,7 +115,7 @@ function StatValue({
 
         requestAnimationFrame(tick);
       },
-      { threshold: 0.4 },
+      { threshold: 0.35 },
     );
 
     observer.observe(node);
@@ -128,7 +125,7 @@ function StatValue({
   return (
     <p
       ref={ref}
-      className="font-display text-[clamp(3.2rem,8vw,5.5rem)] leading-none tracking-[-0.05em] text-ink"
+      className="font-display text-[clamp(4.2rem,12vw,9.5rem)] leading-[0.82] tracking-[-0.07em] text-ink"
     >
       {shown}
     </p>

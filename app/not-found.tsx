@@ -15,18 +15,18 @@ export default function NotFound() {
       <Navigation />
       <main
         id="content"
-        className="flex min-h-[100svh] flex-col justify-end px-5 pb-16 pt-32 md:px-10 lg:px-14"
+        className="site-pad flex min-h-[100svh] flex-col justify-end pb-16 pt-32"
       >
-        <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-stone">
+        <p className="text-[11px] uppercase tracking-[0.22em] text-stone">
           404
         </p>
-        <h1 className="font-display mt-6 text-[clamp(3.5rem,12vw,8rem)] leading-[0.86] tracking-[-0.05em]">
+        <h1 className="font-display mt-6 text-[clamp(3.5rem,12vw,8.5rem)] leading-[0.84] tracking-[-0.06em]">
           {t("notFound.line1")}
           <span className="block">{t("notFound.line2")}</span>
         </h1>
         <Link
           href="/"
-          className="mt-10 font-mono text-[12px] uppercase tracking-[0.2em] text-ink"
+          className="mt-10 text-[15px] tracking-[-0.02em] text-ink transition-opacity hover:opacity-40"
         >
           {t("notFound.back")}
         </Link>

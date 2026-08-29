@@ -18,6 +18,7 @@
   },
   "nav": {
     "work": "Work",
+    "thinking": "Thinking",
     "about": "About",
     "lab": "Lab",
     "contact": "Contact",
@@ -30,7 +31,7 @@
     "tagline": "I use technology to solve problems, improve operations, and build systems that last.",
     "support": "I run critical IT operations, look at systems as a whole, and turn operational problems into lasting technology solutions.",
     "scroll": "Scroll",
-    "scrollHref": "#position",
+    "scrollHref": "#system",
     "roleIt": "",
     "roleBuilder": "IT Operations",
     "roleCreator": "Technology · Transformation"
@@ -65,7 +66,7 @@
   },
   "work": {
     "index": "Work",
-    "title": "Selected Projects",
+    "title": "Selected Work",
     "copy": "Work that started as an operational need.",
     "caseStudy": "View",
     "open": "Open"
@@ -144,8 +145,8 @@
   },
   "contact": {
     "index": "Next",
-    "titleLine1": "Let's build",
-    "titleLine2": "what comes next.",
+    "titleLine1": "Building better systems",
+    "titleLine2": "for what comes next.",
     "copy": "Technology · Transformation · Digital Solutions",
     "email": "Email",
     "linkedin": "LinkedIn",

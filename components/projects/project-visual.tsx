@@ -1,5 +1,3 @@
-import { FitImage } from "@/components/site/fit-image";
-
 type ProjectVisualProps = {
   project: { slug: string };
   caption: string;
@@ -7,46 +5,52 @@ type ProjectVisualProps = {
   className?: string;
 };
 
+function visualKind(slug: string) {
+  if (slug.includes("ping")) return "ping";
+  if (slug.includes("asset")) return "asset";
+  if (slug.includes("guest") || slug === "yeni-is") return "guest";
+  if (slug.includes("tool")) return "toolkit";
+  return "default";
+}
+
 export function ProjectVisual({
   project,
   caption,
-  src,
   className,
 }: ProjectVisualProps) {
+  const kind = visualKind(project.slug);
+
   return (
-    <FitImage src={src} ratio="16/10" className={className}>
+    <div
+      className={`relative aspect-[16/10] w-full overflow-hidden bg-paper-2 ${className ?? ""}`}
+    >
       <svg
         viewBox="0 0 800 500"
         className="absolute inset-0 h-full w-full"
         aria-hidden
         role="presentation"
       >
-        {project.slug === "ping-alert-v2" && <PingAlertMark caption={caption} />}
-        {project.slug === "it-asset-management" && <AssetMark caption={caption} />}
-        {project.slug === "guest-assist-ai" && (
-          <GuestAssistMark caption={caption} />
-        )}
-        {project.slug === "it-toolkit" && <ToolkitMark caption={caption} />}
-        {project.slug !== "ping-alert-v2" &&
-          project.slug !== "it-asset-management" &&
-          project.slug !== "guest-assist-ai" &&
-          project.slug !== "it-toolkit" && <DefaultMark caption={caption} />}
+        {kind === "ping" && <PingAlertMark caption={caption} />}
+        {kind === "asset" && <AssetMark caption={caption} />}
+        {kind === "guest" && <GuestAssistMark caption={caption} />}
+        {kind === "toolkit" && <ToolkitMark caption={caption} />}
+        {kind === "default" && <DefaultMark caption={caption} />}
       </svg>
-      <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink/[0.04] to-transparent" />
-    </FitImage>
+    </div>
   );
 }
 
 function VisualCaption({ caption }: { caption: string }) {
+  if (!caption) return null;
   return (
     <text
-      x="56"
-      y="64"
-      fill="#8A867E"
+      x="48"
+      y="56"
+      fill="#8c8c8c"
       stroke="none"
-      fontFamily="ui-monospace, monospace"
-      fontSize="12"
-      letterSpacing="2"
+      fontFamily="ui-sans-serif, system-ui, sans-serif"
+      fontSize="11"
+      letterSpacing="2.4"
     >
       {caption}
     </text>
@@ -55,48 +59,51 @@ function VisualCaption({ caption }: { caption: string }) {
 
 function PingAlertMark({ caption }: { caption: string }) {
   return (
-    <g fill="none" stroke="#161615" strokeWidth="1">
-      <rect x="40" y="36" width="720" height="428" opacity="0.18" />
-      <circle cx="400" cy="250" r="42" opacity="0.9" />
-      <circle cx="400" cy="250" r="8" fill="#161615" stroke="none" />
-      <circle cx="400" cy="250" r="110" opacity="0.45" />
-      <circle cx="400" cy="250" r="180" opacity="0.28" />
-      <circle cx="400" cy="250" r="250" opacity="0.16" />
-      <line x1="400" y1="48" x2="400" y2="452" opacity="0.18" />
-      <line x1="70" y1="250" x2="730" y2="250" opacity="0.18" />
-      <circle cx="548" cy="168" r="5" fill="#B8432A" stroke="none" />
-      <circle cx="292" cy="318" r="4" fill="#161615" stroke="none" opacity="0.7" />
-      <circle cx="520" cy="340" r="3.5" fill="#161615" stroke="none" opacity="0.45" />
-      <path d="M400 250 L548 168" opacity="0.35" />
+    <g fill="none" stroke="#111111" strokeWidth="1">
+      <circle className="pulse-ring" cx="400" cy="250" r="168" opacity="0.28" />
+      <circle cx="400" cy="250" r="118" opacity="0.35" />
+      <circle cx="400" cy="250" r="58" opacity="0.7" />
+      <circle cx="400" cy="250" r="7" fill="#111111" stroke="none" />
+      <circle cx="186" cy="168" r="5" fill="#111111" stroke="none" />
+      <circle cx="612" cy="146" r="4" fill="#111111" stroke="none" opacity="0.7" />
+      <circle cx="640" cy="318" r="4.5" fill="#111111" stroke="none" />
+      <circle cx="214" cy="342" r="3.5" fill="#111111" stroke="none" opacity="0.45" />
+      <path d="M400 250 L186 168" opacity="0.28" />
+      <path d="M400 250 L612 146" opacity="0.2" />
+      <path d="M400 250 L640 318" opacity="0.28" />
+      <path d="M400 250 L214 342" opacity="0.16" />
+      <line x1="48" y1="250" x2="752" y2="250" opacity="0.1" />
+      <line x1="400" y1="36" x2="400" y2="464" opacity="0.1" />
       <VisualCaption caption={caption} />
     </g>
   );
 }
 
 function AssetMark({ caption }: { caption: string }) {
-  const cells = Array.from({ length: 24 }, (_, index) => index);
+  const cells = Array.from({ length: 18 }, (_, index) => index);
 
   return (
-    <g fill="none" stroke="#161615" strokeWidth="1">
-      <rect x="40" y="36" width="720" height="428" opacity="0.18" />
+    <g fill="none" stroke="#111111" strokeWidth="1">
       {cells.map((cell) => {
         const col = cell % 6;
         const row = Math.floor(cell / 6);
-        const x = 92 + col * 108;
-        const y = 78 + row * 96;
-        const filled = [0, 3, 7, 11, 14, 18, 22].includes(cell);
+        const x = 70 + col * 114;
+        const y = 92 + row * 118;
+        const filled = [1, 4, 8, 11, 13, 16].includes(cell);
         return (
           <rect
             key={cell}
             x={x}
             y={y}
-            width="86"
-            height="74"
-            fill={filled ? "#161615" : "none"}
-            opacity={filled ? 0.12 : 0.55}
+            width="96"
+            height="96"
+            fill={filled ? "#111111" : "none"}
+            opacity={filled ? 0.1 : 0.55}
           />
         );
       })}
+      <line x1="70" y1="92" x2="730" y2="92" opacity="0.18" />
+      <line x1="70" y1="446" x2="730" y2="446" opacity="0.18" />
       <VisualCaption caption={caption} />
     </g>
   );
@@ -104,16 +111,16 @@ function AssetMark({ caption }: { caption: string }) {
 
 function GuestAssistMark({ caption }: { caption: string }) {
   return (
-    <g fill="none" stroke="#161615" strokeWidth="1">
-      <rect x="40" y="36" width="720" height="428" opacity="0.18" />
-      <rect x="118" y="110" width="340" height="210" opacity="0.7" />
-      <rect x="340" y="186" width="340" height="210" opacity="0.4" />
-      <line x1="148" y1="168" x2="328" y2="168" opacity="0.35" />
-      <line x1="148" y1="196" x2="392" y2="196" opacity="0.22" />
-      <line x1="148" y1="224" x2="286" y2="224" opacity="0.22" />
-      <line x1="372" y1="244" x2="620" y2="244" opacity="0.28" />
-      <line x1="372" y1="272" x2="574" y2="272" opacity="0.18" />
-      <circle cx="640" cy="132" r="18" opacity="0.5" />
+    <g fill="none" stroke="#111111" strokeWidth="1">
+      <rect x="88" y="96" width="310" height="168" opacity="0.7" />
+      <rect x="392" y="176" width="310" height="168" opacity="0.35" />
+      <line x1="118" y1="148" x2="318" y2="148" opacity="0.4" />
+      <line x1="118" y1="176" x2="268" y2="176" opacity="0.22" />
+      <line x1="118" y1="204" x2="292" y2="204" opacity="0.18" />
+      <line x1="422" y1="228" x2="642" y2="228" opacity="0.35" />
+      <line x1="422" y1="256" x2="598" y2="256" opacity="0.18" />
+      <circle cx="638" cy="118" r="22" opacity="0.45" />
+      <circle cx="638" cy="118" r="4" fill="#111111" stroke="none" />
       <VisualCaption caption={caption} />
     </g>
   );
@@ -121,16 +128,12 @@ function GuestAssistMark({ caption }: { caption: string }) {
 
 function ToolkitMark({ caption }: { caption: string }) {
   return (
-    <g fill="none" stroke="#161615" strokeWidth="1">
-      <rect x="40" y="36" width="720" height="428" opacity="0.18" />
-      <rect x="110" y="120" width="170" height="260" opacity="0.7" />
-      <rect x="310" y="120" width="170" height="150" fill="#161615" opacity="0.08" />
-      <rect x="310" y="290" width="170" height="90" opacity="0.45" />
-      <rect x="510" y="120" width="170" height="90" opacity="0.45" />
-      <rect x="510" y="230" width="170" height="150" opacity="0.7" />
-      <line x1="132" y1="168" x2="258" y2="168" opacity="0.3" />
-      <line x1="132" y1="196" x2="220" y2="196" opacity="0.2" />
-      <line x1="532" y1="278" x2="648" y2="278" opacity="0.3" />
+    <g fill="none" stroke="#111111" strokeWidth="1">
+      <rect x="90" y="110" width="180" height="280" opacity="0.7" />
+      <rect x="310" y="110" width="180" height="150" fill="#111111" opacity="0.08" />
+      <rect x="310" y="280" width="180" height="110" opacity="0.4" />
+      <rect x="530" y="110" width="180" height="90" opacity="0.4" />
+      <rect x="530" y="220" width="180" height="170" opacity="0.7" />
       <VisualCaption caption={caption} />
     </g>
   );
@@ -138,13 +141,11 @@ function ToolkitMark({ caption }: { caption: string }) {
 
 function DefaultMark({ caption }: { caption: string }) {
   return (
-    <g fill="none" stroke="#161615" strokeWidth="1">
-      <rect x="40" y="36" width="720" height="428" opacity="0.18" />
-      <rect x="140" y="120" width="520" height="260" opacity="0.45" />
-      <line x1="180" y1="180" x2="520" y2="180" opacity="0.28" />
-      <line x1="180" y1="220" x2="460" y2="220" opacity="0.18" />
-      <line x1="180" y1="260" x2="400" y2="260" opacity="0.18" />
-      <circle cx="600" cy="300" r="12" opacity="0.5" />
+    <g fill="none" stroke="#111111" strokeWidth="1">
+      <rect x="120" y="110" width="560" height="280" opacity="0.4" />
+      <line x1="160" y1="180" x2="500" y2="180" opacity="0.28" />
+      <line x1="160" y1="220" x2="430" y2="220" opacity="0.16" />
+      <circle cx="600" cy="300" r="14" opacity="0.45" />
       <VisualCaption caption={caption} />
     </g>
   );

@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import { SectionLabel } from "@/components/ui/section-label";
 import { Reveal } from "@/components/ui/reveal";
 import { useLocale } from "@/components/i18n/locale-provider";
 import { useCms } from "@/components/cms/cms-provider";
@@ -35,52 +34,56 @@ export function AboutPage() {
   const { experiences } = useCms();
 
   return (
-    <article className="pt-16 md:pt-[4.25rem]">
-      <header className="mx-auto max-w-[1400px] px-5 pt-16 md:px-10 md:pt-24 lg:px-14">
+    <article className="pt-14 md:pt-16">
+      <header className="site-pad mx-auto max-w-[1680px] pt-16 md:pt-24">
         <Reveal>
-          <SectionLabel index="01" label={t("about.kicker")} />
-          <h1 className="font-display mt-6 max-w-4xl text-[clamp(2.6rem,7vw,5.4rem)] leading-[0.92] tracking-[-0.045em]">
+          <p className="text-[11px] uppercase tracking-[0.22em] text-stone">
+            {t("about.kicker")}
+          </p>
+          <h1 className="font-display mt-5 max-w-4xl text-[clamp(2.8rem,8vw,6.4rem)] leading-[0.88] tracking-[-0.055em]">
             {t("about.title")}
           </h1>
-          <p className="mt-8 max-w-xl text-[1.05rem] leading-relaxed text-graphite">
+          <p className="mt-8 max-w-xl text-[1.08rem] leading-relaxed text-graphite">
             {t("about.lead")}
           </p>
         </Reveal>
       </header>
 
       <section
-        className="mx-auto max-w-[1400px] px-5 py-20 md:px-10 md:py-28 lg:px-14"
+        className="site-pad mx-auto max-w-[1680px] py-20 md:py-28"
         aria-labelledby="career-heading"
       >
         <Reveal>
-          <SectionLabel index="02" label={t("about.careerKicker")} />
+          <p className="text-[11px] uppercase tracking-[0.22em] text-stone">
+            {t("about.careerKicker")}
+          </p>
           <h2
             id="career-heading"
-            className="font-display mt-4 text-[clamp(2rem,5vw,3.4rem)] leading-[0.95] tracking-[-0.04em]"
+            className="font-display mt-4 text-[clamp(2.2rem,6vw,4.4rem)] leading-[0.9] tracking-[-0.05em]"
           >
             {t("about.careerTitle")}
           </h2>
-          <p className="mt-6 max-w-md text-sm leading-relaxed text-graphite">
+          <p className="mt-6 max-w-md text-[0.98rem] leading-relaxed text-graphite">
             {t("about.careerCopy")}
           </p>
         </Reveal>
-        <ul className="mt-12 border-t border-line">
+        <ul className="mt-14">
           {experiences.map((item) => (
             <li
               key={item.id}
-              className="grid gap-2 border-b border-line py-6 md:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] md:items-baseline md:gap-10"
+              className="grid gap-2 py-7 md:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] md:items-baseline md:gap-16"
             >
-              <p className="font-mono text-[12px] uppercase tracking-[0.18em] text-ink">
+              <p className="text-[15px] tracking-[-0.02em] text-ink">
                 {item.company ||
                   pickLocale(locale, item.fieldTr, item.fieldEn)}
               </p>
               <div>
-                <p className="font-mono text-[11px] uppercase tracking-[0.16em] text-stone">
+                <p className="text-[12px] uppercase tracking-[0.16em] text-stone">
                   {pickLocale(locale, item.contextTr, item.contextEn) ||
                     pickLocale(locale, item.fieldTr, item.fieldEn)}
                 </p>
                 {pickLocale(locale, item.descriptionTr, item.descriptionEn) ? (
-                  <p className="mt-3 max-w-lg text-sm leading-relaxed text-graphite">
+                  <p className="mt-3 max-w-lg text-[0.98rem] leading-relaxed text-graphite">
                     {pickLocale(locale, item.descriptionTr, item.descriptionEn)}
                   </p>
                 ) : null}
@@ -90,28 +93,27 @@ export function AboutPage() {
         </ul>
       </section>
 
-      <section
-        className="border-t border-line"
-        aria-labelledby="leadership-heading"
-      >
-        <div className="mx-auto max-w-[1400px] px-5 py-20 md:px-10 md:py-28 lg:px-14">
+      <section aria-labelledby="leadership-heading">
+        <div className="site-pad mx-auto max-w-[1680px] py-20 md:py-28">
           <Reveal>
-            <SectionLabel index="03" label={t("about.leadershipKicker")} />
+            <p className="text-[11px] uppercase tracking-[0.22em] text-stone">
+              {t("about.leadershipKicker")}
+            </p>
             <h2
               id="leadership-heading"
-              className="font-display mt-4 max-w-xl text-[clamp(2rem,5vw,3.4rem)] leading-[0.95] tracking-[-0.04em]"
+              className="font-display mt-4 max-w-xl text-[clamp(2.2rem,6vw,4.4rem)] leading-[0.9] tracking-[-0.05em]"
             >
               {t("about.leadershipTitle")}
             </h2>
-            <p className="mt-6 max-w-md text-sm leading-relaxed text-graphite">
+            <p className="mt-6 max-w-md text-[0.98rem] leading-relaxed text-graphite">
               {t("about.leadershipCopy")}
             </p>
           </Reveal>
-          <ul className="mt-12 grid gap-x-10 gap-y-4 border-t border-line pt-8 sm:grid-cols-2 lg:grid-cols-3">
+          <ul className="mt-14 max-w-3xl space-y-3">
             {leadership.map((key) => (
               <li
                 key={key}
-                className="font-mono text-[12px] uppercase tracking-[0.18em] text-ink"
+                className="font-display text-[clamp(1.5rem,3vw,2.2rem)] leading-[1.1] tracking-[-0.04em] text-ink"
               >
                 {t(`about.${key}` as MessageKey)}
               </li>
@@ -120,28 +122,27 @@ export function AboutPage() {
         </div>
       </section>
 
-      <section
-        className="border-t border-line"
-        aria-labelledby="impact-heading"
-      >
-        <div className="mx-auto max-w-[1400px] px-5 py-20 md:px-10 md:py-28 lg:px-14">
+      <section aria-labelledby="impact-heading">
+        <div className="site-pad mx-auto max-w-[1680px] py-20 md:py-28">
           <Reveal>
-            <SectionLabel index="04" label={t("about.impactKicker")} />
+            <p className="text-[11px] uppercase tracking-[0.22em] text-stone">
+              {t("about.impactKicker")}
+            </p>
             <h2
               id="impact-heading"
-              className="font-display mt-4 text-[clamp(2rem,5vw,3.4rem)] leading-[0.95] tracking-[-0.04em]"
+              className="font-display mt-4 text-[clamp(2.2rem,6vw,4.4rem)] leading-[0.9] tracking-[-0.05em]"
             >
               {t("about.impactTitle")}
             </h2>
           </Reveal>
-          <ul className="mt-12 grid gap-10 border-t border-line pt-10 md:grid-cols-2">
-            {impact.map(([title, copy], index) => (
-              <Reveal key={title} delay={index * 0.04}>
+          <ul className="mt-16 max-w-3xl space-y-16">
+            {impact.map(([title, copy]) => (
+              <Reveal key={title}>
                 <li>
-                  <h3 className="font-mono text-[12px] uppercase tracking-[0.18em] text-ink">
+                  <h3 className="font-display text-[clamp(1.6rem,3vw,2.4rem)] leading-[1.1] tracking-[-0.04em] text-ink">
                     {t(`about.${title}` as MessageKey)}
                   </h3>
-                  <p className="mt-4 max-w-md text-sm leading-relaxed text-graphite">
+                  <p className="mt-4 max-w-xl text-[1.02rem] leading-relaxed text-graphite">
                     {t(`about.${copy}` as MessageKey)}
                   </p>
                 </li>
@@ -151,27 +152,29 @@ export function AboutPage() {
         </div>
       </section>
 
-      <section className="border-t border-line" aria-labelledby="lens-heading">
-        <div className="mx-auto max-w-[1400px] px-5 py-20 md:px-10 md:py-28 lg:px-14">
+      <section aria-labelledby="lens-heading">
+        <div className="site-pad mx-auto max-w-[1680px] py-20 md:py-28">
           <Reveal>
-            <SectionLabel index="05" label={t("about.lensKicker")} />
+            <p className="text-[11px] uppercase tracking-[0.22em] text-stone">
+              {t("about.lensKicker")}
+            </p>
             <h2
               id="lens-heading"
-              className="font-display mt-4 max-w-3xl text-[clamp(2rem,5vw,3.4rem)] leading-[0.95] tracking-[-0.04em]"
+              className="font-display mt-4 max-w-3xl text-[clamp(2.2rem,6vw,4.4rem)] leading-[0.9] tracking-[-0.05em]"
             >
               {t("about.lensTitle")}
             </h2>
-            <p className="mt-6 max-w-xl text-sm leading-relaxed text-graphite">
+            <p className="mt-6 max-w-xl text-[0.98rem] leading-relaxed text-graphite">
               {t("about.lensCopy")}
             </p>
           </Reveal>
-          <ul className="mt-12 grid gap-10 border-t border-line pt-10 md:grid-cols-3">
+          <ul className="mt-16 max-w-3xl space-y-12">
             {lens.map(([title, copy]) => (
               <li key={title}>
-                <h3 className="font-mono text-[12px] uppercase tracking-[0.18em] text-ink">
+                <h3 className="font-display text-[clamp(1.6rem,3vw,2.4rem)] leading-[1.1] tracking-[-0.04em] text-ink">
                   {t(`about.${title}` as MessageKey)}
                 </h3>
-                <p className="mt-4 text-sm leading-relaxed text-graphite">
+                <p className="mt-4 text-[1.02rem] leading-relaxed text-graphite">
                   {t(`about.${copy}` as MessageKey)}
                 </p>
               </li>
@@ -180,49 +183,29 @@ export function AboutPage() {
         </div>
       </section>
 
-      <section
-        className="border-t border-line"
-        aria-labelledby="philosophy-heading"
-      >
-        <div className="mx-auto max-w-[1400px] px-5 py-20 md:px-10 md:py-28 lg:px-14">
+      <section aria-labelledby="philosophy-heading">
+        <div className="site-pad mx-auto flex min-h-[70svh] max-w-[1680px] flex-col justify-center py-20 md:py-28">
           <Reveal>
-            <SectionLabel index="06" label={t("about.philosophyKicker")} />
+            <p className="text-[11px] uppercase tracking-[0.22em] text-stone">
+              {t("about.philosophyKicker")}
+            </p>
             <h2
               id="philosophy-heading"
-              className="font-display mt-4 max-w-xl text-[clamp(2rem,5vw,3.4rem)] leading-[0.95] tracking-[-0.04em]"
+              className="font-display mt-4 max-w-xl text-[clamp(2.2rem,6vw,4.4rem)] leading-[0.9] tracking-[-0.05em]"
             >
               {t("about.philosophyTitle")}
             </h2>
-            <p className="mt-8 max-w-xl font-display text-[clamp(1.4rem,2.6vw,2rem)] leading-[1.25] tracking-[-0.03em] text-ink">
+            <p className="font-display mt-10 max-w-2xl text-[clamp(1.6rem,3.2vw,2.6rem)] leading-[1.2] tracking-[-0.04em] text-ink">
               {t("about.philosophyCopy")}
             </p>
           </Reveal>
         </div>
       </section>
 
-      <section className="border-t border-line" aria-labelledby="beyond-heading">
-        <div className="mx-auto flex max-w-[1400px] flex-col gap-4 px-5 py-12 md:flex-row md:items-baseline md:justify-between md:px-10 md:py-14 lg:px-14">
-          <div>
-            <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-stone">
-              {t("about.beyondKicker")}
-            </p>
-            <h2
-              id="beyond-heading"
-              className="mt-3 font-mono text-[12px] uppercase tracking-[0.18em] text-ink"
-            >
-              {t("about.beyondTitle")}
-            </h2>
-          </div>
-          <p className="font-mono text-[11px] uppercase tracking-[0.16em] text-stone">
-            {t("about.beyondCopy")}
-          </p>
-        </div>
-      </section>
-
-      <div className="mx-auto max-w-[1400px] px-5 pb-20 md:px-10 md:pb-28 lg:px-14">
+      <div className="site-pad mx-auto max-w-[1680px] pb-20 md:pb-28">
         <Link
           href="/#contact"
-          className="font-mono text-[11px] uppercase tracking-[0.2em] text-ink transition-opacity hover:opacity-50"
+          className="text-[15px] tracking-[-0.02em] text-ink transition-opacity hover:opacity-40"
         >
           {t("nav.contact")}
         </Link>

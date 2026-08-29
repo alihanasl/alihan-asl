@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { nav as fallbackNav, site } from "@/data/site";
 import { cn } from "@/lib/cn";
-import { Magnetic } from "@/components/ui/magnetic";
 import { LanguageSwitcher } from "@/components/i18n/language-switcher";
 import { useLocale } from "@/components/i18n/locale-provider";
 import { useCms } from "@/components/cms/cms-provider";
@@ -18,7 +17,7 @@ export function Navigation() {
 
   useEffect(() => {
     function onScroll() {
-      setScrolled(window.scrollY > 12);
+      setScrolled(window.scrollY > 24);
     }
 
     onScroll();
@@ -33,12 +32,16 @@ export function Navigation() {
     };
   }, [open]);
 
-  const menu = (layout.menu.length ? layout.menu : fallbackNav.map((item) => ({
-    id: item.id,
-    href: item.href,
-    visible: true,
-    label: { tr: t(`nav.${item.id}`), en: t(`nav.${item.id}`) },
-  }))).filter((item) => item.visible);
+  const menu = (
+    layout.menu.length
+      ? layout.menu
+      : fallbackNav.map((item) => ({
+          id: item.id,
+          href: item.href,
+          visible: true,
+          label: { tr: t(`nav.${item.id}`), en: t(`nav.${item.id}`) },
+        }))
+  ).filter((item) => item.visible);
 
   const items = menu.map((item) => ({
     href: item.href,
@@ -48,43 +51,38 @@ export function Navigation() {
   return (
     <header
       className={cn(
-        "fixed inset-x-0 top-0 z-50 transition-[background-color,border-color,backdrop-filter] duration-500",
-        scrolled || open
-          ? "border-b border-line/80 bg-paper/80 backdrop-blur-md"
-          : "border-b border-transparent bg-transparent",
+        "fixed inset-x-0 top-0 z-50 transition-[background-color] duration-500",
+        scrolled || open ? "bg-paper/92" : "bg-transparent",
       )}
     >
-      <div className="mx-auto flex h-16 max-w-[1400px] items-center justify-between px-5 md:h-[4.25rem] md:px-10 lg:px-14">
-        <Magnetic strength={18}>
-          <Link
-            href="/"
-            className="font-mono text-[11px] uppercase tracking-[0.22em] text-ink"
-            onClick={() => setOpen(false)}
-          >
-            {brand}
-          </Link>
-        </Magnetic>
+      <div className="site-pad mx-auto flex h-14 max-w-[1680px] items-center justify-between md:h-16">
+        <Link
+          href="/"
+          className="text-[13px] tracking-[-0.02em] text-ink md:text-sm"
+          onClick={() => setOpen(false)}
+        >
+          {brand}
+        </Link>
 
         <nav
-          className="hidden items-center gap-5 lg:gap-8 md:flex"
+          className="hidden items-center gap-8 md:flex lg:gap-10"
           aria-label={t("a11y.primary")}
         >
           {menu.map((item) => (
-            <Magnetic key={item.id} strength={22}>
-              <Link
-                href={item.href}
-                className="whitespace-nowrap font-mono text-[11px] uppercase tracking-[0.2em] text-graphite transition-colors duration-300 hover:text-ink"
-              >
-                {item.label[locale] || item.label.en || item.label.tr}
-              </Link>
-            </Magnetic>
+            <Link
+              key={item.id}
+              href={item.href}
+              className="text-[13px] tracking-[-0.01em] text-graphite transition-colors duration-300 hover:text-ink"
+            >
+              {item.label[locale] || item.label.en || item.label.tr}
+            </Link>
           ))}
-          <LanguageSwitcher className="border-l border-line pl-5 lg:pl-6" />
+          <LanguageSwitcher />
         </nav>
 
         <button
           type="button"
-          className="font-mono text-[11px] uppercase tracking-[0.2em] text-ink md:hidden"
+          className="text-[13px] tracking-[-0.01em] text-ink md:hidden"
           aria-expanded={open}
           aria-controls="mobile-nav"
           onClick={() => setOpen((value) => !value)}
@@ -96,33 +94,28 @@ export function Navigation() {
       <div
         id="mobile-nav"
         className={cn(
-          "border-t border-line bg-paper md:hidden",
+          "bg-paper md:hidden",
           open ? "block" : "hidden",
         )}
       >
         <nav
           aria-label={t("a11y.mobile")}
-          className="flex min-h-[calc(100svh-4rem)] flex-col justify-between px-5 py-10"
+          className="site-pad flex min-h-[calc(100svh-3.5rem)] flex-col justify-between py-10"
         >
-          <ul className="space-y-2">
+          <ul>
             {items.map((item) => (
               <li key={item.href}>
                 <Link
                   href={item.href}
                   onClick={() => setOpen(false)}
-                  className="font-display block py-2 text-[13vw] leading-[0.9] tracking-[-0.04em] text-ink"
+                  className="font-display block py-1.5 text-[12vw] leading-[0.88] tracking-[-0.05em] text-ink"
                 >
                   {item.label}
                 </Link>
               </li>
             ))}
           </ul>
-          <div className="flex items-end justify-between gap-6">
-            <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-stone">
-              {t("footer.descriptor")}
-            </p>
-            <LanguageSwitcher />
-          </div>
+          <LanguageSwitcher />
         </nav>
       </div>
     </header>

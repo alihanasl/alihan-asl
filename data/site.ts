@@ -13,6 +13,6 @@ export const socials = [
 
 export const nav = [
   { id: "work", href: "/#work" },
-  { id: "about", href: "/about" },
-  { id: "lab", href: "/#lab" },
+  { id: "thinking", href: "/#think" },
+  { id: "contact", href: "/#contact" },
 ] as const;

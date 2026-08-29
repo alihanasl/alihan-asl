@@ -1,49 +1,38 @@
 "use client";
 
-import { SectionLabel } from "@/components/ui/section-label";
 import { Reveal } from "@/components/ui/reveal";
-import { cn } from "@/lib/cn";
 import { useLocale } from "@/components/i18n/locale-provider";
 import { useCms } from "@/components/cms/cms-provider";
 import { pickLocale } from "@/lib/cms/types";
 import type { MessageKey } from "@/lib/i18n/translate";
 
-export function DigitalLab({ index = "03" }: { index?: string }) {
+export function DigitalLab() {
   const { t, locale } = useLocale();
   const { experiments } = useCms();
 
   return (
     <section
       id="lab"
-      className="lab-scope relative scroll-mt-24 overflow-hidden bg-lab text-paper"
+      className="lab-scope relative scroll-mt-24 bg-lab text-paper"
       aria-labelledby="lab-heading"
     >
-      <div aria-hidden className="grid-lab pointer-events-none absolute inset-0" />
-      <div className="relative mx-auto max-w-[1400px] px-5 py-20 md:px-10 md:py-28 lg:px-14">
+      <div className="site-pad mx-auto max-w-[1680px] py-24 md:py-36 lg:py-44">
         <Reveal>
-          <div className="mb-16 flex flex-col gap-6 md:mb-20 md:flex-row md:items-end md:justify-between">
-            <div>
-              <SectionLabel index={index} label={t("lab.index")} tone="lab" />
-              <h2
-                id="lab-heading"
-                className="font-display mt-4 text-[clamp(2rem,5vw,3.4rem)] leading-[0.95] tracking-[-0.04em]"
-              >
-                {t("lab.title")}
-              </h2>
-            </div>
-            <p className="max-w-sm text-sm leading-relaxed text-lab-muted md:pb-2">
-              {t("lab.copy")}
-            </p>
-          </div>
+          <p className="text-[11px] uppercase tracking-[0.22em] text-lab-muted">
+            {t("lab.index")}
+          </p>
+          <h2
+            id="lab-heading"
+            className="font-display mt-4 text-[clamp(2.4rem,7vw,5.4rem)] leading-[0.88] tracking-[-0.055em]"
+          >
+            {t("lab.title")}
+          </h2>
+          <p className="mt-6 max-w-md text-[0.98rem] leading-relaxed text-lab-muted">
+            {t("lab.copy")}
+          </p>
         </Reveal>
 
-        <div className="border-t border-lab-line">
-          <div className="hidden grid-cols-[1fr_0.7fr_7rem] gap-6 py-4 font-mono text-[11px] uppercase tracking-[0.2em] text-lab-muted md:grid">
-            <span>{t("lab.experiment")}</span>
-            <span>{t("lab.status")}</span>
-            <span className="text-right">{t("lab.ref")}</span>
-          </div>
-
+        <div className="mt-20 md:mt-28">
           {experiments.map((experiment, index) => {
             const chapters = (
               [
@@ -59,47 +48,33 @@ export function DigitalLab({ index = "03" }: { index?: string }) {
               .filter((chapter) => chapter.body.trim());
 
             return (
-            <Reveal key={experiment.id} delay={index * 0.05}>
-              <article className="grid gap-3 border-t border-lab-line py-8 md:grid-cols-[1fr_0.7fr_7rem] md:items-baseline md:gap-6 md:py-10">
-                <div>
-                  <h3 className="font-display text-[clamp(1.7rem,4vw,2.6rem)] leading-none tracking-[-0.03em]">
+              <Reveal key={experiment.id} delay={index * 0.04}>
+                <article className="border-t border-lab-line py-12 md:py-16">
+                  <p className="text-[11px] uppercase tracking-[0.22em] text-lab-muted">
+                    {experiment.ref} · {t(`lab.${experiment.status}` as MessageKey)}
+                  </p>
+                  <h3 className="font-display mt-5 text-[clamp(2.2rem,7vw,5.6rem)] leading-[0.86] tracking-[-0.055em]">
                     {pickLocale(locale, experiment.nameTr, experiment.nameEn)}
                   </h3>
-                  <p className="mt-3 max-w-md text-sm leading-relaxed text-lab-muted">
+                  <p className="mt-6 max-w-lg text-[1.02rem] leading-relaxed text-lab-muted">
                     {pickLocale(locale, experiment.noteTr, experiment.noteEn)}
                   </p>
-                </div>
-                <p className="flex items-center gap-3 font-mono text-[11px] uppercase tracking-[0.2em]">
-                  <span
-                    className={cn(
-                      "inline-block h-1.5 w-1.5",
-                      experiment.status === "active" && "bg-accent",
-                      experiment.status === "building" && "bg-paper",
-                      experiment.status === "experimental" && "bg-lab-muted",
-                    )}
-                    aria-hidden
-                  />
-                  {t(`lab.${experiment.status}` as MessageKey)}
-                </p>
-                <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-lab-muted md:text-right">
-                  {experiment.ref}
-                </p>
-                {chapters.length ? (
-                  <div className="grid gap-8 md:col-span-3 md:grid-cols-3 md:gap-10 md:pt-4">
-                    {chapters.map((chapter) => (
-                      <section key={chapter.label}>
-                        <h4 className="font-mono text-[11px] uppercase tracking-[0.2em] text-lab-muted">
-                          {chapter.label}
-                        </h4>
-                        <p className="mt-3 max-w-sm text-sm leading-relaxed text-paper/80">
-                          {chapter.body}
-                        </p>
-                      </section>
-                    ))}
-                  </div>
-                ) : null}
-              </article>
-            </Reveal>
+                  {chapters.length ? (
+                    <div className="mt-12 max-w-xl space-y-10">
+                      {chapters.map((chapter) => (
+                        <section key={chapter.label}>
+                          <h4 className="text-[11px] uppercase tracking-[0.2em] text-lab-muted">
+                            {chapter.label}
+                          </h4>
+                          <p className="mt-3 text-[0.95rem] leading-relaxed text-paper/75">
+                            {chapter.body}
+                          </p>
+                        </section>
+                      ))}
+                    </div>
+                  ) : null}
+                </article>
+              </Reveal>
             );
           })}
         </div>

@@ -13,18 +13,15 @@ export function LanguageSwitcher({ className }: LanguageSwitcherProps) {
 
   return (
     <div
-      className={cn(
-        "flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.2em]",
-        className,
-      )}
+      className={cn("flex items-center gap-2 text-[13px] tracking-[-0.01em]", className)}
       role="group"
       aria-label={t("a11y.language")}
     >
       {locales.map((code, index) => (
         <span key={code} className="flex items-center gap-2">
           {index > 0 && (
-            <span className="text-line-strong" aria-hidden>
-              |
+            <span className="text-stone/50" aria-hidden>
+              /
             </span>
           )}
           <button

@@ -32,10 +32,10 @@ export default async function OpenGraphImage() {
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-between",
-          background: "#E4E2DC",
-          color: "#161615",
+          background: "#F4F3F0",
+          color: "#111111",
           padding: "72px 80px",
-          fontFamily: "Georgia, serif",
+          fontFamily: "ui-sans-serif, system-ui, sans-serif",
         }}
       >
         <div
@@ -46,7 +46,7 @@ export default async function OpenGraphImage() {
             fontSize: 18,
             letterSpacing: "0.22em",
             textTransform: "uppercase",
-            color: "#8A867E",
+            color: "#8c8c8c",
           }}
         >
           <span>{lab}</span>
@@ -69,7 +69,7 @@ export default async function OpenGraphImage() {
               fontSize: 22,
               letterSpacing: "0.16em",
               textTransform: "uppercase",
-              color: "#3C3B38",
+              color: "#3a3a3a",
             }}
           >
             {roles}
