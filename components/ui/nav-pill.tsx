@@ -46,9 +46,25 @@ export function NavPill({
       />
       {items.map((item) => {
         const shared =
-          "relative z-10 flex h-9 min-w-[4.5rem] flex-1 items-center justify-center rounded-[18px] px-3 text-[13px] font-medium tracking-[0.02em] text-ink sm:min-w-[80px]";
+          "relative z-10 flex h-9 min-w-[4.5rem] flex-1 items-center justify-center whitespace-nowrap rounded-[18px] px-3 text-[13px] font-medium tracking-[0.02em] text-ink sm:min-w-[80px]";
 
         if (item.href) {
+          const external = item.href.startsWith("http");
+          if (external) {
+            return (
+              <a
+                key={item.id}
+                href={item.href}
+                target="_blank"
+                rel="noreferrer noopener"
+                role="tab"
+                aria-selected={Boolean(item.active)}
+                className={shared}
+              >
+                {item.label}
+              </a>
+            );
+          }
           return (
             <Link
               key={item.id}

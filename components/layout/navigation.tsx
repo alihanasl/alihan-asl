@@ -1,6 +1,5 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { nav as fallbackNav, site } from "@/data/site";
@@ -14,7 +13,6 @@ export function Navigation() {
   const { profile, layout } = useCms();
   const pathname = usePathname();
   const brand = profile.name || site.name;
-  const [activeId, setActiveId] = useState("work");
 
   const menu = (
     layout.menu.length
@@ -27,38 +25,8 @@ export function Navigation() {
         }))
   ).filter((item) => item.visible);
 
-  useEffect(() => {
-    function onScroll() {
-      if (pathname !== "/") return;
-
-      const markers = menu
-        .map((item) => {
-          const id = item.href.includes("#")
-            ? item.href.split("#")[1]
-            : item.id;
-          const node = document.getElementById(id);
-          if (!node) return null;
-          return { id: item.id, top: node.getBoundingClientRect().top };
-        })
-        .filter((item): item is { id: string; top: number } => Boolean(item));
-
-      const current = [...markers]
-        .reverse()
-        .find((item) => item.top <= window.innerHeight * 0.45);
-
-      if (current) setActiveId(current.id);
-    }
-
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, [pathname, locale]);
-
-  useEffect(() => {
-    if (pathname?.startsWith("/about")) setActiveId("think");
-    if (pathname?.startsWith("/projects")) setActiveId("work");
-    if (pathname === "/") setActiveId((current) => current || "work");
-  }, [pathname]);
+  const onInfo = pathname?.startsWith("/about");
+  const onWork = !onInfo;
 
   return (
     <header className="fixed inset-x-0 top-0 z-50 bg-gradient-to-b from-black/40 to-transparent pt-4 md:pt-6">
@@ -78,11 +46,24 @@ export function Navigation() {
             id: item.id,
             href: item.href,
             label: item.label[locale] || item.label.en || item.label.tr,
-            active: activeId === item.id,
+            active:
+              item.id === "info" || item.href === "/about"
+                ? onInfo
+                : onWork,
           }))}
         />
 
-        <div className="justify-self-end">
+        <div className="flex items-center justify-end gap-2 justify-self-end">
+          <NavPill
+            aria-label={t("nav.resume")}
+            items={[
+              {
+                id: "resume",
+                label: t("nav.resume"),
+                href: site.resumeUrl,
+              },
+            ]}
+          />
           <LanguageSwitcher />
         </div>
       </div>

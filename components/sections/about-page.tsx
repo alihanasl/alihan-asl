@@ -1,6 +1,8 @@
 "use client";
 
 import { Reveal } from "@/components/ui/reveal";
+import { TransformationApproach } from "@/components/sections/transformation-approach";
+import { HowIThink } from "@/components/sections/how-i-think";
 import { useLocale } from "@/components/i18n/locale-provider";
 import { useCms } from "@/components/cms/cms-provider";
 import { pickLocale } from "@/lib/cms/types";
@@ -47,6 +49,9 @@ export function AboutPage() {
           </p>
         </Reveal>
       </header>
+
+      <TransformationApproach />
+      <HowIThink />
 
       <section
         className="site-pad mx-auto max-w-[1680px] py-20 md:py-28"

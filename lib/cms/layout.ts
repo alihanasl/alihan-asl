@@ -227,15 +227,15 @@ export const defaultSiteLayout: SiteLayout = {
   menu: [
     {
       id: "work",
-      href: "/#work",
+      href: "/",
       visible: true,
       label: { tr: "İşler", en: "Work" },
     },
     {
-      id: "think",
-      href: "/#think",
+      id: "info",
+      href: "/about",
       visible: true,
-      label: { tr: "Bakış", en: "Thinking" },
+      label: { tr: "Info", en: "Info" },
     },
   ],
   footer: { links: [] },

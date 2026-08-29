@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { Reveal } from "@/components/ui/reveal";
 import { useLocale } from "@/components/i18n/locale-provider";
 import type { MessageKey } from "@/lib/i18n/translate";
@@ -48,15 +47,6 @@ export function HowIThink() {
           </article>
         </Reveal>
       ))}
-
-      <div className="site-pad mx-auto max-w-[1680px] pb-20 md:pb-28">
-        <Link
-          href="/about"
-          className="text-[13px] tracking-[-0.01em] text-ink transition-opacity hover:opacity-45"
-        >
-          {t("think.more")}
-        </Link>
-      </div>
     </section>
   );
 }

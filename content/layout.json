@@ -2,7 +2,7 @@
   "menu": [
     {
       "id": "work",
-      "href": "/#work",
+      "href": "/",
       "visible": true,
       "label": {
         "tr": "İşler",
@@ -10,12 +10,12 @@
       }
     },
     {
-      "id": "think",
-      "href": "/#think",
+      "id": "info",
+      "href": "/about",
       "visible": true,
       "label": {
-        "tr": "Bakış",
-        "en": "Thinking"
+        "tr": "Info",
+        "en": "Info"
       }
     }
   ],
@@ -116,7 +116,7 @@
     {
       "id": "approach",
       "type": "approach",
-      "visible": true,
+      "visible": false,
       "image": "",
       "gallery": [],
       "buttons": [],
@@ -150,7 +150,7 @@
     {
       "id": "think",
       "type": "think",
-      "visible": true,
+      "visible": false,
       "image": "",
       "gallery": [],
       "buttons": [],
