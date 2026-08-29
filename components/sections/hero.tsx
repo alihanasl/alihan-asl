@@ -41,7 +41,7 @@ export function Hero({ section }: { section?: SiteSection }) {
   return (
     <section
       ref={sectionRef}
-      className="relative flex min-h-[100svh] flex-col pt-14 md:pt-16"
+      className="relative flex min-h-[100svh] flex-col pt-24 md:pt-28"
       aria-label={t("a11y.intro")}
     >
       <div className="site-pad relative mx-auto flex w-full max-w-[1680px] flex-1 flex-col justify-between py-8 md:py-10">

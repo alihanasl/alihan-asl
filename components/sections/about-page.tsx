@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { Reveal } from "@/components/ui/reveal";
 import { useLocale } from "@/components/i18n/locale-provider";
 import { useCms } from "@/components/cms/cms-provider";
@@ -34,7 +33,7 @@ export function AboutPage() {
   const { experiences } = useCms();
 
   return (
-    <article className="pt-14 md:pt-16">
+    <article className="pt-24 md:pt-28">
       <header className="site-pad mx-auto max-w-[1680px] pt-16 md:pt-24">
         <Reveal>
           <p className="text-[11px] uppercase tracking-[0.22em] text-stone">
@@ -201,15 +200,6 @@ export function AboutPage() {
           </Reveal>
         </div>
       </section>
-
-      <div className="site-pad mx-auto max-w-[1680px] pb-20 md:pb-28">
-        <Link
-          href="/#contact"
-          className="text-[15px] tracking-[-0.02em] text-ink transition-opacity hover:opacity-40"
-        >
-          {t("nav.contact")}
-        </Link>
-      </div>
     </article>
   );
 }

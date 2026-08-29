@@ -14,5 +14,4 @@ export const socials = [
 export const nav = [
   { id: "work", href: "/#work" },
   { id: "thinking", href: "/#think" },
-  { id: "contact", href: "/#contact" },
 ] as const;

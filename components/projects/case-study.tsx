@@ -55,7 +55,7 @@ export function CaseStudy({ slug }: CaseStudyProps) {
   ].filter((chapter) => chapter.body.trim());
 
   return (
-    <article className="pt-14 md:pt-16">
+    <article className="pt-24 md:pt-28">
       <header className="site-pad mx-auto max-w-[1680px] pt-16 md:pt-24">
         <Reveal>
           <p className="text-[11px] uppercase tracking-[0.22em] text-stone">

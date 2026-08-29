@@ -237,12 +237,6 @@ export const defaultSiteLayout: SiteLayout = {
       visible: true,
       label: { tr: "Bakış", en: "Thinking" },
     },
-    {
-      id: "contact",
-      href: "/#contact",
-      visible: true,
-      label: { tr: "İletişim", en: "Contact" },
-    },
   ],
   footer: { links: [] },
   pages: [

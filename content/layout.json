@@ -17,15 +17,6 @@
         "tr": "Bakış",
         "en": "Thinking"
       }
-    },
-    {
-      "id": "contact",
-      "href": "/#contact",
-      "visible": true,
-      "label": {
-        "tr": "İletişim",
-        "en": "Contact"
-      }
     }
   ],
   "footer": {
@@ -176,7 +167,7 @@
     {
       "id": "lab",
       "type": "lab",
-      "visible": true,
+      "visible": false,
       "image": "",
       "gallery": [],
       "buttons": [],
@@ -193,7 +184,7 @@
     {
       "id": "contact",
       "type": "contact",
-      "visible": true,
+      "visible": false,
       "image": "",
       "gallery": [],
       "buttons": [],
