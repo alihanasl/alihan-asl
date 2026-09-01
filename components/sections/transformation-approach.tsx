@@ -41,11 +41,10 @@ export function TransformationApproach() {
       <section
         id="approach"
         className="scroll-mt-24"
-        aria-labelledby="approach-heading"
+        aria-label={t("approach.title")}
       >
         <div className="site-pad mx-auto max-w-[1680px] py-24 md:py-36">
-          <ApproachIntro t={t} />
-          <ol className="mt-20 space-y-20">
+          <ol className="space-y-20">
             {steps.map((step, index) => (
               <li key={step}>
                 <p className="text-[11px] uppercase tracking-[0.22em] text-stone">
@@ -69,15 +68,11 @@ export function TransformationApproach() {
     <section
       id="approach"
       className="scroll-mt-24"
-      aria-labelledby="approach-heading"
+      aria-label={t("approach.title")}
     >
-      <div className="site-pad mx-auto max-w-[1680px] pt-16 md:pt-24">
-        <ApproachIntro t={t} />
-      </div>
-
       <div
         ref={ref}
-        className="relative mt-8"
+        className="relative"
         style={{ height: `${steps.length * 100}vh` }}
       >
         <div className="sticky top-0 flex h-[100svh] items-center overflow-hidden">
@@ -128,24 +123,5 @@ export function TransformationApproach() {
         </div>
       </div>
     </section>
-  );
-}
-
-function ApproachIntro({ t }: { t: (key: MessageKey) => string }) {
-  return (
-    <div className="max-w-2xl">
-      <p className="text-[11px] uppercase tracking-[0.22em] text-stone">
-        {t("approach.index")}
-      </p>
-      <h2
-        id="approach-heading"
-        className="font-display mt-4 text-[clamp(2.2rem,5.5vw,4.2rem)] leading-[0.92] tracking-[-0.05em]"
-      >
-        {t("approach.title")}
-      </h2>
-      <p className="mt-6 text-[1.02rem] leading-relaxed text-graphite">
-        {t("approach.copy")}
-      </p>
-    </div>
   );
 }
