@@ -38,6 +38,7 @@ export function ProjectVisual({
                 (kind === "asset" ? "IT Asset Management" : "Ping Alert V2")
               }
               fill
+              unoptimized
               sizes="(min-width: 1680px) 1600px, 100vw"
               className="object-contain object-center"
             />

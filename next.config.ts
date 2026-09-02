@@ -6,6 +6,7 @@ const nextConfig: NextConfig = {
   agentRules: false,
   images: {
     localPatterns: [{ pathname: "/uploads/**", search: "" }],
+    qualities: [75, 90, 100],
   },
   async redirects() {
     return [
