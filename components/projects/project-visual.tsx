@@ -1,10 +1,18 @@
-import Image from "next/image";
+import { cn } from "@/lib/cn";
 
 type ProjectVisualProps = {
   project: { slug: string; image?: string };
   caption: string;
   src?: string;
   className?: string;
+};
+
+const screenshotMeta: Record<
+  "ping" | "asset",
+  { width: number; height: number; label: string }
+> = {
+  ping: { width: 1024, height: 602, label: "Ping Alert V2" },
+  asset: { width: 1024, height: 486, label: "IT Asset Management" },
 };
 
 function visualKind(slug: string) {
@@ -24,40 +32,44 @@ export function ProjectVisual({
   const kind = visualKind(project.slug);
   const image = src || project.image;
 
+  if ((kind === "ping" || kind === "asset") && image) {
+    const meta = screenshotMeta[kind];
+    return (
+      <div className={cn("mx-auto w-full max-w-3xl", className)}>
+        <div className="overflow-hidden rounded-md border border-white/10 bg-[#0a0a0a]">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={image}
+            alt={caption || meta.label}
+            width={meta.width}
+            height={meta.height}
+            decoding="sync"
+            className="block h-auto w-full"
+          />
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div
-      className={`relative aspect-[16/10] w-full overflow-hidden bg-paper-2 ${className ?? ""}`}
-    >
-      {(kind === "ping" || kind === "asset") && image ? (
-        <div className="absolute inset-0 p-4 md:p-6 lg:p-8">
-          <div className="relative h-full w-full">
-            <Image
-              src={image}
-              alt={
-                caption ||
-                (kind === "asset" ? "IT Asset Management" : "Ping Alert V2")
-              }
-              fill
-              unoptimized
-              sizes="(min-width: 1680px) 1600px, 100vw"
-              className="object-contain object-center"
-            />
-          </div>
-        </div>
-      ) : (
-        <svg
-          viewBox="0 0 800 500"
-          className="absolute inset-0 h-full w-full text-ink"
-          aria-hidden
-          role="presentation"
-        >
-          {kind === "ping" && <PingAlertMark caption={caption} />}
-          {kind === "asset" && <AssetMark caption={caption} />}
-          {kind === "guest" && <GuestAssistMark caption={caption} />}
-          {kind === "toolkit" && <ToolkitMark caption={caption} />}
-          {kind === "default" && <DefaultMark caption={caption} />}
-        </svg>
+      className={cn(
+        "relative aspect-[16/10] w-full overflow-hidden bg-paper-2",
+        className,
       )}
+    >
+      <svg
+        viewBox="0 0 800 500"
+        className="absolute inset-0 h-full w-full text-ink"
+        aria-hidden
+        role="presentation"
+      >
+        {kind === "ping" && <PingAlertMark caption={caption} />}
+        {kind === "asset" && <AssetMark caption={caption} />}
+        {kind === "guest" && <GuestAssistMark caption={caption} />}
+        {kind === "toolkit" && <ToolkitMark caption={caption} />}
+        {kind === "default" && <DefaultMark caption={caption} />}
+      </svg>
     </div>
   );
 }

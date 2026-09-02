@@ -23,7 +23,7 @@ export function ProjectPreview({ project }: ProjectPreviewProps) {
     const x = (event.clientX - rect.left) / rect.width - 0.5;
     const y = (event.clientY - rect.top) / rect.height - 0.5;
     if (visual) {
-      visual.style.transform = `translate3d(${x * 16}px, ${y * 12}px, 0) scale(1.045)`;
+      visual.style.transform = `translate3d(${x * 12}px, ${y * 8}px, 0)`;
     }
     if (title) {
       title.style.transform = `translate3d(${x * 8}px, ${y * 4}px, 0)`;
@@ -32,7 +32,7 @@ export function ProjectPreview({ project }: ProjectPreviewProps) {
 
   function handleLeave() {
     if (visualRef.current) {
-      visualRef.current.style.transform = "translate3d(0, 0, 0) scale(1)";
+      visualRef.current.style.transform = "translate3d(0, 0, 0)";
     }
     if (titleRef.current) {
       titleRef.current.style.transform = "translate3d(0, 0, 0)";
@@ -83,7 +83,7 @@ export function ProjectPreview({ project }: ProjectPreviewProps) {
         <div className="relative mt-10 overflow-hidden md:mt-14">
           <div
             ref={visualRef}
-            className="origin-center will-change-transform"
+            className="will-change-transform"
             style={{
               transition: "transform 700ms cubic-bezier(0.22, 1, 0.36, 1)",
             }}
