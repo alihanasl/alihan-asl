@@ -29,13 +29,20 @@ export function ProjectVisual({
       className={`relative aspect-[16/10] w-full overflow-hidden bg-paper-2 ${className ?? ""}`}
     >
       {(kind === "ping" || kind === "asset") && image ? (
-        <Image
-          src={image}
-          alt={caption || (kind === "asset" ? "IT Asset Management" : "Ping Alert V2")}
-          fill
-          sizes="(min-width: 1680px) 1600px, 100vw"
-          className="object-cover object-top"
-        />
+        <div className="absolute inset-0 p-4 md:p-6 lg:p-8">
+          <div className="relative h-full w-full">
+            <Image
+              src={image}
+              alt={
+                caption ||
+                (kind === "asset" ? "IT Asset Management" : "Ping Alert V2")
+              }
+              fill
+              sizes="(min-width: 1680px) 1600px, 100vw"
+              className="object-contain object-center"
+            />
+          </div>
+        </div>
       ) : (
         <svg
           viewBox="0 0 800 500"
