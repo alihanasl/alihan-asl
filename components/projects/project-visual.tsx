@@ -1,5 +1,7 @@
+import Image from "next/image";
+
 type ProjectVisualProps = {
-  project: { slug: string };
+  project: { slug: string; image?: string };
   caption: string;
   src?: string;
   className?: string;
@@ -16,26 +18,38 @@ function visualKind(slug: string) {
 export function ProjectVisual({
   project,
   caption,
+  src,
   className,
 }: ProjectVisualProps) {
   const kind = visualKind(project.slug);
+  const image = src || project.image;
 
   return (
     <div
       className={`relative aspect-[16/10] w-full overflow-hidden bg-paper-2 ${className ?? ""}`}
     >
-      <svg
-        viewBox="0 0 800 500"
-        className="absolute inset-0 h-full w-full text-ink"
-        aria-hidden
-        role="presentation"
-      >
-        {kind === "ping" && <PingAlertMark caption={caption} />}
-        {kind === "asset" && <AssetMark caption={caption} />}
-        {kind === "guest" && <GuestAssistMark caption={caption} />}
-        {kind === "toolkit" && <ToolkitMark caption={caption} />}
-        {kind === "default" && <DefaultMark caption={caption} />}
-      </svg>
+      {(kind === "ping" || kind === "asset") && image ? (
+        <Image
+          src={image}
+          alt={caption || (kind === "asset" ? "IT Asset Management" : "Ping Alert V2")}
+          fill
+          sizes="(min-width: 1680px) 1600px, 100vw"
+          className="object-cover object-top"
+        />
+      ) : (
+        <svg
+          viewBox="0 0 800 500"
+          className="absolute inset-0 h-full w-full text-ink"
+          aria-hidden
+          role="presentation"
+        >
+          {kind === "ping" && <PingAlertMark caption={caption} />}
+          {kind === "asset" && <AssetMark caption={caption} />}
+          {kind === "guest" && <GuestAssistMark caption={caption} />}
+          {kind === "toolkit" && <ToolkitMark caption={caption} />}
+          {kind === "default" && <DefaultMark caption={caption} />}
+        </svg>
+      )}
     </div>
   );
 }

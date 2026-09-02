@@ -93,7 +93,11 @@ export function CaseStudy({ slug }: CaseStudyProps) {
 
       <Reveal>
         <div className="site-pad mx-auto mt-12 max-w-[1680px] md:mt-16">
-          <ProjectVisual project={project} caption={project.caption} />
+          <ProjectVisual
+            project={project}
+            caption={project.caption}
+            src={project.image}
+          />
           {project.gallery.filter((url) => url && url !== project.image).length ? (
             <ul className="mt-4 grid gap-4 sm:grid-cols-2">
               {project.gallery

@@ -88,7 +88,11 @@ export function ProjectPreview({ project }: ProjectPreviewProps) {
               transition: "transform 700ms cubic-bezier(0.22, 1, 0.36, 1)",
             }}
           >
-            <ProjectVisual project={project} caption={project.caption} />
+            <ProjectVisual
+              project={project}
+              caption={project.caption}
+              src={project.image}
+            />
           </div>
           <p className="pointer-events-none absolute bottom-4 right-4 text-[11px] uppercase tracking-[0.2em] text-ink opacity-0 transition-opacity duration-500 group-hover:opacity-100 md:bottom-6 md:right-6">
             {t("work.open")}
